@@ -2,9 +2,15 @@
   <p>
   &copy; {{ .Site.Params.publicationYear }} {{ .Site.Params.Author }}.
   Powered by <a href="https://gohugo.io/">Hugo</a>
-  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  using a modified version of the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
   </p>
 </footer>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$']]}
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 {{- range .Site.Params.custom_js -}}
 <script src="{{ . }}"></script>
 {{ end }}

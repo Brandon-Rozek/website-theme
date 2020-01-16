@@ -7,28 +7,28 @@ body {
   padding: 20px;
   box-sizing:border-box;
   background-color: #EFEFEF;
-  color: #707070;
+  color: #575757;
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   line-height: 1.5;
-  font-size: 16px;
+  font-size: 1.05rem;
   word-wrap: break-word;
 }
 
 a:link {
-  color: #707070;
+  color: #575757;
 }
 
 a:visited {
-  color: #707070;
+  color: #575757;
 }
 
 a:hover {
-  color: #707070;
+  color: #575757;
 }
 
 a:active {
-  color: #707070;
+  color: #575757;
 }
 
 /* Header */
@@ -72,14 +72,15 @@ footer {
 nav ul {
   display: flex;
   justify-content: space-evenly;
-  max-width: 300px;
+  /* max-width: 300px; */
   margin: 20px auto;
   padding: 0;
   list-style: none;
+  flex-wrap: wrap;
 }
 
 nav li {
-  flex: 1;
+  margin: 10px;
 }
 
 /* Contents List */
@@ -169,4 +170,8 @@ nav li {
   margin: 0 auto;
   padding: 20px 0;
   text-align: left;
+}
+
+.title {
+  font-family: 'Comfortaa';
 }
