@@ -6,4 +6,8 @@
   </div>
   <!-- author -->
   <h2><a class="author" href="{{ .Site.BaseURL }}">{{ .Site.Params.Author }}</a></h2>
+  <!-- Alternative Formats -->
+  {{ range .AlternativeOutputFormats -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end -}}
 </header>
