@@ -12,6 +12,11 @@
   <meta name="author" content="{{ .Site.Params.Author }}" />
   <link rel="shortcut icon" type="image/x-icon" href="/img/{{ .Site.Params.favicon }}">
 
+  <!-- Identities -->
+  {{ range .Site.Params.identities}}
+  <link href="{{.}}" rel="me"/>
+  {{ end }}
+
   <!-- css -->
   {{ $style := resources.Get "css/style.css" }}
   {{ $markdown := resources.Get "css/markdown.css" }}
