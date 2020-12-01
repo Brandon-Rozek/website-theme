@@ -7,8 +7,8 @@
         <header>
           <!-- avator -->
           <div class="avatar">
-            <img class="avatarMask" src="/img/{{ .Site.Params.avatar }}" alt="avatar">
-            <img src="/img/avatar-border.svg" alt="avatar-border">
+            <img class="avatarMask" src="{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}" alt="avatar">
+            <img src="{{ .Site.BaseURL }}/img/avatar-border.svg" alt="avatar-border">
           </div>
           <!-- author -->
           <h1 class="author title">{{ .Site.Params.Author }}</h1>
