@@ -5,6 +5,7 @@
   <!-- date -->
   {{ $singlePageDateFormat := .Site.Params.singlePageDateFormat | default "January 2, 2006"}}
   <p class="date">{{ .Date.Format $singlePageDateFormat }}</p>
+  {{ end }}
   <!-- tags -->
   <div id="tags">
     <ul>
@@ -16,7 +17,6 @@
       {{ end }}
     </ul>
   </div>
-  {{ end }}
   <!-- content -->
   <div id="contentBody">
     {{ .Content }}
