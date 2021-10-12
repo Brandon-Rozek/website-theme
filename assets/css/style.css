@@ -42,6 +42,10 @@ header .avatar {
   height: 100px;
 }
 
+.home .avatar {
+  height: 250px;
+}
+
 header .avatar img {
   position: absolute;
   width: 100px;
@@ -50,9 +54,18 @@ header .avatar img {
   right: 0;
 }
 
+.home .avatar img {
+  width: 250px;
+}
+
 header .avatarMask {
   clip-path: circle(48px at center);
   -webkit-clip-path: circle(48px at center);
+}
+
+.home .avatarMask {
+  clip-path: circle(120px at center);
+  -webkit-clip-path: circle(120px at center);
 }
 
 /* Footer */
