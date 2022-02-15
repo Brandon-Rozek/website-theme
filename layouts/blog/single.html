@@ -1,10 +1,12 @@
 {{ define "main"}}
-  <h1 class='title'>{{ .Title }}</h1>
+  <article class="h-entry">
+  <h1 class='title p-name'>{{ .Title }}</h1>
   {{ partial "header.html" . }}
   <!-- date -->
   {{ if not .Date.IsZero }}
   {{ $singlePageDateFormat := .Site.Params.singlePageDateFormat | default "January 2, 2006"}}
-  <p class="date">{{ .Date.Format $singlePageDateFormat }}</p>
+  <p class="date"><time class="dt-published" datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format $singlePageDateFormat }}</time></p>
+  <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
   {{ end }}
   <!-- tags -->
   <div id="tags">
@@ -12,14 +14,31 @@
       {{ range .Param "tags" }}
         {{ $name := . }}
         {{ with $.Site.GetPage (printf "/tags/%s" ($name | urlize)) }}
-          <li><a href="{{ .Permalink }}">{{ $name }}</a></li>
+          <li><a class="p-category" href="{{ .Permalink }}">{{ $name }}</a></li>
         {{ end }}
       {{ end }}
     </ul>
   </div>
   <!-- content -->
-  <div id="contentBody">
+  <div id="contentBody" class="e-content">
     {{ .Content }}
   </div>
+  </article>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": "{{ .Title }}",
+      "image": [
+        "{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}"
+       ],
+      "datePublished": "{{ .Date.Format "2006-01-02" }}",
+      "author": [{
+          "@type": "Person",
+          "name": "{{ .Site.Params.Author }}",
+          "url": "{{ .Site.BaseURL }}"
+        }]
+    }
+    </script>
   {{ partial "footer.html" . }}
 {{ end }}

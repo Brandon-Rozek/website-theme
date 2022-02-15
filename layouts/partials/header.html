@@ -1,13 +1,13 @@
-<header>
+<header class="h-card p-author">
   <!-- avator -->
   <div class="avatar">
-    <img class="avatarMask" src="{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}" alt="{{ .Site.Params.avatarDescription }}">
+    <img class="avatarMask u-photo" src="{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}" alt="{{ .Site.Params.avatarDescription }}">
     <a href="{{ .Site.BaseURL }}"><img class="avatar-border" src="{{ .Site.BaseURL }}/img/avatar-border.svg" alt=""></a>
   </div>
   <!-- author -->
-  <h2><a class="author" href="{{ .Site.BaseURL }}">{{ .Site.Params.Author }}</a></h2>
-  <!-- Alternative Formats -->
-  {{ range .AlternativeOutputFormats -}}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end -}}
+  <h2 class="p-name"><a class="author u-url" rel="me" href="{{ .Site.BaseURL }}">{{ .Site.Params.Author }}</a></h2>
+  <!-- description (for h-card) -->
+  <p style="display: none" class="p-note">
+    {{ .Site.Params.description | safeHTML }}
+  </p>
 </header>

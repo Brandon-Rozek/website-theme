@@ -3,18 +3,19 @@
   {{- partial "head.html" . -}}
   <body>
     <div id="profileContainer">
-      <div id="profile">
+      <div id="profile" class="h-card">
         <header class="home">
           <!-- avator -->
           <div class="avatar">
-            <img class="avatarMask" src="{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}" alt="avatar">
+            <img class="avatarMask u-photo" src="{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}" alt="avatar">
             <img src="{{ .Site.BaseURL }}/img/avatar-border.svg" alt="avatar-border">
           </div>
           <!-- author -->
-          <h1 class="author title">{{ .Site.Params.Author }}</h1>
+          <h1 class="author title p-name">{{ .Site.Params.Author }}</h1>
+          <a style="display: none" rel="me" class="u-url" href="https://brandonrozek.com"></a>
         </header>
         <!-- description -->
-        <p>
+        <p class="p-note">
           {{ .Site.Params.description | safeHTML }}
         </p>
         <!-- navigation -->
@@ -23,10 +24,20 @@
             {{ range .Site.Menus.main }}
             <li><a href="{{ .URL }}" aria-label="{{ .Identifier }}">{{ .Pre }}<br>{{ .Name }}</a></li>
             {{ end }}
+            {{ range .Site.Menus.profile }}
+            <li><a href="{{ .URL }}" rel="me" aria-label="{{ .Identifier }}">{{ .Pre }}<br>{{ .Name }}</a></li>
+            {{ end }}
           </ul>
         </nav>
       </div>
     </div>
     {{- partial "footer.html" . -}}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "url": "{{ .Permalink }}"
+    }
+    </script>
   </body>
 </html>
