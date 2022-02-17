@@ -5,6 +5,16 @@
   using a modified version of the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
   </p>
 </footer>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "email": "mailto://{{ .Site.Params.email }}",
+    "image": "{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}",
+    "name": "{{ .Site.Params.Author }}",
+    "url": "{{ .Site.BaseURL }}"
+  }
+</script>
 <script async src="https://dash.brandonrozek.com/tracker.js" data-ackee-server="https://dash.brandonrozek.com" data-ackee-domain-id="41f92524-47ad-497b-b342-a8c296e4b11b"></script>
 {{- range .Site.Params.custom_js -}}
 <script src="{{ . }}"></script>

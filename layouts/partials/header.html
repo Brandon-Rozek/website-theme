@@ -6,7 +6,8 @@
   </div>
   <!-- author -->
   <h2 class="p-name"><a class="author u-url" rel="me" href="{{ .Site.BaseURL }}">{{ .Site.Params.Author }}</a></h2>
-  <!-- description (for h-card) -->
+  <!-- email / description (for h-card) -->
+  <a style="display: none" class="u-email" href="mailto://{{ .Site.Params.email }}"></a>
   <p style="display: none" class="p-note">
     {{ .Site.Params.description | safeHTML }}
   </p>

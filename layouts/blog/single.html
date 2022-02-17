@@ -36,7 +36,9 @@
       "author": [{
           "@type": "Person",
           "name": "{{ .Site.Params.Author }}",
-          "url": "{{ .Site.BaseURL }}"
+          "url": "{{ .Site.BaseURL }}",
+          "email": "mailto://{{ .Site.Params.email }}",
+          "image": "{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}"
         }]
     }
     </script>
