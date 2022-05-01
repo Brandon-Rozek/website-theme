@@ -5,7 +5,7 @@
   <!-- date -->
   {{ if not .Date.IsZero }}
   {{ $singlePageDateFormat := .Site.Params.singlePageDateFormat | default "January 2, 2006"}}
-  <p class="date"><time class="dt-published" datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format $singlePageDateFormat }}</time></p>
+  <p class="date">Published on <time class="dt-published" datetime='{{ .Date.Format "2006-01-02T15:04:05Z0700" }}'>{{ .Date.Format $singlePageDateFormat }}</time></p>
   <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
   {{ end }}
   <!-- tags -->
@@ -24,6 +24,15 @@
     {{ .Content }}
   </div>
   </article>
+  <div id="webmentions"></div>
+  <form method="post" action="https://webmention.io/brandonrozek.com/webmention">
+    <p>Have you published a response to this? <label for="webmention-source">Let me know the <abbr title="Uniform Resource Locator">URL</abbr></label>:</p>
+    <input type="url" name="source" id="webmention-source">
+    <input type="hidden" name="target" value="{{ .Permalink }}">
+    <button type="submit">Ping!</button>
+  </form>
+  {{ $webmentionjs := resources.Get "js/webmention.min.js" }}
+  <script src="{{ $webmentionjs.Permalink }}" async></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
