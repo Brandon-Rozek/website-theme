@@ -24,6 +24,7 @@
     {{ .Content }}
   </div>
   </article>
+  <!-- Webmentions -->
   <div id="webmentions"></div>
   <form method="post" action="https://webmention.io/brandonrozek.com/webmention">
     <p>Have you published a response to this? <label for="webmention-source">Let me know the <abbr title="Uniform Resource Locator">URL</abbr></label>:</p>
@@ -33,6 +34,7 @@
   </form>
   {{ $webmentionjs := resources.Get "js/webmention.min.js" }}
   <script src="{{ $webmentionjs.Permalink }}" async></script>
+  <!-- Metadata -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
