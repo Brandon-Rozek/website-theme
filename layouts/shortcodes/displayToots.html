@@ -1,0 +1,36 @@
+{{ $suburl := .Get 0 }}
+{{ $url := print .Site.BaseURL $suburl}}
+{{ $dataJ := getJSON $url  }}
+
+<style>
+    .toot {
+        margin-bottom: 2rem;
+    }
+    .toot .e-content img {
+        display: inline-block;
+    }
+
+    .toot .e-content p:first-of-type {
+        display: inline-block;
+    }
+
+
+</style>
+
+{{ range $dataJ }}
+{{ if ne .content "" }}
+<article class="toot h-entry">
+<div>
+    <div class="e-content">
+        <img width=50 src="{{ .account.avatar }}"/>
+        {{ .content | safeHTML }}
+    </div>
+</div>
+<div class=".toot-social">
+<span><i class='fas fa-share'></i> {{ .replies_count }} </span>
+<span><i class='fas fa-retweet'></i> {{ .reblogs_count }} </span>
+<span><i class='fas fa-star'></i> {{ .favourites_count }} </span>
+</div>
+</article>
+{{ end }}
+{{ end }}
