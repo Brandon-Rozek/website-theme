@@ -1,5 +1,4 @@
-{{ $suburl := .Get 0 }}
-{{ $url := print .Site.BaseURL $suburl}}
+{{ $url := .Get 0 }}
 {{ $dataJ := getJSON $url  }}
 
 <style>
