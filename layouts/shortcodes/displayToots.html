@@ -16,7 +16,7 @@
 
 </style>
 
-{{ range $dataJ }}
+{{ range sort $dataJ "created_at" "desc" }}
 {{ if ne .content "" }}
 <article class="toot h-entry">
 <div>
