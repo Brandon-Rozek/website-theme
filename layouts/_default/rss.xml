@@ -10,7 +10,8 @@
 {{- printf "<?xml-stylesheet href=%q type=\"text/xsl\"?>" $style.Permalink  | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ .Title }}</title>
+    <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <!-- <title>{{ .Title }}</title> -->
     <link>{{ .Permalink }}</link>
     <image>{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}</image>
     <description>{{ .Description }}</description>
