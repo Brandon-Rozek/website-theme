@@ -19,8 +19,7 @@
   {{ if gt $readTime 60 }}
   <p>
     Reading Time:
-    {{ math.Floor (div $readTime 60) }} minutes
-    and {{ mod $readTime 60 }} seconds.
+    {{ math.Ceil (div $readTime 60) }} minutes.
   </p>
   {{ end }}
   <!-- tags -->
