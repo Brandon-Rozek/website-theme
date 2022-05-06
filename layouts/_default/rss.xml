@@ -7,13 +7,13 @@
 {{- end -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 {{- $style := resources.Get "css/pretty-feed-v3.xsl" -}}
-{{- printf "<?xml-stylesheet href=\"%s\" type=\"text/xsl\"?>" $style.Permalink  | safeHTML }}
+{{- printf "<?xml-stylesheet href=%q type=\"text/xsl\"?>" $style.Permalink  | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <title>{{ .Title }}</title>
     <link>{{ .Permalink }}</link>
     <image>{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}</image>
-    <description>Recent content {{ if ne  .Title  .Site.Title }}{{ with .Title }}in {{.}} {{ end }}{{ end }}on {{ .Site.Title }}</description>
+    <description>{{ .Description }}</description>
     <generator>Hugo -- gohugo.io</generator>{{ with .Site.LanguageCode }}
     <language>{{.}}</language>{{end}}{{ with .Site.Author.email }}
     <managingEditor>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</managingEditor>{{end}}{{ with .Site.Author.email }}
