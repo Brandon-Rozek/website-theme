@@ -2,11 +2,18 @@
   <article class="h-entry">
   <h1 class='title p-name'>{{ .Title }}</h1>
   {{ partial "header.html" . }}
+  <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
   <!-- date -->
   {{ if not .Date.IsZero }}
   {{ $singlePageDateFormat := .Site.Params.singlePageDateFormat | default "January 2, 2006"}}
-  <p class="date">Published on <time class="dt-published" datetime='{{ .Date.Format "2006-01-02T15:04:05Z0700" }}'>{{ .Date.Format $singlePageDateFormat }}</time></p>
-  <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
+  {{ $pubdate := .Date.Format $singlePageDateFormat }}
+  <p class="date">Published on <time class="dt-published" datetime='{{ .Date.Format "2006-01-02T15:04:05Z0700" }}'>{{ $pubdate }}</time></p>
+  {{- if .Lastmod }}
+    {{- $lastmod := .Lastmod.Format $singlePageDateFormat }}
+    {{- if ne $lastmod $pubdate }}
+    <p class="date-updated">Updated on <time class='dt-updated' datetime='{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" }}'>{{ $lastmod }}</time></p>
+    {{- end }}
+  {{ end }}
   {{ end }}
   <!-- tags -->
   <div id="tags">
