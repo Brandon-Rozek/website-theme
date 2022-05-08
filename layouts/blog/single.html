@@ -1,7 +1,11 @@
 {{ define "main"}}
   <article class="h-entry">
-  <h1 class='title p-name'>{{ .Title }}</h1>
+  {{ .Scratch.Set "customTitleHeaderSet" true }}
+  {{ .Scratch.Set "customTitleHeader" "Blog" }}
+  {{ .Scratch.Set "customTitleHeaderLink" "/blog" }}
   {{ partial "header.html" . }}
+  <main>
+  <h1 class='title'>{{ .Title }}</h1>
   <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
   <!-- date -->
   {{ if not .Date.IsZero }}
@@ -46,6 +50,7 @@
     <input type="hidden" name="target" value="{{ .Permalink }}">
     <button type="submit">Ping!</button>
   </form>
+  </main>
   {{ $webmentionjs := resources.Get "js/webmention.min.js" }}
   <script src="{{ $webmentionjs.Permalink }}" async></script>
   <!-- Metadata -->

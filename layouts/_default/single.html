@@ -1,6 +1,6 @@
 {{ define "main"}}
-  <h1 class='title'>{{ .Title }}</h1>
   {{ partial "header.html" . }}
+  <main>
   {{ if not .Date.IsZero }}
   <!-- date -->
   {{ $singlePageDateFormat := .Site.Params.singlePageDateFormat | default "January 2, 2006"}}
@@ -21,5 +21,6 @@
   <div id="contentBody">
     {{ .Content }}
   </div>
+  </main>
   {{ partial "footer.html" . }}
 {{ end }}

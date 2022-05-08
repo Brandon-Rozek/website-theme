@@ -2,9 +2,10 @@
 <html>
   {{- partial "head.html" . -}}
   <body>
+    <main>
     <div id="profileContainer">
       <div id="profile" class="h-card">
-        <header class="home">
+        <header class="header-home">
           <!-- avator -->
           <div class="avatar">
             <img class="avatarMask u-photo" src="{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}" alt="avatar">
@@ -37,6 +38,7 @@
         </nav>
       </div>
     </div>
+  </main>
     {{- partial "footer.html" . -}}
   <script type="application/ld+json">
     {

@@ -1,10 +1,12 @@
-/* General */
+/*
+** General
+*/
 body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   min-height:100vh;
   margin: 0;
-  padding: 20px;
+  padding: 0;
   box-sizing:border-box;
   background-color: #EFEFEF;
   color: #575757;
@@ -13,11 +15,6 @@ body {
   line-height: 1.5;
   font-size: 1.1rem;
   word-wrap: break-word;
-}
-
-mark {
-  color: #707070;
-  font-weight: bold;
 }
 
 a:link {
@@ -36,43 +33,97 @@ a:active {
   color: #575757;
 }
 
-/* Header */
-header .avatar {
-  position: relative;
+.title {
+  font-family: 'Comfortaa';
+}
+
+/*
+** HEADER
+*/
+
+.avatarMask {
+  clip-path: circle(48px at center);
+  -webkit-clip-path: circle(48px at center);
+}
+
+/* Topbar Header */
+
+.header-top {
+  padding: 20px;
+  color: black;
+  background-color: #f2f2f2;
+  margin-bottom: 2.75rem;
+  border-bottom: 1px solid black;
+  padding-left: 3rem;
+}
+
+.header-top a { color: black !important;}
+
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+}
+
+.header-top .title { margin-right: 1rem; }
+
+.header-top .h-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  width: 350px;
+}
+
+.header-top .h-card .u-photo {
   height: 100px;
 }
 
-.home .avatar {
+@media (max-width: 550px) {
+  .header-top {
+    padding-left: 20px;
+  }
+  .header-top .title { margin-right: 0; }
+  .header-flex { flex-direction: column; }
+  .header-top .h-card {
+    flex-direction: column-reverse;
+  }
+}
+
+/* Homepage Header */
+
+.header-home .avatar {
   height: 250px;
 }
 
-header .avatar img {
+.header-home .avatar img {
+  width: 250px;
   position: absolute;
-  width: 100px;
   margin: 0 auto;
   left: 0;
   right: 0;
 }
 
-.home .avatar img {
-  width: 250px;
-}
-
-header .avatarMask {
-  clip-path: circle(48px at center);
-  -webkit-clip-path: circle(48px at center);
-}
-
-.home .avatarMask {
+.header-home .avatarMask {
   clip-path: circle(120px at center);
   -webkit-clip-path: circle(120px at center);
 }
 
-/* Footer */
-footer {
-  font-size: 12px;
-  box-sizing:border-box;
+/* END HEADER */
+
+main {
+  padding: 20px 10px;
 }
+
+mark {
+  color: #707070;
+  font-weight: bold;
+}
+
 
 /* Top page */
 #profileContainer {
@@ -226,14 +277,20 @@ nav li {
 #contentBody {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px 0;
+  /* padding: 20px 10px; */
   text-align: left;
 }
 
-.title {
-  font-family: 'Comfortaa';
-}
+
 
 #webmentions img { max-height: 1.2em; margin-right: -1ex; }
 
 .date-updated { margin-top: -18px; }
+
+/*
+** Footer
+*/
+footer {
+  font-size: 12px;
+  box-sizing:border-box;
+}

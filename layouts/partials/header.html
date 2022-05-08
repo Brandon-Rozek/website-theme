@@ -1,14 +1,40 @@
-<header class="h-card p-author">
-  <!-- avator -->
-  <div class="avatar">
+<header class="header-top">
+<div class="header-flex">
+
+  {{ $headerTitle := .Scratch.Get "customTitleHeader" }}
+  {{ $headerLink := .Scratch.Get "customTitleHeaderLink" }}
+
+  {{ if (.Scratch.Get "customTitleHeaderSet") }}
+    {{ if eq $headerTitle ""}}
+      <div></div>
+    {{ else }}
+      <h1 class='title'>
+        {{ if $headerLink }}
+          <a href="{{ $headerLink }}">
+            {{ $headerTitle }}
+          </a>
+        {{ else }}
+          {{ $headerTitle }}
+        {{ end }}
+      </h1>
+    {{ end }}
+  {{ else }}
+    <h1 class="title">{{ .Title }}</h1>
+  {{ end }}
+
+
+  <div class="h-card p-author">
+    <h2 class="p-name"><a class="author u-url" rel="me" href="{{ .Site.BaseURL }}">{{ .Site.Params.Author }}</a></h2>
     <img class="avatarMask u-photo" src="{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}" alt="{{ .Site.Params.avatarDescription }}">
-    <a href="{{ .Site.BaseURL }}"><img class="avatar-border" src="{{ .Site.BaseURL }}/img/avatar-border.svg" alt=""></a>
+    <div style="display: none">
+        <!-- email / description (for h-card) -->
+        <a class="u-email" href="mailto://{{ .Site.Params.email }}"></a>
+        <p class="p-note">
+          {{ .Site.Params.description | safeHTML }}
+        </p>
+    </div>
   </div>
-  <!-- author -->
-  <h2 class="p-name"><a class="author u-url" rel="me" href="{{ .Site.BaseURL }}">{{ .Site.Params.Author }}</a></h2>
-  <!-- email / description (for h-card) -->
-  <a style="display: none" class="u-email" href="mailto://{{ .Site.Params.email }}"></a>
-  <p style="display: none" class="p-note">
-    {{ .Site.Params.description | safeHTML }}
-  </p>
+
+
+</div>
 </header>
