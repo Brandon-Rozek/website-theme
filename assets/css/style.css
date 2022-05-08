@@ -40,7 +40,6 @@ a:active {
 /*
 ** HEADER
 */
-
 .avatarMask {
   clip-path: circle(48px at center);
   -webkit-clip-path: circle(48px at center);
@@ -95,21 +94,9 @@ a:active {
 
 /* END HEADER */
 
-main {
-  padding: 20px 10px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-mark {
-  color: #707070;
-  font-weight: bold;
-}
-
 /*
 ** NAVIGATION
 */
-
 .nav-home ul {
   display: flex;
   justify-content: space-evenly;
@@ -126,7 +113,14 @@ mark {
 
 /* END NAVIGATION */
 
-/* Contents List */
+/*
+** SEARCH
+*/ 
+mark {
+  color: #707070;
+  font-weight: bold;
+}
+
 #searchBox {
   position: relative;
   max-width: 300px;
@@ -198,6 +192,11 @@ mark {
   background-color: #dddfdf;
 }
 
+/* END SEARCH */
+
+/*
+** TAGS
+*/
 #tags ul {
   max-width: 600px;
   margin: 0 auto;
@@ -216,9 +215,13 @@ mark {
   background-color: #dddfdf;
   border-radius: 5px;
   font-size: 14px;
-  /* text-decoration: none; */
 }
 
+/* END TAGS */
+
+/*
+** BLOG LIST PAGE
+*/
 #contentsList {
   padding: 20px 0;
 }
@@ -229,6 +232,9 @@ mark {
   border: solid 1px #c9c9c9;
 }
 
+/*
+** FEED LIST PAGE
+*/
 #feedList {
   text-align: left;
   max-width: 800px;
@@ -246,7 +252,15 @@ mark {
   border-bottom: 1px solid #c9c9c9;
 }
 
-/* Page */
+/*
+** STANDARD PAGE
+*/
+main {
+  padding: 20px 10px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 main .e-content {
   text-align: left;
 }
@@ -257,11 +271,9 @@ main .e-content h2 {
   border-bottom: 1px solid #c9c9c9;
 }
 
-
 /*
 ** Home Page
 */
-
 .main-home {
   min-height: calc(100vh - 100px);
   /* max-width: 600px; */
@@ -272,7 +284,6 @@ main .e-content h2 {
 
 .main-home .h-card {
   max-width: 600px;
-  /* min-width: 300px; */
 }
 
 .main-home .h-card .avatar {
@@ -294,12 +305,6 @@ main .e-content h2 {
 
 /* END HOME PAGE */
 
-
-
-#webmentions img { max-height: 1.2em; margin-right: -1ex; }
-
-.date-updated { margin-top: -18px; }
-
 /*
 ** Footer
 */
@@ -307,3 +312,12 @@ footer {
   font-size: 12px;
   box-sizing:border-box;
 }
+
+/* END FOOTER */
+
+/*
+** EXTRA
+*/
+#webmentions img { max-height: 1.2em; margin-right: -1ex; }
+
+.date-updated { margin-top: -18px; }
