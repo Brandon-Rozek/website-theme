@@ -2,7 +2,7 @@
   {{ partial "header.html" . }}
   <main>
   {{ partial "search.html" . }}
-  {{ partial "tags_list_all.html" . }}
+  {{ partial "tags/all.html" . }}
   <!-- contents -->
   <div id="contentsList">
     {{ $listPageDateFormat := .Site.Params.listPageDateFormat | default "January, 2006"}}
