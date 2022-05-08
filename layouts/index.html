@@ -1,51 +1,47 @@
 <!DOCTYPE html>
 <html>
   {{- partial "head.html" . -}}
-  <body>
-    <main>
-    <div id="profileContainer">
-      <div id="profile" class="h-card">
-        <header class="header-home">
-          <!-- avator -->
-          <div class="avatar">
-            <img class="avatarMask u-photo" src="{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}" alt="avatar">
-            <img src="{{ .Site.BaseURL }}/img/avatar-border.svg" alt="avatar-border">
-          </div>
-          <!-- author -->
-          <h1 class="author title p-name">{{ .Site.Params.Author }}</h1>
-          <a style="display: none" rel="me" class="u-url" href="https://brandonrozek.com"></a>
-        </header>
-        <!-- description -->
-        <p class="p-note">
-          {{ .Site.Params.description | safeHTML }}
-        </p>
-        <!-- navigation -->
-        <nav>
-          <ul>
-            {{ range .Site.Menus.main }}
-            <li><a href="{{ .URL }}" aria-label="{{ .Identifier }}">{{ .Pre }}<br>{{ .Name }}</a></li>
-            {{ end }}
-
-          </ul>
-        </nav>
-        <p>You can also find me on:</p>
-        <nav>
-          <ul>
-            {{ range .Site.Menus.profile }}
-            <li><a href="{{ .URL }}" rel="me" aria-label="{{ .Identifier }}">{{ .Pre }}<br>{{ .Name }}</a></li>
-            {{ end }}
-          </ul>
-        </nav>
+<body>
+  <main class="main-home">
+    <div class="h-card">
+      <!-- avator -->
+      <div class="avatar">
+        <img class="avatarMask u-photo" src="{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}" alt="Photo of {{ .Site.Params.Author }}" />
+        <img src="{{ .Site.BaseURL }}/img/avatar-border.svg" />
       </div>
+      <!-- author -->
+      <h1 class="author title p-name">{{ .Site.Params.Author }}</h1>
+      <a style="display: none" rel="me" class="u-url" href="https://brandonrozek.com"></a>
+      <!-- description -->
+      <p class="p-note">
+        {{ .Site.Params.description | safeHTML }}
+      </p>
+      <!-- Site Navigation -->
+      <nav class="nav-home">
+        <ul>
+          {{ range .Site.Menus.main }}
+            <li><a href="{{ .URL }}" aria-label="{{ .Identifier }}">{{ .Pre }}<br>{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+      <!-- Social Navigation -->
+      <p>You can also find me on:</p>
+      <nav class="nav-home">
+        <ul>
+          {{ range .Site.Menus.profile }}
+            <li><a href="{{ .URL }}" rel="me" aria-label="{{ .Identifier }}">{{ .Pre }}<br>{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
     </div>
   </main>
-    {{- partial "footer.html" . -}}
+  {{ partial "footer.html" . -}}
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
       "@type": "WebSite",
       "url": "{{ .Permalink }}"
     }
-    </script>
-  </body>
+  </script>
+</body>
 </html>

@@ -4,7 +4,7 @@
 body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  min-height:100vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   box-sizing:border-box;
@@ -93,25 +93,6 @@ a:active {
   }
 }
 
-/* Homepage Header */
-
-.header-home .avatar {
-  height: 250px;
-}
-
-.header-home .avatar img {
-  width: 250px;
-  position: absolute;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-}
-
-.header-home .avatarMask {
-  clip-path: circle(120px at center);
-  -webkit-clip-path: circle(120px at center);
-}
-
 /* END HEADER */
 
 main {
@@ -123,22 +104,11 @@ mark {
   font-weight: bold;
 }
 
+/*
+** NAVIGATION
+*/
 
-/* Top page */
-#profileContainer {
-  min-height: calc(100vh - 100px);
-  /* max-width: 600px; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#profile {
-  max-width: 600px;
-  /* min-width: 300px; */
-}
-
-nav ul {
+.nav-home ul {
   display: flex;
   justify-content: space-evenly;
   /* max-width: 300px; */
@@ -148,9 +118,11 @@ nav ul {
   flex-wrap: wrap;
 }
 
-nav li {
+.nav-home li {
   margin: 0 10px;
 }
+
+/* END NAVIGATION */
 
 /* Contents List */
 #searchBox {
@@ -279,6 +251,43 @@ nav li {
   /* padding: 20px 10px; */
   text-align: left;
 }
+
+
+/*
+** Home Page
+*/
+
+.main-home {
+  min-height: calc(100vh - 100px);
+  /* max-width: 600px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-home .h-card {
+  max-width: 600px;
+  /* min-width: 300px; */
+}
+
+.main-home .h-card .avatar {
+  height: 250px;
+}
+
+.main-home .h-card .avatar img {
+  width: 250px;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+.main-home .h-card .avatarMask {
+  clip-path: circle(120px at center);
+  -webkit-clip-path: circle(120px at center);
+}
+
+/* END HOME PAGE */
 
 
 
