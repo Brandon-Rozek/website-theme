@@ -1,76 +1,41 @@
 {{ define "main"}}
+{{ .Scratch.Set "customTitleHeaderSet" true }}
+{{ .Scratch.Set "customTitleHeader" "Blog" }}
+{{ .Scratch.Set "customTitleHeaderLink" "/blog" }}
+{{ partial "header.html" . }}
+<main>
   <article class="h-entry">
-  {{ .Scratch.Set "customTitleHeaderSet" true }}
-  {{ .Scratch.Set "customTitleHeader" "Blog" }}
-  {{ .Scratch.Set "customTitleHeaderLink" "/blog" }}
-  {{ partial "header.html" . }}
-  <main>
-  <h1 class='title'>{{ .Title }}</h1>
-  <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
-  <!-- date -->
-  {{ if not .Date.IsZero }}
-  {{ $singlePageDateFormat := .Site.Params.singlePageDateFormat | default "January 2, 2006"}}
-  {{ $pubdate := .Date.Format $singlePageDateFormat }}
-  <p class="date">Published on <time class="dt-published" datetime='{{ .Date.Format "2006-01-02T15:04:05Z0700" }}'>{{ $pubdate }}</time></p>
-  {{- if .Lastmod }}
-    {{- $lastmod := .Lastmod.Format $singlePageDateFormat }}
-    {{- if ne $lastmod $pubdate }}
-    <p class="date-updated">Updated on <time class='dt-updated' datetime='{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" }}'>{{ $lastmod }}</time></p>
-    {{- end }}
-  {{ end }}
-  {{ end }}
-  {{ $readTime := mul (div (countwords .Content) 220.0) 60 }}
-  {{ if gt $readTime 60 }}
-  <p>
-    Reading Time:
-    {{ math.Ceil (div $readTime 60) }} minutes.
-  </p>
-  {{ end }}
-  <!-- tags -->
-  <div id="tags">
-    <ul>
-      {{ range .Param "tags" }}
-        {{ $name := . }}
-        {{ with $.Site.GetPage (printf "/tags/%s" ($name | urlize)) }}
-          <li><a class="p-category" href="{{ .Permalink }}">{{ $name }}</a></li>
-        {{ end }}
-      {{ end }}
-    </ul>
-  </div>
-  <!-- content -->
-  <div id="contentBody" class="e-content">
-    {{ .Content }}
-  </div>
+    <h1 class='title'>{{ .Title }}</h1>
+    <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
+    {{ .Scratch.Set "beforeDateString" "Published on "}}
+    {{ partial "date.html" . }}
+    {{ partial "reading_time.html" . }}
+    {{ partial "tags_list_page.html" . }}
+    <!-- content -->
+    <div class="e-content">
+      {{ .Content }}
+    </div>
   </article>
-  <!-- Webmentions -->
-  <div id="webmentions"></div>
-  <form method="post" action="https://webmention.io/brandonrozek.com/webmention">
-    <p>Have you published a response to this? <label for="webmention-source">Let me know the <abbr title="Uniform Resource Locator">URL</abbr></label>:</p>
-    <input type="url" name="source" id="webmention-source">
-    <input type="hidden" name="target" value="{{ .Permalink }}">
-    <button type="submit">Ping!</button>
-  </form>
-  </main>
-  {{ $webmentionjs := resources.Get "js/webmention.min.js" }}
-  <script src="{{ $webmentionjs.Permalink }}" async></script>
-  <!-- Metadata -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "NewsArticle",
-      "headline": "{{ .Title }}",
-      "image": [
-        "{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}"
-       ],
-      "datePublished": "{{ .Date.Format "2006-01-02" }}",
-      "author": [{
-          "@type": "Person",
-          "name": "{{ .Site.Params.Author }}",
-          "url": "{{ .Site.BaseURL }}",
-          "email": "mailto://{{ .Site.Params.email }}",
-          "image": "{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}"
-        }]
-    }
-    </script>
-  {{ partial "footer.html" . }}
+  {{ partial "webmentions.html" . }}
+</main>
+<!-- Metadata -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "{{ .Title }}",
+    "image": [
+      "{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}"
+     ],
+    "datePublished": "{{ .Date.Format "2006-01-02" }}",
+    "author": [{
+        "@type": "Person",
+        "name": "{{ .Site.Params.Author }}",
+        "url": "{{ .Site.BaseURL }}",
+        "email": "mailto://{{ .Site.Params.email }}",
+        "image": "{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}"
+      }]
+  }
+  </script>
+{{ partial "footer.html" . }}
 {{ end }}

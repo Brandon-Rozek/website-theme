@@ -1,10 +1,12 @@
-{{ define "main"}}
+{{ define "main" }}
   {{ partial "header.html" . }}
   <!-- content -->
-  <main>
-  <div id="contentBody">
-    {{ .Content }}
-  </div>
+  <main class="h-entry">
+    {{ .Scratch.Set "beforeDateString" "Published on "}}
+    {{ partial "date.html" . }}
+    <div class="e-content">
+      {{ .Content }}
+    </div>
   </main>
   {{ partial "footer.html" . }}
 {{ end }}

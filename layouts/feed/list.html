@@ -1,41 +1,24 @@
 {{ define "main"}}
   {{ partial "header.html" . }}
   <main>
-  <!-- search box -->
-  <div id="searchBox">
-    <input type="text" id="searchBoxInput" placeholder="Search..." />
-    <img id="searchBoxIcon" src="{{ .Site.BaseURL }}/img/search.png" />
-  </div>
-  <!-- search results -->
-  <div id="searchResults"></div>
-  <!-- contents -->
-  <div id="feedList">
-    {{ $listPageDateFormat := .Site.Params.listPageDateFormat | default "January, 2006"}}
-    {{ range $index, $value := .Pages.GroupByDate $listPageDateFormat }}
-    {{ range .Pages }}
-      <article class="h-entry">
-        <h2 class='title p-name'>{{ .Title }}</h2>
-          <!-- date -->
-          {{ if not .Date.IsZero }}
-          {{ $singlePageDateFormat := .Site.Params.singlePageDateFormat | default "January 2, 2006"}}
-          <p class="date"><time class="dt-published" datetime='{{ .Date.Format "2006-01-02T15:04:05Z0700" }}'>{{ .Date.Format $singlePageDateFormat }}</time></p>
+    {{ partial "search.html" . }}
+    <!-- contents -->
+    <div id="feedList">
+      {{ $listPageDateFormat := .Site.Params.listPageDateFormat | default "January, 2006"}}
+      {{ range $index, $value := .Pages.GroupByDate $listPageDateFormat }}
+      {{ range .Pages }}
+        <article class="h-entry">
+          <h2 class='title p-name'>{{ .Title }}</h2>
+          {{ .Scratch.Set "noDateUpdate" true }}
+          {{ partial "date.html" . }}
           <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
-          {{ end }}
-        <div id="contentBody" class="e-content">
-          {{ .Content }}
-        </div>
-      </article>
-    {{ end }}
-    {{ end }}
-  </div>
+          <div class="e-content">
+            {{ .Content }}
+          </div>
+        </article>
+      {{ end }}
+      {{ end }}
+    </div>
   </main>
   {{ partial "footer.html" . }}
-  {{ $jquery := resources.Get "js/jquery-3.5.1.min.js" }}
-  {{ $mark := resources.Get "js/jquery.mark.es6.min.js" }}
-  {{ $lunr := resources.Get "js/lunr.js" }}
-  {{ $search := resources.Get "js/search.js" }}
-  <script src="{{ $jquery.Permalink }}"></script>
-  <script src="{{ $mark.Permalink }}"></script>
-  <script src="{{ $lunr.Permalink }}"></script>
-  <script src="{{ $search.Permalink }}"></script>
 {{ end }}

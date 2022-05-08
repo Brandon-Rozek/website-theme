@@ -4,34 +4,38 @@
 <style>
     .toot {
         margin-bottom: 2rem;
+        padding: 15px;
+        border: 1px solid #656565;
+        border-radius: 10px;
+    }
+    .toot .date {
+        vertical-align: top;
+        margin-bottom: 0;
     }
     .toot .e-content img {
         display: inline-block;
+        border: 2px solid black;
     }
 
     .toot .e-content p:first-of-type {
         display: inline-block;
     }
-
-
 </style>
 
 {{ range sort $dataJ "created_at" "desc" }}
 {{ if ne .content "" }}
 <article class="toot h-entry">
-<div>
     <div class="e-content">
         <img width=50 src="{{ .account.avatar }}"/>
-        <p class="date">Published on <time class="dt-published" datetime='{{ .created_at }}'>{{ dateFormat "January 2, 2006 15:04" (time .created_at) }}</time></p>
+        <p class="date">Tooted on <time class="dt-published" datetime='{{ .created_at }}'>{{ dateFormat "January 2, 2006 15:04" (time .created_at) }}</time></p>
         {{ .content | safeHTML }}
     </div>
-</div>
-<div class=".toot-social">
-<span><i class='fas fa-share'></i> {{ .replies_count }} </span>
-<span><i class='fas fa-retweet'></i> {{ .reblogs_count }} </span>
-<span><i class='fas fa-star'></i> {{ .favourites_count }} </span>
-<span>| Source: <a href="{{ .url }}">{{ .url }}</a></span>
-</div>
+    <div class=".toot-social">
+        <span><i class='fas fa-share'></i> {{ .replies_count }} </span>
+        <span><i class='fas fa-retweet'></i> {{ .reblogs_count }} </span>
+        <span><i class='fas fa-star'></i> {{ .favourites_count }} </span>
+        <span>| Source: <a href="{{ .url }}">{{ .url }}</a></span>
+    </div>
 </article>
 {{ end }}
 {{ end }}

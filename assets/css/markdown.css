@@ -1,82 +1,82 @@
-#contentBody a {
+main .e-content a {
   background-color: transparent;
 }
 
-#contentBody a:active,
-#contentBody a:hover {
+main .e-content a:active,
+main .e-content a:hover {
   outline-width: 0;
 }
 
-#contentBody strong {
+main .e-content strong {
   font-weight: inherit;
 }
 
-#contentBody strong {
+main .e-content strong {
   font-weight: bolder;
 }
 
-#contentBody h1 {
+main .e-content h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
 
-#contentBody img {
+main .e-content img {
   border-style: none;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 
-#contentBody code,
-#contentBody kbd,
-#contentBody pre {
+main .e-content code,
+main .e-content kbd,
+main .e-content pre {
   font-family: monospace, monospace;
   font-size: 1em;
 }
 
-#contentBody hr {
+main .e-content hr {
   box-sizing: content-box;
   height: 0;
   overflow: visible;
 }
 
-#contentBody input {
+main .e-content input {
   font: inherit;
   margin: 0;
 }
 
-#contentBody input {
+main .e-content input {
   overflow: visible;
 }
 
-#contentBody [type="checkbox"] {
+main .e-content [type="checkbox"] {
   box-sizing: border-box;
   padding: 0;
 }
 
-#contentBody * {
+main .e-content * {
   box-sizing: border-box;
 }
 
-#contentBody input {
+main .e-content input {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
 }
 
-#contentBody a {
+main .e-content a {
   /* color: #0366d6; */
   /* text-decoration: none; */
   text-decoration: underline;
 }
 
-#contentBody a:hover {
+main .e-content a:hover {
   text-decoration: underline;
 }
 
-#contentBody strong {
+main .e-content strong {
   font-weight: 600;
 }
 
-#contentBody hr {
+main .e-content hr {
   height: 0;
   margin: 15px 0;
   overflow: hidden;
@@ -85,190 +85,190 @@
   border-bottom: 1px solid #dfe2e5;
 }
 
-#contentBody hr::before {
+main .e-content hr::before {
   display: table;
   content: "";
 }
 
-#contentBody hr::after {
+main .e-content hr::after {
   display: table;
   clear: both;
   content: "";
 }
 
-#contentBody table {
+main .e-content table {
   border-spacing: 0;
   border-collapse: collapse;
 }
 
-#contentBody td,
-#contentBody th {
+main .e-content td,
+main .e-content th {
   padding: 0;
 }
 
-#contentBody h1,
-#contentBody h2,
-#contentBody h3,
-#contentBody h4,
-#contentBody h5,
-#contentBody h6 {
+main .e-content h1,
+main .e-content h2,
+main .e-content h3,
+main .e-content h4,
+main .e-content h5,
+main .e-content h6 {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-#contentBody h1 {
+main .e-content h1 {
   font-size: 32px;
   font-weight: 600;
 }
 
-#contentBody h2 {
+main .e-content h2 {
   font-size: 24px;
   font-weight: 600;
 }
 
-#contentBody h3 {
+main .e-content h3 {
   font-size: 20px;
   font-weight: 600;
 }
 
-#contentBody h4 {
+main .e-content h4 {
   font-size: 16px;
   font-weight: 600;
 }
 
-#contentBody h5 {
+main .e-content h5 {
   font-size: 14px;
   font-weight: 600;
 }
 
-#contentBody h6 {
+main .e-content h6 {
   font-size: 12px;
   font-weight: 600;
 }
 
-#contentBody p {
+main .e-content p {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
-#contentBody blockquote {
+main .e-content blockquote {
   margin: 0;
 }
 
-#contentBody ul,
-#contentBody ol {
+main .e-content ul,
+main .e-content ol {
   padding-left: 0;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-#contentBody ol ol,
-#contentBody ul ol {
+main .e-content ol ol,
+main .e-content ul ol {
   list-style-type: lower-roman;
 }
 
-#contentBody ul ul ol,
-#contentBody ul ol ol,
-#contentBody ol ul ol,
-#contentBody ol ol ol {
+main .e-content ul ul ol,
+main .e-content ul ol ol,
+main .e-content ol ul ol,
+main .e-content ol ol ol {
   list-style-type: lower-alpha;
 }
 
-#contentBody dd {
+main .e-content dd {
   margin-left: 0;
 }
 
-#contentBody code {
+main .e-content code {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 12px;
 }
 
-#contentBody pre {
+main .e-content pre {
   margin-top: 0;
   margin-bottom: 0;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 12px;
 }
 
-#contentBody .octicon {
+main .e-content .octicon {
   vertical-align: text-bottom;
 }
 
-#contentBody .pl-0 {
+main .e-content .pl-0 {
   padding-left: 0 !important;
 }
 
-#contentBody .pl-1 {
+main .e-content .pl-1 {
   padding-left: 4px !important;
 }
 
-#contentBody .pl-2 {
+main .e-content .pl-2 {
   padding-left: 8px !important;
 }
 
-#contentBody .pl-3 {
+main .e-content .pl-3 {
   padding-left: 16px !important;
 }
 
-#contentBody .pl-4 {
+main .e-content .pl-4 {
   padding-left: 24px !important;
 }
 
-#contentBody .pl-5 {
+main .e-content .pl-5 {
   padding-left: 32px !important;
 }
 
-#contentBody .pl-6 {
+main .e-content .pl-6 {
   padding-left: 40px !important;
 }
 
-#contentBody::before {
+main .e-content::before {
   display: table;
   content: "";
 }
 
-#contentBody::after {
+main .e-content::after {
   display: table;
   clear: both;
   content: "";
 }
 
-#contentBody>*:first-child {
+main .e-content>*:first-child {
   margin-top: 0 !important;
 }
 
-#contentBody>*:last-child {
+main .e-content>*:last-child {
   margin-bottom: 0 !important;
 }
 
-#contentBody a:not([href]) {
+main .e-content a:not([href]) {
   color: inherit;
   text-decoration: none;
 }
 
-#contentBody .anchor {
+main .e-content .anchor {
   float: left;
   padding-right: 4px;
   margin-left: -20px;
   line-height: 1;
 }
 
-#contentBody .anchor:focus {
+main .e-content .anchor:focus {
   outline: none;
 }
 
-#contentBody p,
-#contentBody blockquote,
-#contentBody ul,
-#contentBody ol,
-#contentBody dl,
-#contentBody table,
-#contentBody pre {
+main .e-content p,
+main .e-content blockquote,
+main .e-content ul,
+main .e-content ol,
+main .e-content dl,
+main .e-content table,
+main .e-content pre {
   margin-top: 0;
   margin-bottom: 16px;
 }
 
-#contentBody hr {
+main .e-content hr {
   height: 0.25em;
   padding: 0;
   margin: 24px 0;
@@ -276,21 +276,21 @@
   border: 0;
 }
 
-#contentBody blockquote {
+main .e-content blockquote {
   padding: 0 1em;
   color: #6a737d;
   border-left: 0.25em solid #dfe2e5;
 }
 
-#contentBody blockquote>:first-child {
+main .e-content blockquote>:first-child {
   margin-top: 0;
 }
 
-#contentBody blockquote>:last-child {
+main .e-content blockquote>:last-child {
   margin-bottom: 0;
 }
 
-#contentBody kbd {
+main .e-content kbd {
   display: inline-block;
   padding: 3px 5px;
   font-size: 11px;
@@ -304,106 +304,106 @@
   box-shadow: inset 0 -1px 0 #959da5;
 }
 
-#contentBody h1,
-#contentBody h2,
-#contentBody h3,
-#contentBody h4,
-#contentBody h5,
-#contentBody h6 {
+main .e-content h1,
+main .e-content h2,
+main .e-content h3,
+main .e-content h4,
+main .e-content h5,
+main .e-content h6 {
   margin-top: 24px;
   margin-bottom: 16px;
   font-weight: 600;
   line-height: 1.25;
 }
 
-#contentBody h1 .octicon-link,
-#contentBody h2 .octicon-link,
-#contentBody h3 .octicon-link,
-#contentBody h4 .octicon-link,
-#contentBody h5 .octicon-link,
-#contentBody h6 .octicon-link {
+main .e-content h1 .octicon-link,
+main .e-content h2 .octicon-link,
+main .e-content h3 .octicon-link,
+main .e-content h4 .octicon-link,
+main .e-content h5 .octicon-link,
+main .e-content h6 .octicon-link {
   color: #1b1f23;
   vertical-align: middle;
   visibility: hidden;
 }
 
-#contentBody h1:hover .anchor,
-#contentBody h2:hover .anchor,
-#contentBody h3:hover .anchor,
-#contentBody h4:hover .anchor,
-#contentBody h5:hover .anchor,
-#contentBody h6:hover .anchor {
+main .e-content h1:hover .anchor,
+main .e-content h2:hover .anchor,
+main .e-content h3:hover .anchor,
+main .e-content h4:hover .anchor,
+main .e-content h5:hover .anchor,
+main .e-content h6:hover .anchor {
   text-decoration: none;
 }
 
-#contentBody h1:hover .anchor .octicon-link,
-#contentBody h2:hover .anchor .octicon-link,
-#contentBody h3:hover .anchor .octicon-link,
-#contentBody h4:hover .anchor .octicon-link,
-#contentBody h5:hover .anchor .octicon-link,
-#contentBody h6:hover .anchor .octicon-link {
+main .e-content h1:hover .anchor .octicon-link,
+main .e-content h2:hover .anchor .octicon-link,
+main .e-content h3:hover .anchor .octicon-link,
+main .e-content h4:hover .anchor .octicon-link,
+main .e-content h5:hover .anchor .octicon-link,
+main .e-content h6:hover .anchor .octicon-link {
   visibility: visible;
 }
 
-#contentBody h1 {
+main .e-content h1 {
   padding-bottom: 0.3em;
   font-size: 2em;
   border-bottom: 1px solid #c9c9c9;
 }
 
-#contentBody h2 {
+main .e-content h2 {
   padding-bottom: 0.3em;
   font-size: 1.5em;
   border-bottom: 1px solid #c9c9c9;
 }
 
-#contentBody h3 {
+main .e-content h3 {
   font-size: 1.25em;
 }
 
-#contentBody h4 {
+main .e-content h4 {
   font-size: 1em;
 }
 
-#contentBody h5 {
+main .e-content h5 {
   font-size: 0.875em;
 }
 
-#contentBody h6 {
+main .e-content h6 {
   font-size: 0.85em;
   color: #6a737d;
 }
 
-#contentBody ul,
-#contentBody ol {
+main .e-content ul,
+main .e-content ol {
   padding-left: 2em;
 }
 
-#contentBody ul ul,
-#contentBody ul ol,
-#contentBody ol ol,
-#contentBody ol ul {
+main .e-content ul ul,
+main .e-content ul ol,
+main .e-content ol ol,
+main .e-content ol ul {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-#contentBody li {
+main .e-content li {
   word-wrap: break-all;
 }
 
-#contentBody li>p {
+main .e-content li>p {
   margin-top: 16px;
 }
 
-#contentBody li+li {
+main .e-content li+li {
   margin-top: 0.25em;
 }
 
-#contentBody dl {
+main .e-content dl {
   padding: 0;
 }
 
-#contentBody dl dt {
+main .e-content dl dt {
   padding: 0;
   margin-top: 16px;
   font-size: 1em;
@@ -411,43 +411,43 @@
   font-weight: 600;
 }
 
-#contentBody dl dd {
+main .e-content dl dd {
   padding: 0 16px;
   margin-bottom: 16px;
 }
 
-#contentBody table {
+main .e-content table {
   display: block;
   width: 100%;
   overflow: auto;
 }
 
-#contentBody table th {
+main .e-content table th {
   font-weight: 600;
 }
 
-#contentBody table th,
-#contentBody table td {
+main .e-content table th,
+main .e-content table td {
   padding: 6px 13px;
   border: 1px solid #c9c9c9;
   background-color: #f6f6f6;
 }
 
-#contentBody img {
+main .e-content img {
   max-width: 100%;
   box-sizing: content-box;
   background-color: #f6f6f6;
 }
 
-#contentBody img[align=right] {
+main .e-content img[align=right] {
   padding-left: 20px;
 }
 
-#contentBody img[align=left] {
+main .e-content img[align=left] {
   padding-right: 20px;
 }
 
-#contentBody code {
+main .e-content code {
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
@@ -455,11 +455,11 @@
   border-radius: 3px;
 }
 
-#contentBody pre {
+main .e-content pre {
   word-wrap: normal;
 }
 
-#contentBody pre>code {
+main .e-content pre>code {
   padding: 0;
   margin: 0;
   font-size: 100%;
@@ -469,17 +469,17 @@
   border: 0;
 }
 
-#contentBody .highlight {
+main .e-content .highlight {
   margin-bottom: 16px;
 }
 
-#contentBody .highlight pre {
+main .e-content .highlight pre {
   margin-bottom: 0;
   word-break: normal;
 }
 
-#contentBody .highlight pre,
-#contentBody pre {
+main .e-content .highlight pre,
+main .e-content pre {
   padding: 16px;
   overflow: auto;
   font-size: 85%;
@@ -487,7 +487,7 @@
   background-color: #f6f6f6;
 }
 
-#contentBody pre code {
+main .e-content pre code {
   display: inline;
   max-width: auto;
   padding: 0;
@@ -499,12 +499,12 @@
   border: 0;
 }
 
-#contentBody .full-commit .btn-outline:not(:disabled):hover {
+main .e-content .full-commit .btn-outline:not(:disabled):hover {
   color: #005cc5;
   border-color: #005cc5;
 }
 
-#contentBody kbd {
+main .e-content kbd {
   display: inline-block;
   padding: 3px 5px;
   font: 11px "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -518,25 +518,25 @@
   box-shadow: inset 0 -1px 0 #c6cbd1;
 }
 
-#contentBody :checked+.radio-label {
+main .e-content :checked+.radio-label {
   position: relative;
   z-index: 1;
   border-color: #0366d6;
 }
 
-#contentBody .task-list-item {
+main .e-content .task-list-item {
   list-style-type: none;
 }
 
-#contentBody .task-list-item+.task-list-item {
+main .e-content .task-list-item+.task-list-item {
   margin-top: 3px;
 }
 
-#contentBody .task-list-item input {
+main .e-content .task-list-item input {
   margin: 0 0.2em 0.25em -1.6em;
   vertical-align: middle;
 }
 
-#contentBody hr {
+main .e-content hr {
   border-bottom-color: #eee;
 }

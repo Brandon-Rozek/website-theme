@@ -1,0 +1,16 @@
+  <!-- search box -->
+  <div id="searchBox">
+    <input type="text" id="searchBoxInput" placeholder="Search..." />
+    <img id="searchBoxIcon" src="{{ .Site.BaseURL }}/img/search.png" />
+  </div>
+  <!-- search results -->
+  <div id="searchResults"></div>
+
+  {{ $jquery := resources.Get "js/jquery-3.5.1.min.js" }}
+  {{ $mark := resources.Get "js/jquery.mark.es6.min.js" }}
+  {{ $lunr := resources.Get "js/lunr.js" }}
+  {{ $search := resources.Get "js/search.js" }}
+  <script src="{{ $jquery.Permalink }}"></script>
+  <script src="{{ $mark.Permalink }}"></script>
+  <script src="{{ $lunr.Permalink }}"></script>
+  <script src="{{ $search.Permalink }}"></script>

@@ -1,21 +1,21 @@
-#contentBody img {
+main .e-content img {
   box-shadow: none;
 }
 
-#contentBody hr {
+main .e-content hr {
   border-bottom: 1px solid #201d1a;
 }
 
-#contentBody hr {
+main .e-content hr {
   background-color: #1e1b17;
 }
 
-#contentBody blockquote {
+main .e-content blockquote {
   color: #958c82;
   border-left: 0.25em solid #201d1a;
 }
 
-#contentBody kbd {
+main .e-content kbd {
   color: #bbb2a9;
   background-color: #050403;
   border: solid 1px #39342e;
@@ -23,56 +23,56 @@
   box-shadow: none;
 }
 
-#contentBody h1 .octicon-link,
-#contentBody h2 .octicon-link,
-#contentBody h3 .octicon-link,
-#contentBody h4 .octicon-link,
-#contentBody h5 .octicon-link,
-#contentBody h6 .octicon-link {
+main .e-content h1 .octicon-link,
+main .e-content h2 .octicon-link,
+main .e-content h3 .octicon-link,
+main .e-content h4 .octicon-link,
+main .e-content h5 .octicon-link,
+main .e-content h6 .octicon-link {
   color: #e4e0dc;
 }
 
-#contentBody h1 {
+main .e-content h1 {
   border-bottom: 1px solid #363636;
 }
 
-#contentBody h2 {
+main .e-content h2 {
   border-bottom: 1px solid #363636;
 }
 
 
-#contentBody h6 {
+main .e-content h6 {
   font-size: 0.85em;
   color: #958c82;
 }
 
-#contentBody table th,
-#contentBody table td {
+main .e-content table th,
+main .e-content table td {
   padding: 6px 13px;
   border: 1px solid #363636;
   background-color: #090909;
 }
 
-#contentBody img {
+main .e-content img {
   background-color: #090909;
 }
 
 
-#contentBody code {
+main .e-content code {
   background-color: #090909;
 }
 
-#contentBody .highlight pre,
-#contentBody pre {
+main .e-content .highlight pre,
+main .e-content pre {
   background-color: #090909;
 }
 
-#contentBody .full-commit .btn-outline:not(:disabled):hover {
+main .e-content .full-commit .btn-outline:not(:disabled):hover {
   color: #005cc5;
   border-color: #005cc5;
 }
 
-#contentBody kbd {
+main .e-content kbd {
   color: #bbb2a9;
   background-color: #050403;
   border: solid 1px #2e2a25;
@@ -80,10 +80,10 @@
   box-shadow: none;
 }
 
-#contentBody :checked+.radio-label {
+main .e-content :checked+.radio-label {
   border-color: #0366d6;
 }
 
-#contentBody hr {
+main .e-content hr {
   border-bottom-color: #111;
 }

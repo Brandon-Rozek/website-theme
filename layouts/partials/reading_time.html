@@ -1,0 +1,8 @@
+<!-- Reading Time -->
+{{ $readTime := mul (div (countwords .Content) 220.0) 60 }}
+{{ if gt $readTime 60 }}
+<p>
+  Reading Time:
+  {{ math.Ceil (div $readTime 60) }} minutes.
+</p>
+{{ end }}

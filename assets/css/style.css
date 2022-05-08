@@ -97,6 +97,8 @@ a:active {
 
 main {
   padding: 20px 10px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 mark {
@@ -245,11 +247,14 @@ mark {
 }
 
 /* Page */
-#contentBody {
-  max-width: 800px;
-  margin: 0 auto;
-  /* padding: 20px 10px; */
+main .e-content {
   text-align: left;
+}
+
+main .e-content h2 {
+  padding-bottom: .3em;
+  font-size: 1.5em;
+  border-bottom: 1px solid #c9c9c9;
 }
 
 
