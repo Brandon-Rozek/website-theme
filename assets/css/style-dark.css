@@ -24,6 +24,13 @@ mark {
   color: #8f8f8f;
 }
 
+.header-top {
+  background-color: #232323;
+  color: #dedede;
+}
+
+.header-top a { color: #dedede !important;}
+
 #searchBox #searchBoxInput {
   color: #8f8f8f;
   background-color:#363636;
