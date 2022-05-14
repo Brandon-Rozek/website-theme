@@ -12,25 +12,42 @@
         vertical-align: top;
         margin-bottom: 0;
     }
-    .toot .e-content img {
-        display: inline-block;
-        border: 2px solid black;
-    }
+    .toot-avatar { display: inline-block; }
+    .toot .e-content img { border: 2px solid black; }
 
     .toot .e-content p:first-of-type {
         display: inline-block;
     }
+    .toot-photos {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    main .e-content .toot-photos img {
+        width: 100%;
+        max-width: 300px;
+    }
+    .toot-social { margin-top: 1rem; }
 </style>
 
 {{ range sort $dataJ "created_at" "desc" }}
 {{ if ne .content "" }}
 <article class="toot h-entry">
     <div class="e-content">
-        <img width=50 src="{{ .account.avatar }}"/>
+        <img class="toot-avatar" width=50 src="{{ .account.avatar }}"/>
         <p class="date">Tooted on <time class="dt-published" datetime='{{ .created_at }}'>{{ dateFormat "January 2, 2006 15:04" (time .created_at) }}</time></p>
         {{ .content | safeHTML }}
+        {{ if gt (len .media_attachments) 0 }}
+        <div class="toot-photos">
+        {{ range .media_attachments}}
+            {{ if eq .type "image" }}
+            <img src="{{ .preview_url }}" alt="{{ .description }}"/>
+            {{ end }}
+        {{ end }}
+        </div>
+        {{ end }}
     </div>
-    <div class=".toot-social">
+    <div class="toot-social">
         <span><i class='fas fa-share'></i> {{ .replies_count }} </span>
         <span><i class='fas fa-retweet'></i> {{ .reblogs_count }} </span>
         <span><i class='fas fa-star'></i> {{ .favourites_count }} </span>
