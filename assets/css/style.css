@@ -329,9 +329,9 @@ footer {
   margin-bottom: 0;
 }
 .toot-avatar { display: inline-block; }
-.toot .e-content img { border: 2px solid black; }
+.toot img { border: 2px solid black; }
 
-.toot .e-content p:first-of-type {
+.toot .date {
   display: inline-block;
 }
 .toot-photos {
