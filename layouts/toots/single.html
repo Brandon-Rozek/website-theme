@@ -1,0 +1,31 @@
+{{ define "main"}}
+{{ .Scratch.Set "customTitleHeaderSet" true }}
+{{ .Scratch.Set "customTitleHeader" "Toots" }}
+{{ .Scratch.Set "customTitleHeaderLink" "/toots" }}
+{{ partial "header.html" . }}
+<main>
+  <article class="toot h-entry">
+      <div class="e-content">
+              <img class="toot-avatar" width=50 src="{{ .Params.account.avatar }}"/>
+          <p class="date">Tooted on <time class="dt-published" datetime='{{ .Date }}'>{{ dateFormat "January 2, 2006 15:04" (time .Date) }}</time></p>
+          {{ .Content | safeHTML }}
+          {{ if gt (len .Params.media_attachments) 0 }}
+          <div class="toot-photos">
+          {{ range .Params.media_attachments}}
+              {{ if eq .type "image" }}
+              <img src="{{ .preview_url }}" alt="{{ .description }}"/>
+              {{ end }}
+          {{ end }}
+          </div>
+          {{ end }}
+      </div>
+      <div class="toot-social">
+          <span><i class='fas fa-share'></i> {{ .Params.replies_count }} </span>
+          <span><i class='fas fa-retweet'></i> {{ .Params.reblogs_count }} </span>
+          <span><i class='fas fa-star'></i> {{ .Params.favourites_count }} </span>
+          <span>| Source: <a href="{{ .Params.syndication }}">{{ .Params.syndication }}</a></span>
+      </div>
+  </article>
+</main>
+{{ partial "footer.html" . }}
+{{ end }}

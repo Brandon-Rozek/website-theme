@@ -1,34 +1,6 @@
 {{ $url := .Get 0 }}
 {{ $dataJ := getJSON $url  }}
 
-<style>
-    .toot {
-        margin-bottom: 2rem;
-        padding: 15px;
-        border: 1px solid #656565;
-        border-radius: 10px;
-    }
-    .toot .date {
-        vertical-align: top;
-        margin-bottom: 0;
-    }
-    .toot-avatar { display: inline-block; }
-    .toot .e-content img { border: 2px solid black; }
-
-    .toot .e-content p:first-of-type {
-        display: inline-block;
-    }
-    .toot-photos {
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-    }
-    main .e-content .toot-photos img {
-        width: 100%;
-        max-width: 300px;
-    }
-    .toot-social { margin-top: 1rem; }
-</style>
 
 {{ range sort $dataJ "created_at" "desc" }}
 {{ if ne .content "" }}

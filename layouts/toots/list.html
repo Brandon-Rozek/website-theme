@@ -1,0 +1,41 @@
+{{ define "main"}}
+  {{ partial "header.html" . }}
+  <main>
+    <style>main { text-align: left; }</style> 
+    {{ partial "search.html" . }}
+    <p>
+        This is an experimental page showing my toots from Mastodon. 
+        Currently, this does not support boosts and it does not automatically refresh. 
+        Feel free to check out 
+        <a href="https://fosstodon.org/@brozek">my profile at Fosstodon</a>
+    </p>
+    {{ $listPageDateFormat := .Site.Params.listPageDateFormat | default "January, 2006"}}
+    {{ range $index, $value := .Pages.GroupByDate $listPageDateFormat }}
+    {{ range .Pages }}
+      <article class="toot h-entry">
+        <div class="e-content">
+                <img class="toot-avatar" width=50 src="{{ .Params.account.avatar }}"/>
+            <p class="date">Tooted on <time class="dt-published" datetime='{{ .Date }}'>{{ dateFormat "January 2, 2006 15:04" (time .Date) }}</time></p>
+            {{ .Content | safeHTML }}
+            {{ if gt (len .Params.media_attachments) 0 }}
+            <div class="toot-photos">
+            {{ range .Params.media_attachments}}
+                {{ if eq .type "image" }}
+                <img src="{{ .preview_url }}" alt="{{ .description }}"/>
+                {{ end }}
+            {{ end }}
+            </div>
+            {{ end }}
+        </div>
+        <div class="toot-social">
+            <span><i class='fas fa-share'></i> {{ .Params.replies_count }} </span>
+            <span><i class='fas fa-retweet'></i> {{ .Params.reblogs_count }} </span>
+            <span><i class='fas fa-star'></i> {{ .Params.favourites_count }} </span>
+            <span>| Source: <a href="{{ .Params.syndication }}">{{ .Params.syndication }}</a></span>
+        </div>
+    </article>
+      {{ end }}
+      {{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+{{ end }}
