@@ -1,8 +1,9 @@
   <!-- tags -->
-  <div id="tags">
+  <details id="tags">
+    <summary>Tags</summary>
     <ul>
       {{ range .Site.Taxonomies.tags.ByCount }}
         <li><a href="{{ .Page.Permalink }}">{{ .Page.Title }} ({{ .Count }})</a></li>
       {{ end }}
     </ul>
-  </div>
+  </details>
