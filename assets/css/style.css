@@ -212,9 +212,14 @@ mark {
   height: 24px;
   margin: 5px;
   padding: 0 5px;
-  background-color: #dddfdf;
   border-radius: 5px;
   font-size: 14px;
+  border: 1px solid #888a8a;
+  text-decoration: none;
+}
+
+#tags li a:hover {
+  border: 1px solid black;
 }
 
 /* END TAGS */
