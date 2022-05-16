@@ -3,12 +3,19 @@
     {{ $singlePageDateFormat := .Site.Params.singlePageDateFormat | default "January 2, 2006"}}
     {{ $pubdate := .Date.Format $singlePageDateFormat }}
 
-    <p class="date">{{ $publishString }}<time class="dt-published" datetime='{{ .Date.Format "2006-01-02T15:04:05Z0700" }}'>{{ $pubdate }}</time></p>
+    <p class="date">
+        <i class="fas fa-calendar"></i>
+        {{ $publishString }}
+        <time class="dt-published" datetime='{{ .Date.Format "2006-01-02T15:04:05Z0700" }}'>{{ $pubdate }}</time>
+    </p>
 
     {{- if and (not (.Scratch.Get "noDateUpdate")) .Lastmod }}
         {{- $lastmod := .Lastmod.Format $singlePageDateFormat }}
         {{- if ne $lastmod $pubdate }}
-            <p class="date-updated">Updated on <time class='dt-updated' datetime='{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" }}'>{{ $lastmod }}</time></p>
+            <p class="date-updated">
+                Updated on
+                <time class='dt-updated' datetime='{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" }}'>{{ $lastmod }}</time>
+            </p>
         {{- end }}
     {{ end }}
 {{ end }}
