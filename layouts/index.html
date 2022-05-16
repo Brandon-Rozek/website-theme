@@ -6,7 +6,10 @@
     <div class="h-card">
       <!-- avator -->
       <div class="avatar">
-        <img class="avatarMask u-photo" src="{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}" alt="Photo of {{ .Site.Params.Author }}" />
+        {{ $profile_image := resources.GetRemote (printf "%s/img/%s" .Site.BaseURL .Site.Params.avatar) }}
+        {{ $profile_width := 250 }}
+        {{ $profile_image := $profile_image.Resize (printf "%dx" $profile_width) }}
+        <img class="avatarMask u-photo" width="{{ $profile_width }}" src="{{ $profile_image.RelPermalink }}" alt="Photo of {{ .Site.Params.Author }}" />
         <img src="{{ .Site.BaseURL }}/img/avatar-border.svg" />
       </div>
       <!-- author -->

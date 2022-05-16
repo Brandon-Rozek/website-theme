@@ -25,7 +25,10 @@
 
   <div class="h-card p-author">
     <h2 class="p-name"><a class="author u-url" rel="me" href="{{ .Site.BaseURL }}">{{ .Site.Params.Author }}</a></h2>
-    <img class="avatarMask u-photo" src="{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}" alt="{{ .Site.Params.avatarDescription }}">
+    {{ $profile_image := resources.GetRemote (printf "%s/img/%s" .Site.BaseURL .Site.Params.avatar) }}
+    {{ $profile_width := 100 }}
+    {{ $profile_image := $profile_image.Resize (printf "%dx" $profile_width) }}
+    <img class="avatarMask u-photo" width="{{ $profile_width }}" src="{{ $profile_image.RelPermalink }}" alt="Photo of {{ .Site.Params.Author }}" />
     <div style="display: none">
         <!-- email / description (for h-card) -->
         <a class="u-email" href="mailto://{{ .Site.Params.email }}"></a>
