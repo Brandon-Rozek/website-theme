@@ -1,0 +1,31 @@
+{{ $url := urls.Parse (.Get 0) }}
+{{ $status_id := index (last 1 (split $url.Path "/")) 0 }}
+{{ $api_url := printf "%s://%s/api/v1/statuses/%s" $url.Scheme $url.Host $status_id }}
+{{ $dataJ := getJSON $api_url }}
+
+{{ with $dataJ }}
+{{ if ne .content "" }}
+<article class="toot h-entry">
+    <div class="e-content">
+        <img class="toot-avatar" width=50 src="{{ .account.avatar }}"/>
+        <p class="date">Tooted on <time class="dt-published" datetime='{{ .created_at }}'>{{ dateFormat "January 2, 2006 15:04" (time .created_at) }}</time></p>
+        {{ .content | safeHTML }}
+        {{ if gt (len .media_attachments) 0 }}
+        <div class="toot-photos">
+        {{ range .media_attachments}}
+            {{ if eq .type "image" }}
+            <img src="{{ .preview_url }}" alt="{{ .description }}"/>
+            {{ end }}
+        {{ end }}
+        </div>
+        {{ end }}
+    </div>
+    <div class="toot-social">
+        <span><i class='fas fa-share'></i> {{ .replies_count }} </span>
+        <span><i class='fas fa-retweet'></i> {{ .reblogs_count }} </span>
+        <span><i class='fas fa-star'></i> {{ .favourites_count }} </span>
+        <span>| Source: <a href="{{ .url }}">{{ .url }}</a></span>
+    </div>
+</article>
+{{ end }}
+{{ end }}
