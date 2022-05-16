@@ -35,9 +35,24 @@
         <a class="p-category" href="{{ .url }}" style="display: none;">{{ .name }}</a>
         {{ end }}
         <div class="toot-social">
-            <span><i class='fas fa-share'></i> {{ .Params.replies_count }} </span>
-            <span><i class='fas fa-retweet'></i> {{ .Params.reblogs_count }} </span>
-            <span><i class='fas fa-star'></i> {{ .Params.favourites_count }} </span>
+            {{ $post_url := urls.Parse .Params.syndication }}
+            {{ $status_id := index (last 1 (split $post_url.Path "/")) 0 }}
+            {{ $social_url := printf "%s://%s/interact/%s" $post_url.Scheme $post_url.Host $status_id }}
+            {{ $reply_url := printf "%s?type=reply" $social_url }}
+            {{ $favorite_url := printf "%s?type=favourite" $social_url }}
+            {{ $boost_url := printf "%s?type=reblog" $social_url }}
+            <span>
+              <a class='fas fa-share' href="{{ $reply_url }}"></a>
+              {{ .Params.replies_count }}
+            </span>
+            <span>
+              <a class='fas fa-retweet' href="{{ $boost_url }}"></a>
+              {{ .Params.reblogs_count }}
+            </span>
+            <span>
+              <a class='fas fa-star' href="{{ $favorite_url }}"></a>
+              {{ .Params.favourites_count }}
+            </span>
             <span>| Source: <a class="u-syndication" href="{{ .Params.syndication }}">{{ .Params.syndication }}</a></span>
         </div>
       </article>
