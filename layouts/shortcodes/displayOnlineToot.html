@@ -36,15 +36,15 @@
         {{ $boost_url := printf "%s?type=reblog" $social_url }}
         <span>
           <a class='fas fa-share' href="{{ $reply_url }}"></a>
-          {{ .Params.replies_count }}
+          {{ .replies_count }}
         </span>
         <span>
           <a class='fas fa-retweet' href="{{ $boost_url }}"></a>
-          {{ .Params.reblogs_count }}
+          {{ .reblogs_count }}
         </span>
         <span>
           <a class='fas fa-star' href="{{ $favorite_url }}"></a>
-          {{ .Params.favourites_count }}
+          {{ .favourites_count }}
         </span>
         <span>| Source: <a class="u-syndication" href="{{ .url }}">{{ .url }}</a></span>
     </div>
