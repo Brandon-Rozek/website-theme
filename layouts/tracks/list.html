@@ -1,0 +1,20 @@
+{{ define "main"}}
+  {{ partial "header.html" . }}
+  <main>
+    {{ partial "search.html" . }}
+    <!-- contents -->
+    <div id="feedList">
+      {{ $listPageDateFormat := .Site.Params.listPageDateFormat | default "January, 2006"}}
+      {{ range $index, $value := .Pages.GroupByDate $listPageDateFormat }}
+      {{ range .Pages }}
+        <article class="h-entry">
+          <h2 class='title p-name'><a class="u-url" href="{{ .Permalink }}">{{ .Title }}</a></h2>
+          {{ .Scratch.Set "noDateUpdate" true }}
+          {{ partial "date.html" . }}
+        </article>
+      {{ end }}
+      {{ end }}
+    </div>
+  </main>
+  {{ partial "footer.html" . }}
+{{ end }}

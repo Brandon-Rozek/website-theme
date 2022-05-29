@@ -1,4 +1,4 @@
-{{ $url := printf "%sdata/hikes/%s" .Site.BaseURL (.Get 0) }}
+{{ $url := printf "%sdata/tracks/%s" .Site.BaseURL (.Get 0) }}
 {{ $url_state := querify "state" (printf "{\"urls\":[\"%s\"]}" $url) }}
 {{ $iframe_url := printf "https://gpx.studio/?%s&embed&distance" $url_state }}
 {{ $a_url := printf "https://gpx.studio/?%s" $url_state }}
