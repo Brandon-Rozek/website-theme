@@ -3,59 +3,25 @@
   <main>
     <style>main { text-align: left; }</style>
     {{ partial "search.html" . }}
-    <p>
-        This is an experimental page showing my toots from Mastodon.
-        Currently, this does not support boosts and it does not automatically refresh.
-        Feel free to check out
-        <a href="https://fosstodon.org/@brozek">my profile at Fosstodon</a>
-    </p>
+    {{ .Content }}
     {{ $listPageDateFormat := .Site.Params.listPageDateFormat | default "January, 2006"}}
     {{ range $index, $value := .Pages.GroupByDate $listPageDateFormat }}
     {{ range .Pages }}
-      <article class="toot h-entry">
-        <div rel="author" class="h-card p-author toot-avatar">
-          <img class="u-photo" width=50 src="{{ .Params.account.avatar }}"/>
-          <span style="display: none;">{{ .Params.account.display_name }}</span>
-        </div>
-        <p class="date">Tooted on <time class="dt-published" datetime='{{ .Date }}'>{{ dateFormat "January 2, 2006 15:04" (time .Date) }}</time></p>
-        <div class="e-content p-name">
-          {{ .Content | safeHTML }}
-          {{ if gt (len .Params.media_attachments) 0 }}
-          <div class="toot-photos">
-          {{ range .Params.media_attachments}}
-            {{ if eq .type "image" }}
-            <img src="{{ .preview_url }}" alt="{{ .description }}"/>
-            {{ end }}
-          {{ end }}
-          </div>
-          {{ end }}
-        </div>
-        <a class="u-url" style="display: none">{{ .Permalink }}</a>
-        {{ range .Params.tags }}
-        <a class="p-category" href="{{ .url }}" style="display: none;">{{ .name }}</a>
-        {{ end }}
-        <div class="toot-social">
-            {{ $post_url := urls.Parse .Params.syndication }}
-            {{ $status_id := index (last 1 (split $post_url.Path "/")) 0 }}
-            {{ $social_url := printf "%s://%s/interact/%s" $post_url.Scheme $post_url.Host $status_id }}
-            {{ $reply_url := printf "%s?type=reply" $social_url }}
-            {{ $favorite_url := printf "%s?type=favourite" $social_url }}
-            {{ $boost_url := printf "%s?type=reblog" $social_url }}
-            <span>
-              <a class='fas fa-share' href="{{ $reply_url }}"></a>
-              {{ .Params.replies_count }}
-            </span>
-            <span>
-              <a class='fas fa-retweet' href="{{ $boost_url }}"></a>
-              {{ .Params.reblogs_count }}
-            </span>
-            <span>
-              <a class='fas fa-star' href="{{ $favorite_url }}"></a>
-              {{ .Params.favourites_count }}
-            </span>
-            <span>| Source: <a class="u-syndication" href="{{ .Params.syndication }}">{{ .Params.syndication }}</a></span>
-        </div>
-      </article>
+      {{ $dataJ := dict "account" .Params.account
+                        "account.display_name" .Params.account.display_name
+                        "created_at" .Date
+                        "content" .Content
+                        "media_attachments" .Params.media_attachments
+                        "Permalink" .Permalink
+                        "tags" .Params.tags
+                        "url" .Params.syndication
+                        "replies_count" .Params.replies_count
+                        "reblogs_count" .Params.reblogs_count
+                        "favourites_count" .Params.favourites_count
+      }}
+
+      {{ .Scratch.Set "toot" $dataJ }}
+      {{ partial "toot.html" . }}
     {{ end }}
     {{ end }}
   </main>
