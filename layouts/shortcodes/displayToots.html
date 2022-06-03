@@ -1,8 +1,0 @@
-{{ $url := .Get 0 }}
-{{ $dataJ := getJSON $url  }}
-
-
-{{ range sort $dataJ "created_at" "desc" }}
-  {{ .Scratch.Set "toot" $dataJ }}
-  {{ partial "toot.html" . }}
-{{ end }}

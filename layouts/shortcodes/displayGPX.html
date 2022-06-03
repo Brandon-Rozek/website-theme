@@ -1,11 +1,2 @@
-{{ $url := printf "%sdata/tracks/%s" .Site.BaseURL (.Get 0) }}
-{{ $url_state := querify "state" (printf "{\"urls\":[\"%s\"]}" $url) }}
-{{ $iframe_url := printf "https://gpx.studio/?%s&embed&distance" $url_state }}
-{{ $a_url := printf "https://gpx.studio/?%s" $url_state }}
-<iframe {{ printf "src=%q" $iframe_url | safeHTMLAttr }}
-        width="100%"
-        height="500"
-        frameborder="0"
-        allowfullscreen>
-            <p><a {{ printf "href=%q" $a_url | safeHTMLAttr }}></a></p>
-</iframe>
+{{ .Scratch.Set "gpxFile" (.Get 0) }}
+{{ partial "gpxstudio.html" . }}
