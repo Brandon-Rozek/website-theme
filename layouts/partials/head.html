@@ -13,7 +13,7 @@
   <meta name="supported-color-schemes" content="light dark" />
   <meta name="author" content="{{ .Site.Params.Author }}" />
   <meta name="robots" content="index,follow" />
-  <link rel="shortcut icon" type="image/x-icon" href="{{ .Site.BaseURL }}img/{{ .Site.Params.favicon }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ .Site.BaseURL }}{{ .Site.Params.favicon }}">
 
   <!-- Identities -->
   {{- range .Site.Params.identities -}}
