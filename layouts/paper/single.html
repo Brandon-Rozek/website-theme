@@ -1,0 +1,69 @@
+{{ define "main" }}
+{{ .Scratch.Set "customTitleHeaderSet" true }}
+{{ .Scratch.Set "customTitleHeader" "Publications" }}
+{{ .Scratch.Set "customTitleHeaderLink" "/publications" }}
+{{ partial "header.html" . }}
+<main>
+  <article class="h-entry">
+    <h1 class='title p-name'>{{ .Title }}</h1>
+    <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
+    <div style="display: none;" rel="author" class="h-card p-author">
+      <img class="u-photo" src="{{ .Site.BaseURL }}/img/avatar.jpg"/>
+      <span > {{ .Site.Params.Author }}</span>
+    </div>
+    <!-- content -->
+    <div class="e-content">
+      <p><strong>Authors</strong>:
+      {{range .Params.authors }}
+        {{ . }},
+      {{ end }}
+      </p>
+
+      {{ if isset .Params "journal" }}
+        <p>
+          <strong>Journal:</strong>
+          {{ .Params.journal }}
+        </p>
+      {{ end }}
+
+      {{ if isset .Params "conference" }}
+        <p>
+          <strong>Conference:</strong>
+          {{ .Params.conference }}
+        </p>
+      {{ end }}
+
+      {{ if isset .Params "publish_date" }}
+        <p>
+          <strong>Publication Date:</strong>
+          {{ .Params.publish_date }}
+        </p>
+      {{ end }}
+
+      {{ if isset .Params "abstract" }}
+        <p>
+          <strong>Abstract:</strong>
+          {{ .Params.abstract }}
+        </p>
+      {{ end }}
+
+      {{ if isset .Params "keywords" }}
+      <p><strong>Keywords</strong>:
+        {{range .Params.keywords }}
+          {{ . }},
+        {{ end }}
+        </p>
+      {{ end }}
+
+      {{ if isset .Params "pdf_url" }}
+        <p>
+          <strong>PDF Link:</strong>
+          <a href="{{ .Params.pdf_url }}">{{ .Params.pdf_url }}</a>
+        </p>
+      {{ end }}
+
+    </div>
+  </article>
+</main>
+{{ partial "footer.html" . }}
+{{ end }}
