@@ -8,7 +8,7 @@
       {{ range $index, $value := .Pages.GroupByDate $listPageDateFormat }}
       {{ range .Pages }}
         <article class="h-entry">
-          <h2 class='title p-name'>{{ .Title }}</h2>
+          <a href="{{ .Permalink }}"><h2 class='title p-name'>{{ .Title }}</h2></a>
           {{ .Scratch.Set "noDateUpdate" true }}
           {{ partial "date.html" . }}
           <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
