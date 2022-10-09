@@ -1,0 +1,42 @@
+{{ define "main"}}
+{{ .Scratch.Set "customTitleHeaderSet" true }}
+{{ .Scratch.Set "customTitleHeader" "Observations" }}
+{{ .Scratch.Set "customTitleHeaderLink" "/observations" }}
+{{ partial "header.html" . }}
+<main>
+  {{ with .Params }}
+
+  <article class="h-entry">
+      {{ $name := "" }}
+      {{ if (ne .taxon.common_name "") }}
+          {{ $name = .taxon.common_name }}
+      {{ else }}
+          {{ $name = .taxon.name }}
+      {{ end }}
+      {{ $obsURL := .url }}
+      <h1 class='title p-name'>{{ title $name }}</h1>
+      {{ if (eq .quality_grade "research")}}
+      <span>Research Grade </span><i class="fa fa-solid fa-clipboard-check"></i></i>
+      <br/>
+      {{ end }}
+      <p class="date">Observed on <time class="dt-published" datetime='{{ .date }}'>{{ dateFormat "January 2, 2006 15:04" (time .date) }}</time></p>
+      <p>Location: {{ .place_guess }}</p>
+      <span>Also on: <a class="u-syndication" href="{{ .url }}">iNaturalist</a></span>
+
+      <div class="e-content">
+        {{ if gt (len .photos) 0 }}
+        {{ range .photos}}
+          {{ $medium_url := replace .url "square" "medium"}}
+          {{ $original_url := replace .url "square" "original"}}
+          <a href="{{ $original_url }}"><img src="{{ $medium_url }}" alt="Photo of {{ .species_guess }}"/></a>
+        {{ end }}
+        {{ end }}
+      </div>
+      <a class="u-url" style="display: none">{{ .Permalink }}</a>
+    </article>
+    {{ end }}
+</main>
+
+
+{{ partial "footer.html" . }}
+{{ end }}

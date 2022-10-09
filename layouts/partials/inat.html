@@ -1,0 +1,41 @@
+{{ $obsData := .Scratch.Get "obs" }}
+{{ $scratchURL := .Scratch.Get "obs_url" }}
+
+{{ with $obsData }}
+
+<article class="toot h-entry">
+    {{ $name := "" }}
+    {{ if (ne .taxon.common_name "") }}
+        {{ $name = .taxon.common_name }}
+    {{ else }}
+        {{ $name = .taxon.name }}
+    {{ end }}
+    {{ $obsURL := .url }}
+    {{ with $scratchURL }}
+        {{ $obsURL = . }}
+    {{ end }}
+    <a href="{{ $obsURL }}"><h2 class="p-name">{{ title $name }}</h2></a>
+    {{ if (eq .quality_grade "research")}}
+    <span>Research Grade </span><i class="fa fa-solid fa-clipboard-check"></i></i>
+    <br/>
+    {{ end }}
+    <p class="date">Observed on <time class="dt-published" datetime='{{ .created_at }}'>{{ dateFormat "January 2, 2006 15:04" (time .created_at) }}</time></p>
+    <div class="e-content">
+
+    <p>Location: {{ .place_guess }}</p>
+
+
+      {{ if gt (len .photos) 0 }}
+      <div class="toot-photos">
+      {{ range .photos}}
+        {{ $small_url := replace .url "square" "small"}}
+        {{ $original_url := replace .url "square" "original"}}
+        <a href="{{ $original_url }}"><img src="{{ $small_url }}" alt="Photo of {{ .species_guess }}"/></a>
+      {{ end }}
+      </div>
+      {{ end }}
+    </div>
+    <a class="u-url" style="display: none">{{ .Permalink }}</a>
+    <span>| Also on: <a class="u-syndication" href="{{ .url }}">iNaturalist</a></span>
+  </article>
+  {{ end }}
