@@ -3,6 +3,21 @@
   <main>
   {{ partial "search.html" . }}
   {{ partial "tags/all.html" . }}
+
+  <br/>
+  {{ $posts := where site.RegularPages "Type" "blog" }}
+  {{ $postCount := len $posts }}
+  {{ range last 1 $posts }}
+    {{ $tags := .Site.Taxonomies.tags }}
+    <div style="font-size: 1.5rem; max-width: 30rem; margin-left: auto; margin-right: auto;">
+    Hello! This page contains <strong>{{ $postCount | lang.NumFmt 0 }} posts</strong>
+    written in the past <strong>{{ div (sub now.Unix .Date.Unix) 31536000 }} years</strong>
+    spanning {{ len $tags }} topics within the dropdown above.
+    </div>
+  {{ end }}
+
+
+
   <!-- contents -->
   <div id="contentsList">
     {{ $listPageDateFormat := .Site.Params.listPageDateFormat | default "January, 2006"}}
