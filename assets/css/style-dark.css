@@ -54,7 +54,7 @@ mark {
   background-color: #222020;
 }
 
-#contentsList hr.separator {
+.bloglist hr.separator {
   border: solid 1px #363636;
 }
 

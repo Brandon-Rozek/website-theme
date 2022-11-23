@@ -26,7 +26,7 @@
   <div class="h-card p-author">
     <h2 class="p-name"><a class="author u-url" rel="me" href="{{ .Site.BaseURL }}">{{ .Site.Params.Author }}</a></h2>
     {{ $profile_image := resources.Get (printf "img/%s" .Site.Params.avatar) }}
-    {{ $profile_width := 100 }}
+    {{ $profile_width := 75 }}
     {{ $profile_image := $profile_image.Resize (printf "%dx" $profile_width) }}
     <img class="avatarMask u-photo" width="{{ $profile_width }}" src="{{ $profile_image.RelPermalink }}" alt="Photo of {{ .Site.Params.Author }}" />
     <div style="display: none">
