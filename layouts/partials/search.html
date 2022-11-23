@@ -10,7 +10,6 @@
   {{ $mark := resources.Get "js/jquery.mark.es6.min.js" }}
   {{ $lunr := resources.Get "js/lunr.js" }}
   {{ $search := resources.Get "js/search.js" }}
-  <script src="{{ $jquery.Permalink }}"></script>
-  <script src="{{ $mark.Permalink }}"></script>
-  <script src="{{ $lunr.Permalink }}"></script>
-  <script src="{{ $search.Permalink }}"></script>
+  {{ $lunrPackage := slice $jquery $mark $lunr | resources.Concat "js/lunrPackage.js" | resources.Minify | resources.Fingerprint }}
+  <script src="{{ $lunrPackage.Permalink }}"></script>
+  <script src="{{ $search.Permalink }}" async></script>
