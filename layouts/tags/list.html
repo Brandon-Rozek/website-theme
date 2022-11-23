@@ -1,14 +1,16 @@
 {{ define "main"}}
   {{ partial "header.html" . }}
   <main>
-  {{ partial "search.html" . }}
-  {{ partial "tags/all.html" . }}
+  <div class='bloglist-teaser' style="margin-top: 2rem;">
+    Here you'll find <strong>{{ len .Pages | lang.NumFmt 0 }} posts</strong>
+    about <u>{{ .Title }}</u> </strong>.
+  </div>
   <!-- contents -->
   <div class="bloglist">
     {{ $listPageDateFormat := .Site.Params.listPageDateFormat | default "January, 2006"}}
     {{ range $index, $value := .Pages.GroupByDate $listPageDateFormat }}
     {{ if (ne $index 0) }}
-    <hr class="separator">
+    <br/>
     {{ end }}
     <p class="date">{{ .Key }}</p>
     {{ range .Pages }}

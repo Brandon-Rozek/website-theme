@@ -65,7 +65,7 @@ a:active {
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 .header-top .title { margin-right: 1rem; max-width: 400px; }
@@ -121,7 +121,6 @@ mark {
 
 #searchBox {
   position: relative;
-  max-width: 300px;
   height: 30px;
   margin: 20px auto;
 }
@@ -137,7 +136,7 @@ mark {
   bottom: 0;
   border-radius: 15px;
   outline: 0;
-  font-size: 15px;
+  /* font-size: 15px; */
   color: #707070;
   background-color:#f6f6f6;
   border: solid 1px #c9c9c9;
@@ -159,10 +158,10 @@ mark {
 #searchResults {
   display: none;
   position: absolute;
-  max-width: 600px;
+  max-width: 1000px;
   /* min-width: 300px; */
   margin: 0 auto;
-  top: 330px;
+  top: 230px;
   left: 0;
   right: 0;
   padding: 5px;
@@ -195,16 +194,22 @@ mark {
 /*
 ** TAGS
 */
-#tags ul {
+.tags {
+  text-align: left;
+}
+.tags ul {
   margin: 0 auto;
   display: flex;
   padding: 0;
-  justify-content: center;
   flex-wrap: wrap;
   list-style: none;
 }
 
-#tags li a {
+.tags-page ul {
+  justify-content: center;
+}
+
+.tags li a {
   display: block;
   height: 24px;
   margin: 5px;
@@ -216,7 +221,7 @@ mark {
   text-decoration: none;
 }
 
-#tags li a:hover {
+.tags li a:hover {
   border: 1px solid black;
 }
 
@@ -231,6 +236,7 @@ mark {
   margin-left: auto;
   margin-right: auto;
   max-width: 650px;
+  text-align: left;
 }
 
 .bloglist-date {
@@ -240,8 +246,32 @@ mark {
 }
 
 .bloglist {
+  text-align: left;
   font-size: 1.5rem;
   padding: 20px 0;
+}
+
+.bloglist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.bloglist-item-tag a {
+  color: gray;
+  text-decoration: none;
+  font-size: 0.75em;
+}
+
+.bloglist-item-tag a:hover {
+  color: #555;
+}
+
+@media (max-width: 850px) {
+  .bloglist-item-tag {
+    display: none;
+  }
 }
 
 .bloglist hr.separator {
@@ -255,7 +285,7 @@ mark {
 */
 #feedList {
   text-align: left;
-  max-width: 800px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -282,10 +312,12 @@ main {
 }
 
 article {
-  padding-bottom: 20px;
+  padding-bottom: 2rem;
 }
 
 main .e-content {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   text-align: left;
 }
 
@@ -346,7 +378,7 @@ footer a:link {
 }
 
 .footer-navs {
-  max-width: 800px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
   display: flex;

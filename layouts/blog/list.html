@@ -28,7 +28,17 @@
       {{ end }}
       <p class="bloglist-date">{{ .Key }}</p>
       {{ range .Pages }}
-        <p><a href="{{ .Permalink }}">{{ .Title }}</a></p>
+        <div class="bloglist-item">
+          <p><a href="{{ .Permalink }}">{{ .Title }}</a></p>
+          <p class="bloglist-item-tag">
+            {{ range .Params.tags }}
+            {{ $name := . }}
+            {{ with $.Site.GetPage (printf "/tags/%s" (. | urlize)) }}
+            <span><a href="{{ .Permalink }}">#{{ $name }}</a> </span>
+            {{ end }}
+            {{ end }}
+          </p>
+        </div>
       {{ end }}
     {{ end }}
   </div>
