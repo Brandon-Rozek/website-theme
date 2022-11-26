@@ -1,0 +1,28 @@
+{
+    "items": [{{ range $index, $page := .Pages }}{{ if ne $index 0 }},{{ end }}
+    {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "actor": {
+            {{with $.Site.Author.name }}"name": "{{ . }}",{{ end }}
+            "url": "{{ .Site.BaseURL }}"
+        },
+        "id": "{{ $page.Permalink }}",
+        "object": {
+            "attributedTo": [
+            {
+                {{with $.Site.Author.name }}"name": "{{ . }}",{{ end }}
+                "type": "Person",
+                "url": "{{ .Site.BaseURL }}"
+            }
+            ],
+            "content": {{ $page.Content | jsonify }},
+            "id": "{{ $page.Permalink }}",
+            "name": {{ $page.Title | jsonify }},
+            "published": {{ $page.Date.Format "2006.01.02" | jsonify }},
+            "tag": {{ $page.Params.tags | jsonify }},
+            "type": "Article",
+            "url": "{{ $page.Permalink }}"
+        }
+    }
+{{ end }}]
+}
