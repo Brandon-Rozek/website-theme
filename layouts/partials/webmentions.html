@@ -1,6 +1,7 @@
 <!-- Webmentions -->
 <div id="webmentions"></div>
-<form method="post" action="https://webmention.io/brandonrozek.com/webmention">
+{{ $siteHost := (urls.Parse .Site.BaseURL).Host -}}
+<form method="post" action="https://webmention.io/{{ $siteHost }}/webmention">
   <p>Have you published a response to this? <label for="webmention-source">Let me know the <abbr title="Uniform Resource Locator">URL</abbr></label>:</p>
   <input type="url" name="source" id="webmention-source">
   <input type="hidden" name="target" value="{{ .Permalink }}">

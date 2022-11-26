@@ -14,7 +14,7 @@
       </div>
       <!-- author -->
       <h1 class="author title p-name">{{ .Site.Params.Author }}</h1>
-      <a style="display: none" rel="me" class="u-url" href="https://brandonrozek.com"></a>
+      <a style="display: none" rel="me" class="u-url" href="{{ .Site.BaseURL }}"></a>
       <!-- description -->
       <p class="p-note">
         {{ .Site.Params.description | safeHTML }}
