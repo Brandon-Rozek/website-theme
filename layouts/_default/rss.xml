@@ -11,7 +11,6 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} | {{ end }}{{ .Site.Title }}{{ end }}</title>
-    <!-- <title>{{ .Title }}</title> -->
     <link>{{ .Permalink }}</link>
     <image>{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}</image>
     <description>{{ .Description }}</description>
@@ -31,7 +30,9 @@
       <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
       {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
       <guid>{{ .Permalink }}</guid>
-      <description>{{ .Summary | html }}</description>
+      {{ printf `<description type="html"><![CDATA[%s]]></description>` .Content | safeHTML }}
+      {{ range .Param "tags" }}<category>{{ . }}</category>
+      {{ end }}
     </item>
     {{ end }}
   </channel>
