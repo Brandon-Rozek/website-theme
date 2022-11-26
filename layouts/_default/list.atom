@@ -1,0 +1,48 @@
+{{- $pctx := . -}}
+{{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
+{{- $pages := $pctx.RegularPages -}}
+{{- $limit := .Site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 -}}
+{{- $pages = $pages | first $limit -}}
+{{- end -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<feed xml:lang="{{ .Site.LanguageCode }}"
+      xmlns="http://www.w3.org/2005/Atom"
+      xmlns:activity="http://activitystrea.ms/spec/1.0/"
+      xmlns:georss="http://www.georss.org/georss"
+      xmlns:ostatus="http://ostatus.org/schema/1.0"
+      xmlns:thr="http://purl.org/syndication/thread/1.0"
+      xml:base="{{ .Permalink }}">
+    <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <id>{{ .Permalink }}</id>
+    <image>{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}</image>
+    <description>{{ .Description }}</description>
+    <generator uri="https://gohugo.io">Hugo</generator>
+    <author>
+      <uri>{{ .Site.BaseURL }}</uri>
+      {{ with .Site.Author.name }}<name>{{.}}</name>{{end}}
+    </author>
+    <updated>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</updated>
+    {{ with .OutputFormats.Get "Atom" }}
+	{{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+    {{ end }}
+    {{ range $pages }}
+    <entry>
+      <author>
+        <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+        <uri>{{ .Site.BaseURL }}</uri>
+        {{ with .Site.Author.name }}<name>{{.}}</name>{{end}}
+      </author>
+      <activity:object-type>http://activitystrea.ms/schema/1.0/article</activity:object-type>
+      <title>{{ .Title }}</title>
+      <id>{{ .Permalink }}</id>
+      {{ printf `<content type="html"><![CDATA[%s]]></description>` .Content | safeHTML }}
+      {{ range .Param "tags" }}<category term="{{ . }}"/>
+      {{ end }}
+      <link rel="alternate" type="text/html" href="{{ .Permalink }}" />
+      <link rel="ostatus:conversation" href="{{ .Permalink }}" />
+      <activity:verb>http://activitystrea.ms/schema/1.0/create</activity:verb>
+      <published>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</published>
+    </entry>
+    {{ end }}
+</feed>
