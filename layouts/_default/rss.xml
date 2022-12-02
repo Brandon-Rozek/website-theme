@@ -12,7 +12,7 @@
   <channel>
     <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} | {{ end }}{{ .Site.Title }}{{ end }}</title>
     <link>{{ .Permalink }}</link>
-    <image>{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}</image>
+    <image>{{ .Site.BaseURL }}img/{{ .Site.Params.avatar }}</image>
     <description>{{ .Description }}</description>
     <generator>Hugo -- gohugo.io</generator>{{ with .Site.LanguageCode }}
     <language>{{.}}</language>{{end}}{{ with .Site.Author.email }}

@@ -8,7 +8,7 @@
     <h1 class='title p-name'>{{ .Title }}</h1>
     <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
     <div style="display: none;" rel="author" class="h-card p-author">
-      <img class="u-photo" src="{{ .Site.BaseURL }}/img/avatar.jpg"/>
+      <img class="u-photo" src="{{ .Site.BaseURL }}img/avatar.jpg"/>
       <span > {{ .Site.Params.Author }}</span>
     </div>
     {{ .Scratch.Set "beforeDateString" "Published on "}}
@@ -31,7 +31,7 @@
     "@type": "NewsArticle",
     "headline": "{{ .Title }}",
     "image": [
-      "{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}"
+      "{{ .Site.BaseURL }}img/{{ .Site.Params.avatar }}"
      ],
     "datePublished": "{{ .Date.Format "2006-01-02" }}",
     "author": [{
@@ -39,7 +39,7 @@
         "name": "{{ .Site.Params.Author }}",
         "url": "{{ .Site.BaseURL }}",
         "email": "mailto://{{ .Site.Params.email }}",
-        "image": "{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}"
+        "image": "{{ .Site.BaseURL }}img/{{ .Site.Params.avatar }}"
       }]
   }
   </script>

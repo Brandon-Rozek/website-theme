@@ -15,7 +15,7 @@
       xml:base="{{ .Permalink }}">
     <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} | {{ end }}{{ .Site.Title }}{{ end }}</title>
     <id>{{ .Permalink }}</id>
-    <image>{{ .Site.BaseURL }}/img/{{ .Site.Params.avatar }}</image>
+    <image>{{ .Site.BaseURL }}img/{{ .Site.Params.avatar }}</image>
     <description>{{ .Description }}</description>
     <generator uri="https://gohugo.io">Hugo</generator>
     <author>
