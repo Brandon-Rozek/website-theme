@@ -28,6 +28,9 @@
         {{ end }}
       {{ end }}
 
+      <!-- Most Popular tag -->
+      {{ $mostPopularTag := index .Site.Taxonomies.tags.ByCount 0 }}
+
       {{ $wordCount := $scratch.Get "wordcount" }}
       {{ $avgPostLength := div $wordCount $postCount }}
       <table class="table">
@@ -46,6 +49,14 @@
         <tr>
           <td>Number of Topics</td>
           <td>{{ len $tags | lang.NumFmt 0 }}</td>
+        </tr>
+        <tr>
+          <td>Most Popular Topic</td>
+          <td>
+             {{ with $mostPopularTag }}
+                <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a> with {{ .Count }} posts
+             {{ end }}
+          </td>
         </tr>
         <tr>
           <td>Longest Post Published</td>
