@@ -16,6 +16,7 @@
   <link rel="manifest" href="/manifest.json" />
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <link rel="shortcut icon" type="image/x-icon" href="{{ .Site.BaseURL }}{{ .Site.Params.favicon }}">
+  <link rel="pgpkey" href="https://keys.openpgp.org/pks/lookup?op=get&options=mr&search={{ .Site.Params.email }}">
 
   <!-- Identities -->
   {{- range .Site.Params.identities -}}
