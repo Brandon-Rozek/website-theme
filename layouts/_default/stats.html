@@ -9,10 +9,9 @@
       {{ $posts := where site.RegularPages "Type" "blog" }}
 
       {{ $postCount := len $posts }}
-
+      
       {{ $scratch := newScratch }}
       {{ $scratch.Set "longCount" 0 }}
-      {{ $scratch.Set "shortCount" 9999999999 }}
       {{ range $posts }}
         <!-- Sum words for average calculation later -->
         {{ $scratch.Add "wordcount" .WordCount }}
@@ -20,11 +19,6 @@
         {{ if ge .WordCount ($scratch.Get "longCount") }}
             {{ $scratch.Set "longestPost" . }}
             {{ $scratch.Set "longCount" .WordCount }}
-        {{ end }}
-        <!-- Find shortest post -->
-        {{ if le .WordCount ($scratch.Get "shortCount") }}
-            {{ $scratch.Set "shortestPost" . }}
-            {{ $scratch.Set "shortCount" .WordCount }}
         {{ end }}
       {{ end }}
 
@@ -35,8 +29,15 @@
       {{ $avgPostLength := div $wordCount $postCount }}
       <table class="table">
         <tr>
-          <td width="40%">Total Posts Published</td>
-          <td width="60%">{{ $postCount | lang.NumFmt 0 }}</td>
+          {{ range last 1 $posts }}
+          {{ $numYears := div (sub now.Unix .Date.Unix) 31536000 }}
+          <td width="40%">Years Blogging</td>
+          <td width="60%">{{ $numYears | lang.NumFmt 0 }}</td>
+          {{ end }}
+        </tr>
+        <tr>
+          <td>Total Posts Published</td>
+          <td>{{ $postCount | lang.NumFmt 0 }}</td>
         </tr>
         <tr>
           <td>Total Words Written</td>
@@ -66,14 +67,6 @@
             {{ end }}
           </td>
         </tr>
-        <tr>
-            <td>Shortest Post Published</td>
-            <td>
-              {{ with $scratch.Get "shortestPost" }}
-              <a href="{{ .Permalink }}">{{ .Title }}</a> with {{ .WordCount }} words
-              {{ end }}
-            </td>
-          </tr>
       </table>
 
       {{ $grouped := $posts.GroupByDate "2006" }}
