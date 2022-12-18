@@ -433,3 +433,13 @@ main .e-content .toot-photos img {
 #webmentions img { max-height: 1.2em; margin-right: -1ex; }
 
 .date-updated { margin-top: -18px; }
+
+.pgpform {
+  width: 100%; 
+  min-height: 10rem;
+  font-size: 1rem;
+}
+
+.pgpbutton {
+  font-size: 1rem;
+}

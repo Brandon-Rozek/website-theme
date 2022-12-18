@@ -1,9 +1,14 @@
 {{- $openPGP := resources.Get "js/openpgp.min.js" -}}
 <script src="{{ $openPGP.Permalink }}"></script>
-<textarea id="pgpform" style="width: 100%; min-height: 10rem;"></textarea>
+<textarea id="pgpcleartext" class="pgpform" style="width: 100%; min-height: 10rem;"></textarea>
+<button class="pgpbutton" onclick="encrypt()">Encrypt</button>
+<br/>
+Encrypted Result:
+<pre id="pgpresult" class="pgpform"></pre>
 <script>
 function encrypt() {
-    let textarea = document.querySelector("#pgpform");
+    let textarea = document.querySelector("#pgpcleartext");
+    let resultarea = document.querySelector('#pgpresult');
     let pubKeyURL = "{{ .Get 0 }}"
     fetch(pubKeyURL).then(function(response) {
         return response.text().then(function(text) {
@@ -15,24 +20,20 @@ function encrypt() {
                     encryptionKeys: mp[1]
                 }
                 return openpgp.encrypt(encryptionParameters).then(function(encryptedMessage) {
-                    textarea.value = encryptedMessage
+                    pgpresult.textContent = encryptedMessage
                 });
             });
         });    
     });
 }
-function copyToClipboard() {
-    let textarea = document.querySelector("#pgpform");
-    textarea.select();
-    let successful = document.execCommand('copy');
-}
+
 function genEmail() {
-    let textarea = document.querySelector("#pgpform");
-    let contents = textarea.value;
+    let resultarea = document.querySelector('#pgpresult');
+    let contents = resultarea.textContent;
     let encodedContents = encodeURIComponent(contents);
     let encodedSubject = encodeURIComponent("Contact Form")
     window.location.href = "mailto:{{ .Site.Params.email }}?subject=" +
         encodedSubject + "&body=" + encodedContents;
 }
 </script>
-<button onclick="encrypt()">Encrypt</button><button onclick="copyToClipboard()">Copy</button><button onclick="genEmail()">Generate Email</button>
+<button class="pgpbutton" onclick="genEmail()">Generate Email</button>
