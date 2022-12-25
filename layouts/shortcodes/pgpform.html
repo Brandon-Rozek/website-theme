@@ -9,7 +9,8 @@ Encrypted Result:
 function encrypt() {
     let textarea = document.querySelector("#pgpcleartext");
     let resultarea = document.querySelector('#pgpresult');
-    let pubKeyURL = "{{ .Get 0 }}"
+    let pubKeyURL = "{{ .Get 0 }}";
+    resultarea.textContent = "";
     fetch(pubKeyURL).then(function(response) {
         return response.text().then(function(text) {
             const pubKey = openpgp.readKey({ armoredKey: text });
@@ -18,9 +19,9 @@ function encrypt() {
                 const encryptionParameters = {
                     message: mp[0],
                     encryptionKeys: mp[1]
-                }
+                };
                 return openpgp.encrypt(encryptionParameters).then(function(encryptedMessage) {
-                    pgpresult.textContent = encryptedMessage
+                    resultarea.textContent = encryptedMessage;
                 });
             });
         });    
@@ -31,7 +32,7 @@ function genEmail() {
     let resultarea = document.querySelector('#pgpresult');
     let contents = resultarea.textContent;
     let encodedContents = encodeURIComponent(contents);
-    let encodedSubject = encodeURIComponent("Contact Form")
+    let encodedSubject = encodeURIComponent("Contact Form");
     window.location.href = "mailto:{{ .Site.Params.email }}?subject=" +
         encodedSubject + "&body=" + encodedContents;
 }
