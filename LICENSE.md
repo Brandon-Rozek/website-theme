@@ -1,5 +1,6 @@
 The MIT License (MIT)
 
+Copyright (c) 2022 Brandon Rozek
 Copyright (c) 2018 Kazuki Koide
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
