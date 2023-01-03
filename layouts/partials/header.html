@@ -11,15 +11,15 @@
       <h1 class='title'>
         {{ if $headerLink }}
           <a href="{{ $headerLink }}">
-            {{ $headerTitle }}
+            ~/{{ $headerTitle }}
           </a>
         {{ else }}
-          {{ $headerTitle }}
+          ~/{{ $headerTitle }}
         {{ end }}
       </h1>
     {{ end }}
   {{ else }}
-    <h1 class="title">{{ .Title }}</h1>
+    <h1 class="title">~/{{ .Title }}</h1>
   {{ end }}
 
 
