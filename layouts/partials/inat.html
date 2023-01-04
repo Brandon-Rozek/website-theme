@@ -26,7 +26,7 @@
 
 
       {{ if gt (len .photos) 0 }}
-      <div class="toot-photos">
+      <div class="toot-photos space-evenly">
       {{ range .photos}}
         {{ $small_url := replace .url "square" "small"}}
         {{ $original_url := replace .url "square" "original"}}

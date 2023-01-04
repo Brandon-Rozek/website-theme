@@ -21,7 +21,7 @@
       </p>
       <!-- Site Navigation -->
       <nav class="nav-home">
-        <ul>
+        <ul class="space-evenly">
           {{ range .Site.Menus.main }}
             <li><a href="{{ .URL }}" aria-label="{{ .Identifier }}">{{ .Pre }}<br>{{ .Name }}</a></li>
           {{ end }}
@@ -30,7 +30,7 @@
       <!-- Social Navigation -->
       <p>You can also find me on:</p>
       <nav class="nav-home">
-        <ul>
+        <ul class="space-evenly">
           {{ range .Site.Menus.profile }}
             <li><a href="{{ .URL }}" rel="me" aria-label="{{ .Identifier }}">{{ .Pre }}<br>{{ .Name }}</a></li>
           {{ end }}

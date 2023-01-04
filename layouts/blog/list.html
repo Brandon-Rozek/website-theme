@@ -9,7 +9,7 @@
   {{ $postCount := len $posts }}
   {{ range last 1 $posts }}
     {{ $tags := .Site.Taxonomies.tags }}
-    <div class='bloglist-teaser'>
+    <div class='bloglist-teaser block-center'>
     Hello! This page contains <strong>{{ $postCount | lang.NumFmt 0 }} posts</strong>
     written in the past <strong>{{ div (sub now.Unix .Date.Unix) 31536000 }} years</strong>
     spanning 

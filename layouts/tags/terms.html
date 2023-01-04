@@ -5,7 +5,7 @@
     {{ $postCount := len $posts }}
     {{ range last 1 $posts }}
       {{ $tags := .Site.Taxonomies.tags }}
-      <div class='bloglist-teaser'>
+      <div class='bloglist-teaser block-center'>
       Here you'll find <strong>{{ $postCount | lang.NumFmt 0 }} posts</strong>
       written spanning <strong>{{ len $tags }} topics</strong>.
       </div>

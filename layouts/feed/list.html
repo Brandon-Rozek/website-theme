@@ -3,7 +3,7 @@
   <main>
     {{ partial "search.html" . }}
     <!-- contents -->
-    <div id="feedList">
+    <div id="feedList" class="block-center">
       {{ $listPageDateFormat := .Site.Params.listPageDateFormat | default "January, 2006"}}
       {{ range $index, $value := .Pages.GroupByDate $listPageDateFormat }}
       {{ range .Pages }}

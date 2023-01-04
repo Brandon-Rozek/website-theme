@@ -11,7 +11,7 @@
     <div class="e-content p-name">
       {{ .content | safeHTML }}
       {{ if gt (len .media_attachments) 0 }}
-      <div class="toot-photos">
+      <div class="toot-photos space-evenly">
       {{ range .media_attachments}}
         {{ if eq .type "image" }}
         <img src="{{ .preview_url }}" alt="{{ .description }}"/>

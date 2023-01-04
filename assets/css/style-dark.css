@@ -1,36 +1,16 @@
 /* General */
+:root {
+  --bg-color: #101010;
+  --text-color: #8f8f8f; 
+  --header-color: #dedede;
+}
 body {
-  background-color: #101010;
   background-image: url(/img/winter-dark.png);
-  color: #8f8f8f;
-}
-
-a:link {
-  color: #8f8f8f;
-}
-
-a:visited {
-  color: #8f8f8f;
-}
-
-a:hover {
-  color: #8f8f8f;
-}
-
-a:active {
-  color: #8f8f8f;
-}
-
-mark {
-  color: #8f8f8f;
 }
 
 .header-top {
   background-color: #232323;
-  color: #dedede;
 }
-
-.header-top a { color: #dedede !important;}
 
 #searchBox #searchBoxInput {
   color: #8f8f8f;
