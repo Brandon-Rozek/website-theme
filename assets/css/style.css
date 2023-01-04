@@ -457,7 +457,7 @@ main .e-content .toot-photos img {
 }
 
 .reply-button {
-  border: 1px solid black; 
+  border: 1px solid var(--text-color); 
   padding: 5px; 
   border-radius: 0.5rem;
   box-shadow: 5px 5px var(--acent-color);
