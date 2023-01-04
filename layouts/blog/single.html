@@ -20,7 +20,7 @@
       {{ .Content }}
     </div>
   </article>
-  <a href='mailto:{{ .Site.Params.email }}?subject=Re: "{{ .Title }}"' style="border: 1px solid black;padding: 5px;border-radius: 0.5rem;">Reply via Email</a>
+  <a href='mailto:{{ .Site.Params.email }}?subject=Re: "{{ .Title }}"' class="reply-button">Reply via Email</a>
 
   {{ partial "webmentions.html" . }}
 </main>

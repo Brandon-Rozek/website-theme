@@ -456,6 +456,17 @@ main .e-content .toot-photos img {
   font-size: 1rem;
 }
 
+.reply-button {
+  border: 1px solid black; 
+  padding: 5px; 
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px var(--acent-color);
+}
+
+.reply-button:hover {
+  box-shadow: 2px 2px var(--acent-color);
+}
+
 /*
 ** Fonts
 */
