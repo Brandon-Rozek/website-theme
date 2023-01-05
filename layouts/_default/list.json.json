@@ -13,14 +13,7 @@
     ],
     "items": [
         {{ range $index, $page := .Pages }}{{ if ne $index 0 }},{{ end }}
-            {
-                "id": "{{ $page.Permalink }}",
-                "url": "{{ $page.Permalink }}",
-                "title": {{ $page.Title | jsonify }},
-                "content_html": {{ $page.Content | jsonify }},
-                "date_published": "{{ $page.Date.Format "2006.01.02" }}",
-                "tags": {{ $page.Params.tags | jsonify }}
-            }
+            {{ .Render "item"}}
         {{ end }}
     ]
 }
