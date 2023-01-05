@@ -1,8 +1,0 @@
-{
-    "id": "{{ .Permalink }}",
-    "url": "{{ .Permalink }}",
-    "title": {{ .Title | jsonify }},
-    "content_html": {{ .Content | jsonify }},
-    "date_published": "{{ .Date.Format "2006.01.02" }}",
-    "tags": {{ .Params.tags | jsonify }}
-}

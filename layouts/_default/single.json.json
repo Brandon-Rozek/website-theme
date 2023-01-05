@@ -1,1 +1,20 @@
-{{ .Render "item" }}
+{
+    "id": "{{ .Permalink }}",
+    "url": "{{ .Permalink }}",
+    "title": {{ .Title | jsonify }},
+    "authors": [
+        {{with $.Site.Author.name }}
+            { "name": "{{ . }}" }
+        {{ end }}
+    ],
+    "content_html": {{ .Content | jsonify }},
+    "date_published": "{{ .Date.Format "2006.01.02" }}",
+    "tags": {{ .Params.tags | jsonify }},
+    "_syndication": {
+        "mastodon": {
+            "enabled": {{ .Params.mastodon_enabled | default "false" }},
+            "toot_id": {{ .Params.mastodon_toot_id | default "null" }}
+        }
+
+    }
+}
