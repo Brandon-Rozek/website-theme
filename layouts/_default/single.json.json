@@ -14,6 +14,14 @@
         "mastodon": {
             "enabled": {{ .Params.mastodon_enabled | default "false" }},
             "toot_id": {{ .Params.mastodon_toot_id | default "null" }}
+        },
+        "medium": {
+            "enabled": {{ .Params.medium_enabled | default "false" }},
+            "post_id": {{ .Params.medium_post_id | default "null" }}
+        },
+        "substack": {
+            "enabled": {{ .Params.substack_enabled | default "false" }},
+            "post_id": {{ .Params.substack_post_id | default "null" }}
         }
 
     }
