@@ -55,14 +55,14 @@ const queryNgramSeparator = (query) => {
  */
 const initLunr = () => {
   $.getJSON('index.json').done((index) => {
-    pagesIndex = index
+    pagesIndex = index['items']
     lunrIndex = lunr(builder => {
       builder.tokenizer = bigramTokeniser
       builder.pipeline.reset()
-      builder.ref('ref')
+      builder.ref('url')
       builder.field('title', { boost: 10 })
       builder.field('tags', { boost: 10 })
-      builder.field('body')
+      builder.field('content_html')
       builder.metadataWhitelist = ['position']
       for (let page of pagesIndex) {
         builder.add(page)
@@ -83,7 +83,7 @@ const search = (query) => {
   lunrResult = lunrIndex.search(queryNgramSeparator(query))
   return lunrResult.map((result) => {
     return pagesIndex.filter((page) => {
-      return page.ref === result.ref
+      return page.url === result.ref
     })[0]
   })
 }
@@ -158,9 +158,9 @@ const renderResults = (results) => {
     const matchPosition = metadata[Object.keys(metadata)[0]].body ? metadata[Object.keys(metadata)[0]].body.position[0][0] : 0
     const bodyStartPosition = (matchPosition - (BODY_LENGTH / 2) > 0) ? matchPosition - (BODY_LENGTH / 2) : 0
 
-    $searchResultPage.append('<a class="searchResultTitle" href="' + result.ref + '">' + result.title + '</a>')
+    $searchResultPage.append('<a class="searchResultTitle" href="' + result.url + '">' + result.title + '</a>')
 
-    $searchResultPage.append('<div class="searchResultBody">' + result.body.substr(bodyStartPosition, BODY_LENGTH) + '</div>')
+    $searchResultPage.append('<div class="searchResultBody">' + result.content_html.substr(bodyStartPosition, BODY_LENGTH) + '</div>')
     $searchResults.append($searchResultPage)
 
     // Highlight keyword
