@@ -13,12 +13,12 @@
     "_syndication": {
         "mastodon": {
             "enabled": {{ .Params.mastodon_enabled | default "false" }},
-            "toot_id": {{ .Params.mastodon_toot_id | default "null" }},
+            "toot_id": {{ .Params.mastodon_toot_id | jsonify }},
             "toot_text": "{{ .Params.mastodon_toot_text | default ""}}"
         },
         "medium": {
             "enabled": {{ .Params.medium_enabled | default "false" }},
-            "post_id": {{ .Params.medium_post_id | default "null" }}
+            "post_id": {{ .Params.medium_post_id | jsonify }}
         }
     }
 }
