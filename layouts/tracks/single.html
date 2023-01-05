@@ -18,7 +18,7 @@
     <!-- content -->
     <div class="e-content">
       {{ .Scratch.Set "gpxFile" .Params.gpx }}
-      {{ partial "gpxstudio.html" . }}
+      {{ partial "external/gpxstudio.html" . }}
       {{ .Content }}
     </div>
   </article>
