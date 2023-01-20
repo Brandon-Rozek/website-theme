@@ -15,14 +15,12 @@
       xml:base="{{ .Permalink }}">
     <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} | {{ end }}{{ .Site.Title }}{{ end }}</title>
     <id>{{ .Permalink }}</id>
-    <image>{{ .Site.BaseURL }}img/{{ .Site.Params.avatar }}</image>
-    <description>{{ .Description }}</description>
     <generator uri="https://gohugo.io">Hugo</generator>
     <author>
       <uri>{{ .Site.BaseURL }}</uri>
       {{ with .Site.Author.name }}<name>{{.}}</name>{{end}}
     </author>
-    <updated>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</updated>
+    <updated>{{ now.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
     {{ with .OutputFormats.Get "Atom" }}
 	{{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{ end }}

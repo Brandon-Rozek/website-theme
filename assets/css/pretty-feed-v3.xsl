@@ -100,7 +100,7 @@ This file is in BETA. Please test and contribute to the discussion:
               </xsl:attribute>
               <img>
                 <xsl:attribute name="src">
-                  <xsl:value-of select="/rss/channel/image"/>
+                  <xsl:value-of select="/rss/channel/image/url"/>
                 </xsl:attribute>
                 <xsl:attribute name="title">
                   <xsl:value-of select="/rss/channel/title"/>
