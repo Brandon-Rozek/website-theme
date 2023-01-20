@@ -1,7 +1,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <title>
     {{- if eq .Title .Site.Title -}}
       {{ .Site.Title }}
@@ -10,30 +10,30 @@
     {{- end -}}
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="supported-color-schemes" content="light dark" />
-  <meta name="author" content="{{ .Site.Params.Author }}" />
-  <meta name="robots" content="index,follow" />
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
+  <meta name="supported-color-schemes" content="light dark">
+  <meta name="author" content="{{ .Site.Params.Author }}">
+  <meta name="robots" content="index,follow">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="hub" href="https://pubsubhubbub.superfeedr.com/">
   <link rel="shortcut icon" type="image/x-icon" href="{{ .Site.BaseURL }}{{ .Site.Params.favicon }}">
   <link rel="pgpkey" href="https://keys.openpgp.org/pks/lookup?op=get&options=mr&search={{ .Site.Params.email }}">
 
   <!-- Identities -->
   {{- range .Site.Params.identities -}}
-    <link href="{{.}}" rel="me"/>
+    <link href="{{.}}" rel="me">
   {{ end -}}
 
   <!-- Webmentions -->
   {{ $siteHost := (urls.Parse .Site.BaseURL).Host -}}
-  <link rel="webmention" href="https://webmention.io/{{ $siteHost }}/webmention" />
-  <link rel="pingback" href="https://webmention.io/{{ $siteHost }}/xmlrpc" />
+  <link rel="webmention" href="https://webmention.io/{{ $siteHost }}/webmention">
+  <link rel="pingback" href="https://webmention.io/{{ $siteHost }}/xmlrpc">
 
   <!-- RSS / Alternative Links -->
   {{- if .IsHome -}}
-  <link rel="alternate" type="application/json" href="{{ .Site.BaseURL }}blog/index.json" title="Brandon Rozek's Blog" />
-  <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}blog/index.xml" title="Brandon Rozek's Blog" />
-  <link rel="alternate" type="application/json" href="{{ .Site.BaseURL }}presentations/index.json" title="Brandon Rozek's Presentations}" />
-  <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}presentations/index.xml" title="Brandon Rozek's Presentations" />
+  <link rel="alternate" type="application/json" href="{{ .Site.BaseURL }}blog/index.json" title="Brandon Rozek's Blog">
+  <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}blog/index.xml" title="Brandon Rozek's Blog">
+  <link rel="alternate" type="application/json" href="{{ .Site.BaseURL }}presentations/index.json" title="Brandon Rozek's Presentations}">
+  <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}presentations/index.xml" title="Brandon Rozek's Presentations">
   {{ else }}
   {{ range .AlternativeOutputFormats -}}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
