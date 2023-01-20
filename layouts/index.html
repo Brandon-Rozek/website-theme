@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   {{- partial "head.html" . -}}
 <body>
   <main class="main-home">
@@ -9,8 +9,8 @@
         {{ $profile_image := resources.Get (printf "img/%s" .Site.Params.avatar) }}
         {{ $profile_width := 250 }}
         {{ $profile_image := $profile_image.Resize (printf "%dx" $profile_width) }}
-        <img class="avatarMask u-photo" width="{{ $profile_width }}" src="{{ $profile_image.RelPermalink }}" alt="Photo of {{ .Site.Params.Author }}" />
-        <img src="{{ .Site.BaseURL }}img/avatar-border.svg" />
+        <img class="avatarMask u-photo" width="{{ $profile_width }}" src="{{ $profile_image.RelPermalink }}" alt="Photo of {{ .Site.Params.Author }}">
+        <!-- <img src="{{ .Site.BaseURL }}img/avatar-border.svg" alt="Photo of {{ .Site.Params.Author }}"> -->
       </div>
       <!-- author -->
       <h1 class="author title p-name">{{ .Site.Params.Author }}</h1>

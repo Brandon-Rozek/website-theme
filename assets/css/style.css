@@ -369,14 +369,6 @@ main .e-content h2 {
   height: 250px;
 }
 
-.main-home .h-card .avatar img {
-  width: 250px;
-  position: absolute;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-}
-
 .main-home .h-card .avatarMask {
   clip-path: circle(120px at center);
   -webkit-clip-path: circle(120px at center);
