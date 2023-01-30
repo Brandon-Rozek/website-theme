@@ -388,7 +388,7 @@ footer {
   font-size: 1rem;
   box-sizing:border-box;
 }
-footer a:link {
+footer a:link, footer a:visited, footer a:hover, footer a:active {
   color: white;
 }
 
