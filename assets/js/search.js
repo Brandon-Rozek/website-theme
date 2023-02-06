@@ -65,7 +65,9 @@ const initLunr = () => {
       builder.field('content_html')
       builder.metadataWhitelist = ['position']
       for (let page of pagesIndex) {
-        builder.add(page)
+        // Temporary hack to make page load faster
+        page['content_html'] = page['content_html'].substring(0, 1000);
+        builder.add(page);
       }
     })
   }).fail((jqxhr, textStatus, error) => {
