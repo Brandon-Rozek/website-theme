@@ -339,7 +339,8 @@ main .e-content {
 }
 
 .e-content a:hover {
-  box-shadow: inset 1000px 0 0 0 var(--acent-color);
+  background-color: var(--acent-color);
+  /* box-shadow: inset 1000px 0 0 0 var(--acent-color); */
   color: white;
 }
 
