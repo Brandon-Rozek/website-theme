@@ -2,6 +2,22 @@
   {{ partial "header.html" . }}
   <main>
     <style>main { text-align: left; }</style>
+    {{ $posts := where site.RegularPages "Type" "observations" }}
+    {{ $postCount := len $posts }}
+    {{ range last 1 $posts }}
+      {{ $scratch := newScratch }}
+      {{ $scratch.Set "researchGradeCount" 0 }}
+      {{ range .Pages }}
+        {{ if (eq .quality_grade "research")}}
+          {{ $scratch.Add "researchGradeCount" 1 }}
+        {{ end }}
+      {{ end }}
+      {{ $tags := .Site.Taxonomies.tags }}
+      <div style="text-align: center; margin-bottom: 2rem;" class='bloglist-teaser block-center'>
+      Hello! This page contains {{ $postCount | lang.NumFmt 0 }} observations,
+      {{ len $tags }} of which are <strong><a href="https://www.inaturalist.org/posts/39072-research-grade">research grade</a></strong>.
+      </div>
+    {{ end }}
     {{ .Content }}
     {{ $listPageDateFormat := .Site.Params.listPageDateFormat | default "January, 2006"}}
     {{ range $index, $value := .Pages.GroupByDate $listPageDateFormat }}
