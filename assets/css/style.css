@@ -29,6 +29,11 @@ html, body {
   word-wrap: break-word;
 }
 
+a {
+  padding-top: 8px; /* Increase tap target */
+  padding-bottom: 8px; /* Increase tap target */
+}
+
 a .fa, a .fas, a .fab {
   color: var(--acent-color);
 }

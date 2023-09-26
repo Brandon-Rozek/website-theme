@@ -64,15 +64,5 @@
   <!-- {{- template "_internal/twitter_cards.html" . -}} -->
   {{- partial "external/twitter_cards.html" . -}}
 
-  <script src="https://polyfill.io/v3/polyfill.js"></script>
-
-  <!-- MathJax -->
-  {{- if or .Params.math .Site.Params.math -}}
-    {{ partial "mathjax_support.html" . }}
-  {{- end -}}
-
   {{ partial "citation.html" . }}
-
-  {{- $script := resources.Get "js/script.js" -}}
-  <script src="{{ $script.Permalink }}" async></script>
 </head>

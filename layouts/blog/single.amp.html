@@ -8,7 +8,10 @@
     <h1 class='title p-name'>{{ .Title }}</h1>
     <a style="display: none" class="u-url" href="{{ .Permalink }}"></a>
     <div style="display: none;" rel="author" class="h-card p-author">
-      <img class="u-photo" src="{{ .Site.BaseURL }}img/avatar.jpg"/>
+      {{ $profile_image := resources.Get (printf "img/%s" .Site.Params.avatar) }}
+      {{ $profile_width := 75 }}
+      {{ $profile_image := $profile_image.Resize (printf "%dx webp q75" $profile_width) }}
+      <img class="u-photo" width="{{ $profile_width }}" height="{{ $profile_width }}" src="{{ $profile_image.RelPermalink }}"/>
       <span > {{ .Site.Params.Author }}</span>
     </div>
     {{ .Scratch.Set "beforeDateString" "Published on "}}
