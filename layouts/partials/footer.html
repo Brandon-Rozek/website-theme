@@ -50,6 +50,10 @@
   }
 </script>
 <script async src="https://dash.brandonrozek.com/tracker.js" data-ackee-server="https://dash.brandonrozek.com" data-ackee-domain-id="41f92524-47ad-497b-b342-a8c296e4b11b"></script>
+<!-- MathJax -->
+{{- if or .Params.math .Site.Params.math -}}
+  {{ partial "mathjax_support.html" . }}
+{{- end -}}
 {{- range .Site.Params.custom_js -}}
 <script src="{{ . }}"></script>
 {{ end }}
