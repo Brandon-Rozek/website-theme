@@ -2,10 +2,10 @@
 <div id="webmentions"></div>
 {{ $siteHost := (urls.Parse .Site.BaseURL).Host -}}
 <form method="post" action="https://webmention.io/{{ $siteHost }}/webmention">
-  <p>Have you published a response to this? <label for="webmention-source">Let me know the <abbr title="Uniform Resource Locator">URL</abbr></label>:</p>
+  <p style="display: inline-block;">Published a response to this? <label for="webmention-source">Let me know the URL</label>:</p>
   <input type="url" name="source" id="webmention-source">
   <input type="hidden" name="target" value="{{ .Permalink }}">
-  <button type="submit">Ping!</button>
+  <button type="submit">Submit</button>
 </form>
 </main>
 {{ $webmentionjs := resources.Get "js/webmention.min.js" }}
