@@ -25,6 +25,7 @@
   </article>
   {{ partial "sharepost.html" . }}
   <a href='mailto:{{ .Site.Params.email }}?subject=Re: "{{ .Title }}"' class="reply-button">Reply via Email</a>
+  <a href="/support" class="reply-button" style="margin-left:2rem;"><i class="fas fa-coffee" style="margin-right: 0.5rem;"></i>Buy me a Coffee</a>
 
   {{ partial "webmentions.html" . }}
 </main>
