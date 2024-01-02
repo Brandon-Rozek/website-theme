@@ -1,4 +1,4 @@
-{{ if not .Date.IsZero }}
+{{ if and (not .Date.IsZero) (not .Params.hideDate) (not .Site.Params.hideDate) }}
     {{ $publishString := .Scratch.Get "beforeDateString" }}
     {{ $singlePageDateFormat := .Site.Params.singlePageDateFormat | default "January 2, 2006"}}
     {{ $pubdate := .Date.Format $singlePageDateFormat }}
