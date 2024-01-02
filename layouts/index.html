@@ -2,7 +2,7 @@
 <html lang="en">
   {{- partial "head.html" . -}}
 <body>
-  <main class="main-home">
+  <main class="main-home" style="display: flex; justify-content: space-around; flex-wrap: wrap; max-width: calc(100vw - 10px)">
     <div class="h-card">
       <!-- avator -->
       <div class="avatar">
@@ -36,6 +36,52 @@
           {{ end }}
         </ul>
       </nav>
+    </div>
+    <div style="text-align: left;">
+
+      <h2>Latest Updates</h2>
+
+      {{ $items := (where site.RegularPages "Type" "blog").ByDate }}
+      {{ range last 1 $items }}
+        <p><strong>Blog Post: </strong><a href="{{ .Permalink }}">{{ .Title }}</a></p>
+      {{ end }}
+
+      {{ $items := (where site.RegularPages "Type" "paper").ByDate }}
+      {{ range last 1 $items }}
+        <p><strong>Publication: </strong><a href="{{ .Permalink }}">{{ .Title }}</a></p>
+      {{ end }}
+
+      {{ $items := (where site.RegularPages "Type" "tracks").ByDate }}
+      {{ range last 1 $items }}
+        <p><strong>Recorded Walk: </strong><a href="{{ .Permalink }}">{{ .Title }}</a></p>
+      {{ end }}
+
+      {{ $data := getJSON "https://en.wikipedia.org/w/api.php?action=query&format=json&list=usercontribs&ucuser=BrandonRozek&uclimit=1" }}
+      {{ range first 1 $data.query.usercontribs }}
+        <p><strong>Wikipedia Page: </strong><a href="https://en.wikipedia.org/?curid={{ .pageid }}">{{ .title }}</a></p>
+      {{ end }}
+
+
+      {{ $items := (where site.RegularPages "Type" "observations").ByDate }}
+      {{ range last 1 $items }}
+        {{ $name := "" }}
+        {{ if (ne .Params.taxon.common_name "") }}
+            {{ $name = .Params.taxon.common_name }}
+        {{ else }}
+            {{ $name = .Params.taxon.name }}
+        {{ end }}
+        <p><strong>Nature Observation: </strong><a href="{{ .Permalink }}">{{ title $name }}</a></p>
+      {{ end }}
+
+
+      {{ $items := (where site.RegularPages "Type" "menu").ByDate }}
+      {{ range last 1 $items }}
+        <p><strong>Recipe: </strong><a href="{{ .Permalink }}">{{ .Title }}</a></p>
+      {{ end }}
+
+
+
+
     </div>
   </main>
   {{ partial "footer.html" . -}}
