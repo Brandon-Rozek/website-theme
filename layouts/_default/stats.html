@@ -76,6 +76,14 @@
             {{ end }}
           </td>
         </tr>
+        <tr>
+          <td>Total OpenStreetMap Edits</td>
+          <td>
+            {{ $data := getJSON "https://api.openstreetmap.org/api/0.6/user/16068861.json" }}
+            {{ $data.user.changesets.count }}
+          </td>
+        </tr>
+
       </table>
 
       {{ $grouped := $posts.GroupByDate "2006" }}
