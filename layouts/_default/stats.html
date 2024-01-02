@@ -67,6 +67,15 @@
             {{ end }}
           </td>
         </tr>
+        <tr>
+          <td>Total Wikipedia Edits</td>
+          <td>
+            {{ $data := getJSON "https://en.wikipedia.org/w/api.php?action=query&list=users&ususers=BrandonRozek&usprop=editcount&format=json" }}
+            {{ range first 1 $data.query.users }}
+            {{ .editcount }}
+            {{ end }}
+          </td>
+        </tr>
       </table>
 
       {{ $grouped := $posts.GroupByDate "2006" }}
