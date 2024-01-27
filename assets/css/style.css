@@ -2,9 +2,11 @@
 ** General
 */
 :root {
-  --bg-color: #efefef;
+  --bg-color: #f2f0e9;
+  --bg-color: #f6f4ef;
+  --bg-color: #faf9f6;
   --acent-color: #5c3c2e;
-  --text-color: #313131;
+  --text-color: #020101;
   --text-font: 'IBM Plex Mono', sans-serif;
   --header-font: 'IBM Plex Mono', monospace;
   --header-color: black;
@@ -18,8 +20,6 @@ html, body {
   padding: 0;
   box-sizing: border-box;
   background-color: var(--bg-color);
-  /* background-image: url(/img/winter.png); */
-  background-color: #fafafa;
   color: var(--text-color);
   text-align: center;
   font-family: var(--text-font);
@@ -82,7 +82,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.25rem;
   padding-left: 3rem;
   border-bottom: 1px dashed var(--acent-color);
-  background-color: #fafafa;
   font-size: 0.9rem;
   color: var(--header-color);
 }
