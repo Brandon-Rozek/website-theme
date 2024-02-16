@@ -1,0 +1,23 @@
+
+{{ if and (not .Date.IsZero) .Site.Params.warnPostOlderThanXYears }}
+
+
+    {{ $ageYears := div (sub now.Unix .Date.Unix) 31536000 }}
+
+    {{ if .Lastmod }}
+        {{ $ageYears := div (sub now.Unix .Lastmod.Unix) 31536000 }}
+    {{ end }}
+
+    {{ if gt $ageYears .Site.Params.warnPostOlderThanXYears }}
+<div style="margin-top: 1rem; border: 1px solid black; padding: 1rem;">
+    <em>Warning</em>: This post has not been modified
+    for over {{ .Site.Params.warnPostOlderThanXYears }} years. For technical posts,
+    make sure that it is still relevant.
+</div>
+    {{ end }}
+
+
+{{ end }}
+
+
+
