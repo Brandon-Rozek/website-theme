@@ -21,7 +21,7 @@
       {{ end }}
       <p class="date">Observed on <time class="dt-published" datetime='{{ .date }}'>{{ dateFormat "January 2, 2006 15:04" (time .date) }}</time></p>
       <p>Location: {{ .place_guess }}</p>
-      <span>Also on: <a class="u-syndication" href="{{ .url }}">iNaturalist</a></span>
+      <span>Also on: <a class="u-syndication" href="{{ .syndication }}">iNaturalist</a></span>
 
       <div class="e-content">
         {{ if gt (len .photos) 0 }}
