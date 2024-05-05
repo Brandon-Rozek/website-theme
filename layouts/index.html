@@ -56,12 +56,6 @@
         <p><strong>Recorded Walk: </strong><a href="{{ .Permalink }}">{{ .Title }}</a></p>
       {{ end }}
 
-      {{ $data := getJSON "https://en.wikipedia.org/w/api.php?action=query&format=json&list=usercontribs&ucuser=BrandonRozek&uclimit=1" }}
-      {{ range first 1 $data.query.usercontribs }}
-        <p><strong>Wikipedia Page: </strong><a href="https://en.wikipedia.org/?curid={{ .pageid }}">{{ .title }}</a></p>
-      {{ end }}
-
-
       {{ $items := (where site.RegularPages "Type" "observations").ByDate }}
       {{ range last 1 $items }}
         {{ $name := "" }}
