@@ -1,7 +1,7 @@
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <title>
     {{- if eq .Title .Site.Title -}}
       {{ .Site.Title }}
@@ -9,10 +9,11 @@
       {{ .Title }} | {{ .Site.Title }}
     {{- end -}}
   </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="supported-color-schemes" content="light dark">
-  <meta name="author" content="{{ .Site.Params.Author }}">
-  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="supported-color-schemes" content="light dark" />
+  <meta name="author" content="{{ .Site.Params.Author }}" />
+  <meta name="robots" content="index,follow" />
+  <meta name="fediverse:creator" content="@brozek@fosstodon.org" />
   <link rel="manifest" href="/manifest.json">
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/">
   <link rel="shortcut icon" type="image/x-icon" href="{{ .Site.BaseURL }}{{ .Site.Params.favicon }}">
