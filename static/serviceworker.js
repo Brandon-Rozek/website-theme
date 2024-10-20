@@ -16,7 +16,7 @@ function cacheClients() {
       includeUncontrolled: true
   })
   .then(allClients => allClients.map(client => client.url))
-  .then(pages => [pages, caches.open(cacheName)])
+  .then(pages => Promise.all([pages, caches.open(cacheName)]))
   .then(([pages, cache]) => cache.addAll(pages))
 }
 
@@ -33,7 +33,7 @@ function clearInvalidatedCaches() {
 
 function trimCache(name, maxItems) {
   return caches.open(name)
-  .then(cache => [cache, cache.keys()])
+  .then(cache => Promise.all([cache, cache.keys()]))
   // Make sure offlineFundamentals don't get deleted
   .then(([cache, keys]) => [cache, keys.filter(key => !offlineFundamentals.includes(key))])
   .then(([cache, possibleDelete]) => {
