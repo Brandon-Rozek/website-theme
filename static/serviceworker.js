@@ -1,6 +1,6 @@
 let version = 'v1::';
 let cacheName = 'website';
-let offlinePage = '/offline';
+let offlinePage = '/offline/';
 let offlineFundamentals = [offlinePage, '/'];
 let maxItems = 100;
 
@@ -89,19 +89,23 @@ if (registration.navigationPreload) {
 self.addEventListener('fetch', function (event) {
 	const request = event.request;
 
-  // Always fetch non-GET requests from the network
-  if (request.method !== 'GET') {
-    event.respondWith(
-      fetch(request)
-      .catch(() => caches.match(offlinePage))
-    );
-    return;
-  }
-
   let isRequestType = function(name) {
     return request.headers
       .get('Accept')
       .includes(name);
+  }
+
+  // Always fetch non-GET requests from the network
+  if (request.method !== 'GET') {
+    // Present offline page when failed to
+    // fetch a HTML page
+    if (isRequestType('text/html')) {
+      event.respondWith(
+        fetch(request)
+        .catch(() => caches.match(offlinePage))
+      );
+    }
+    return;
   }
 
 	// Network-first Approach
