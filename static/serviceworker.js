@@ -35,11 +35,15 @@ function trimCache(name, maxItems) {
   return caches.open(name)
   .then(cache => Promise.all([cache, cache.keys()]))
   // Make sure offlineFundamentals don't get deleted
-  .then(([cache, keys]) => [cache, keys.filter(key => !offlineFundamentals.includes(key))])
-  .then(([cache, possibleDelete]) => {
+  .then(([cache, keys]) => [
+    cache,
+    keys.filter(key => !offlineFundamentals.includes(key)),
+    keys.length - maxItems
+  ])
+  .then(([cache, possibleDelete, numToDelete]) => {
     // Trim cache until we are of the right size
     deleteInProgress = []
-    for (let i = 0; i < keys.length - maxItems; i++) {
+    for (let i = 0; i < numToDelete; i++) {
       // Keep track of each delete
       deleteInProgress.push(cache.delete(possibleDelete[i]));
     }
