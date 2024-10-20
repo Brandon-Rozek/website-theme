@@ -6,7 +6,8 @@ let maxItems = 100;
 
 self.addEventListener('install', function (event) {
 	// Cache offline fundamentals
-	event.waitUntil(caches.open(version + cacheName).then(function (cache) {
+	event.waitUntil(
+    caches.open(version + cacheName).then(function (cache) {
         return cache.addAll(offlineFundamentals);
 	}));
 });
@@ -14,11 +15,21 @@ self.addEventListener('install', function (event) {
 function trimCache(name, maxItems) {
   caches.open(name).then(function(cache) {
     cache.keys().then(function(keys) {
-      if (keys.length > maxItems) {
-        cache.delete(keys[0]).then(trimCache(name, maxItems));
+      // Make sure offlineFundamentals don't get deleted
+      possibleDelete = keys.filter(function(key) {
+        !offlineFundamentals.includes(key)
+      });
+
+      // Keep track of each delete
+      deleteInProgress = []
+      for (let i = 0; i < keys.length - maxItems; i++) {
+        deleteInProgress.push(cache.delete(possibleDelete[i]));
       }
-    });
-  });
+
+      // Return when everything is resolved
+      return Promise.all(deleteInProgress);
+    })
+  })
 }
 
 // Listens for trimCache command which occurs on page load
@@ -28,17 +39,17 @@ self.addEventListener('message', event => {
   }
 });
 
-
 // If the version changes, invalidate the cache
 self.addEventListener('activate', function (event) {
   event.waitUntil(
     caches.keys()
       .then(function (keys) {
-        // Remove caches whose name is no longer valid
         return Promise.all(keys
+          // Find all caches that aren't the current version
           .filter(function (key) {
-            return key.indexOf(version) !== 0;
+            return !key.includes(version)
           })
+          // Delete the cache
           .map(function (key) {
             return caches.delete(key);
           })
@@ -53,16 +64,19 @@ self.addEventListener('fetch', function (event) {
 
   // Always fetch non-GET requests from the network
   if (request.method !== 'GET') {
-    event.respondWith(
-      fetch(request)
-        .catch(function () {
-          return caches.match(offlinePage);
-        })
+    event.respondWith(fetch(request)
+      .catch(function () {
+        return caches.match(offlinePage);
+      })
     );
     return;
   }
 
-  let isRequestType = function(name) { return request.headers.get('Accept').includes(name); }
+  let isRequestType = function(name) {
+    return request.headers
+      .get('Accept')
+      .includes(name);
+  }
 
 	// Network-first Approach
 	event.respondWith(
@@ -71,7 +85,7 @@ self.addEventListener('fetch', function (event) {
 			// If successful, create a copy of the response
       // and save it to the cache
       // Note: Ignore badges
-      if (request.url.includes("/badges")) {
+      if (!request.url.includes("/badges")) {
         let cacheCopy = response.clone();
         event.waitUntil(caches.open(version + cacheName).then(function (cache) {
           return cache.put(request, cacheCopy);
