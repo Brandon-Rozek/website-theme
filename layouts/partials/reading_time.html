@@ -1,7 +1,7 @@
 <!-- Reading Time -->
 {{ $readTime := mul (div (countwords .Content) 220.0) 60 }}
 {{ if gt $readTime 60 }}
-<p>
+<p class="noprint">
   <i class="fas fa-stopwatch"></i>
   {{ math.Ceil (div $readTime 60) }} minute
   reading time
