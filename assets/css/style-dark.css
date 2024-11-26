@@ -3,6 +3,7 @@
   --bg-color: #101010;
   --text-color: #8f8f8f; 
   --header-color: #dedede;
+  --accent-color: #7b5b4c;
 }
 body {
   background-image: url(/img/winter-dark.png);
