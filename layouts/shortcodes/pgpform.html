@@ -6,26 +6,34 @@
 Encrypted Result:
 <pre id="pgpresult" class="pgpform"></pre>
 <script>
-function encrypt() {
-    let textarea = document.querySelector("#pgpcleartext");
+async function encrypt() {
     let resultarea = document.querySelector('#pgpresult');
-    let pubKeyURL = "{{ .Get 0 }}";
     resultarea.textContent = "";
-    fetch(pubKeyURL).then(function(response) {
-        return response.text().then(function(text) {
-            const pubKey = openpgp.readKey({ armoredKey: text });
-            const message = openpgp.createMessage({ text: textarea.value })
-            return Promise.all([message, pubKey]).then(function(mp) {
-                const encryptionParameters = {
-                    message: mp[0],
-                    encryptionKeys: mp[1]
-                };
-                return openpgp.encrypt(encryptionParameters).then(function(encryptedMessage) {
-                    resultarea.textContent = encryptedMessage;
-                });
-            });
-        });    
-    });
+
+    let textarea = document.querySelector("#pgpcleartext");
+    if (textarea.value.length == 0) {
+        return;
+    }
+
+    let pubKeyURL = "{{ .Get 0 }}";
+    let pubKey;
+
+    try {
+        const response = await fetch(pubKeyURL);
+        const text = await response.text();
+        pubKey = await openpgp.readKey({ armoredKey: text });
+    } catch {
+        resultarea.textContent = "Error: Unable to obtain key";
+    }
+
+    try {
+        const message = await openpgp.createMessage({ text: textarea.value });
+        const encryptedMessage = await openpgp.encrypt({message: message, encryptionKeys: pubKey});
+        resultarea.textContent = encryptedMessage;
+    } catch {
+        resultarea.textContent = "Error: Unable to encrypt message"
+    }
+
 }
 
 function genEmail() {

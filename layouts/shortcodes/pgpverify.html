@@ -1,0 +1,39 @@
+{{- $openPGP := resources.Get "js/openpgp.min.js" -}}
+<script src="{{ $openPGP.Permalink }}"></script>
+<textarea id="pgpsignedtext" class="pgpform" style="width: 100%; min-height: 10rem;"></textarea>
+<button class="pgpverifybutton" onclick="verify()">Verify</button>
+<br/>
+Verification Result:
+<pre id="pgpverifyresult" class="pgpform"></pre>
+<script>
+async function verify() {
+    let resultarea = document.querySelector('#pgpverifyresult');
+    resultarea.textContent = "";
+
+    let textarea = document.querySelector("#pgpsignedtext");
+    if (textarea.value.length == 0) {
+        return;
+    }
+
+    let pubKeyURL = "{{ .Get 0 }}";
+    let pubKey;
+
+    try {
+        const response = await fetch(pubKeyURL);
+        const text = await response.text();
+        pubKey = await openpgp.readKey({ armoredKey: text });
+    } catch {
+        resultarea.textContent = "Error: Unable to obtain key";
+    }
+
+    try {
+        const message = await openpgp.readCleartextMessage({ cleartextMessage: textarea.value });
+        const verifyResult = await openpgp.verify({message: message, verificationKeys: pubKey});
+        const validResult = await verifyResult.signatures[0].verified;
+        resultarea.textContent = (validResult)? "Valid": "Invalid";
+    } catch {
+        resultarea.textContent = "Invalid";
+    }
+
+}
+</script>
