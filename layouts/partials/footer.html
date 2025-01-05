@@ -7,7 +7,7 @@
   <div class="footer-navs block-center">
     <nav>
       <p>Content Pages</p>
-      <ul id="footer-nav-sections">
+      <ul class="footer-nav">
       {{ range .Site.Sections }}
       {{ if not .Params.hidden }}
         <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
@@ -18,7 +18,7 @@
 
     <nav>
       <p>More Pages</p>
-      <ul>
+      <ul class="footer-nav">
       {{ $sectionPages := where .Site.Pages "Section" "" }}
         {{ range $sectionPages }}
         {{ if and (not .Params.hidden) (ne .Permalink .Site.BaseURL)}}
