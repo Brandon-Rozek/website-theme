@@ -17,15 +17,6 @@
     </nav>
 
     <nav>
-      <p>Social</p>
-      <ul>
-      {{ range .Site.Menus.profile }}
-        <li><a href="{{ .URL }}" rel="me" aria-label="{{ .Identifier }}">{{ .Name }}</a></li>
-      {{ end }}
-      </ul>
-    </nav>
-
-    <nav>
       <p>More Pages</p>
       <ul>
       {{ $sectionPages := where .Site.Pages "Section" "" }}
