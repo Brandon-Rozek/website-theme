@@ -25,13 +25,20 @@
     </div>
   </article>
 
-  <div class="noprint" style="margin-bottom: 2rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
-    <a href='mailto:{{ .Site.Params.email }}?subject=Re: "{{ .Title }}"' class="reply-button">Reply via Email</a>
-    <a href="/support" class="reply-button" style="margin-left:2rem;"><i class="fas fa-coffee" style="margin-right: 0.5rem;"></i>Buy me a Coffee</a>
+  <hr style="margin-bottom: 3rem;"/>
+
+  <div class="noprint" style="text-align: left;">
+    <p>Have any questions or want to chat: <a href='mailto:{{ .Site.Params.email }}?subject=Re: "{{ .Title }}"' class="reply-button"><i class="fa fa-paper-plane" style="margin-right: 0.5rem;"></i>Reply via Email</a></p>
+    <p>Enjoyed this post?</p>
+    <ul style="list-style: none;">
+      <li>Support: <a href="/support"><i class="fas fa-coffee" style="margin-right: 0.5rem;"></i>Buy me a Coffee</a></li>
+      <li>{{ partial "sharepost.html" . }}</li>
+    </ul>
+    {{ partial "webmentions.html" . }}
   </div>
 
-  {{ partial "sharepost.html" . }}
-  {{ partial "webmentions.html" . }}
+
+
 </main>
 <!-- Metadata -->
 <script type="application/ld+json">
