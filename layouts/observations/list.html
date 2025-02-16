@@ -14,7 +14,7 @@
       {{ end }}
       {{ $tags := .Site.Taxonomies.tags }}
       <div style="text-align: center; margin-bottom: 2rem;" class='bloglist-teaser block-center'>
-      Hello! This page contains {{ $postCount | lang.NumFmt 0 }} observations,
+      Hello! This page contains {{ $postCount | lang.FormatNumber 0 }} observations,
       {{ len $tags }} of which are <strong><a href="https://www.inaturalist.org/posts/39072-research-grade">research grade</a></strong>.
       </div>
     {{ end }}

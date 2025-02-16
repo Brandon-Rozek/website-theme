@@ -3,14 +3,14 @@
     {
         "@context": "https://www.w3.org/ns/activitystreams",
         "actor": {
-            {{with $.Site.Author.name }}"name": "{{ . }}",{{ end }}
+            {{with $.Site.Params.Author }}"name": "{{ . }}",{{ end }}
             "url": "{{ .Site.BaseURL }}"
         },
         "id": "{{ $page.Permalink }}",
         "object": {
             "attributedTo": [
             {
-                {{with $.Site.Author.name }}"name": "{{ . }}",{{ end }}
+                {{with $.Site.Params.Author }}"name": "{{ . }}",{{ end }}
                 "type": "Person",
                 "url": "{{ .Site.BaseURL }}"
             }

@@ -3,7 +3,7 @@
     "url": "{{ .Permalink }}",
     "title": {{ .Title | jsonify }},
     "authors": [
-        {{with $.Site.Author.name }}
+        {{with $.Site.Params.Author }}
             { "name": "{{ . }}" }
         {{ end }}
     ],

@@ -2,7 +2,7 @@
   {{ partial "header.html" . }}
   <main>
   <div class='bloglist-teaser block-center' style="margin-top: 2rem;">
-    Here you'll find <strong>{{ len .Pages | lang.NumFmt 0 }} posts</strong>
+    Here you'll find <strong>{{ len .Pages | lang.FormatNumber 0 }} posts</strong>
     about <u>{{ .Title }}</u> </strong>.
   </div>
   <!-- contents -->

@@ -7,7 +7,7 @@
     "icon": "{{ .Site.BaseURL }}img/{{ .Site.Params.avatar }}",
     "language": "en-US",
     "authors": [
-        {{with $.Site.Author.name }}
+        {{with $.Site.Params.Author }}
             { "name": "{{ . }}" }
         {{ end }}
     ],
