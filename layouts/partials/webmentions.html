@@ -7,7 +7,6 @@
   <input type="hidden" name="target" value="{{ .Permalink }}">
   <button type="submit">Submit</button>
 </form>
-</main>
 {{ $webmentionjs := resources.Get "js/webmention.min.js" }}
 {{ $aliasesCombined := delimit (apply .Aliases "absURL" ".") "|" }}
 <script src="{{ $webmentionjs.Permalink }}" {{ printf "add-urls=%s" $aliasesCombined | safeHTMLAttr }} async></script>
