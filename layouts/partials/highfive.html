@@ -1,0 +1,205 @@
+<style>
+.highfive-container {
+  margin: 1rem 0;
+}
+
+.highfive-message {
+  margin-left: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+  display: none;
+}
+
+.highfive-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.highfive-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.highfive-btn {
+  transition: opacity 0.2s ease;
+}
+</style>
+
+<div class="highfive-container">
+  <p>
+    Give me a high five (it's free):
+    <a href="#" id="highfive-btn" class="reply-button highfive-btn" role="button" aria-label="Give high five">
+      <i class="fa fa-hand-paper" style="margin-right: 0.5rem;" aria-hidden="true"></i>
+      (<span id="highfive-count" aria-live="polite">0</span>)
+    </a>
+    <span id="highfive-message" class="highfive-message" role="status" aria-live="polite"></span>
+  </p>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // Configuration
+  const CONFIG = {
+    API_BASE: 'https://api.brandonrozek.com/highfive',
+    TIMEOUTS: {
+      SUCCESS_MESSAGE: 3000,
+      ERROR_MESSAGE: 3000
+    },
+    SELECTORS: {
+      BUTTON: '#highfive-btn',
+      COUNT: '#highfive-count',
+      MESSAGE: '#highfive-message'
+    }
+  };
+
+  // DOM elements
+  const elements = {};
+
+  // State
+  let isLoading = false;
+  let currentCount = 0;
+
+  /**
+   * Initialize the high five functionality
+   */
+  function init() {
+    // Cache DOM elements
+    elements.button = document.querySelector(CONFIG.SELECTORS.BUTTON);
+    elements.count = document.querySelector(CONFIG.SELECTORS.COUNT);
+    elements.message = document.querySelector(CONFIG.SELECTORS.MESSAGE);
+
+    if (!elements.button || !elements.count || !elements.message) {
+      console.error('High five: Required DOM elements not found');
+      return;
+    }
+
+    elements.button.addEventListener('click', handleHighFiveClick);
+    loadHighFiveCount();
+  }
+
+  /**
+   * Make API request with error handling
+   */
+  async function makeApiRequest(method = 'GET') {
+    const response = await fetch(`${CONFIG.API_BASE}${window.location.pathname}`, {
+      method,
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+
+  /**
+   * Load current high five count
+   */
+  async function loadHighFiveCount() {
+    try {
+      const data = await makeApiRequest('GET');
+      currentCount = data.count || 0;
+      updateButtonContent('hand-paper', currentCount);
+    } catch (error) {
+      console.error('Failed to load high five count:', error);
+      updateButtonContent('hand-paper', currentCount);
+    }
+  }
+
+  /**
+   * Handle high five button click
+   */
+  async function handleHighFiveClick(event) {
+    event.preventDefault();
+
+    if (isLoading) return;
+
+    setButtonState('loading');
+
+    try {
+      const data = await makeApiRequest('POST');
+      const newCount = data.count || 0;
+      currentCount = newCount;
+      
+      // Check if user already gave a high five
+      if (data.message === 'Already logged') {
+        updateButtonContent('check', newCount);
+        showMessage('👋 Already high-fived!', 'success');
+        setButtonState('disabled');
+      } else {
+        updateButtonContent('check', newCount);
+        showMessage('🎉 Thanks!', 'success');
+        setButtonState('disabled');
+      }
+      
+    } catch (error) {
+      console.error('Failed to send high five:', error);
+
+      showMessage('❌ Failed to send', 'error', CONFIG.TIMEOUTS.ERROR_MESSAGE);
+      updateButtonContent('hand-paper', currentCount);
+      setButtonState('disabled');
+
+      setTimeout(() => {
+        setButtonState('enabled');
+      }, CONFIG.TIMEOUTS.ERROR_MESSAGE);
+    }
+  }
+
+  /**
+   * Update button content with icon and count
+   */
+  function updateButtonContent(icon, count) {
+    elements.count.textContent = count;
+    const iconClass = icon === 'loading' ? 'fa-spinner fa-spin' : `fa-${icon}`;
+    const text = icon === 'loading' ? 'Sending...' : `(${count})`;
+
+    elements.button.innerHTML = `<i class="fa ${iconClass}" style="margin-right: 0.5rem;" aria-hidden="true"></i>${text}`;
+  }
+
+  /**
+   * Set button state (enabled, disabled, loading)
+   */
+  function setButtonState(state) {
+    isLoading = state === 'loading';
+
+    const isInteractive = state === 'enabled';
+    elements.button.style.pointerEvents = isInteractive ? 'auto' : 'none';
+    elements.button.style.opacity = isInteractive ? '1' : '0.6';
+
+    if (state === 'loading') {
+      updateButtonContent('loading');
+    }
+  }
+
+  /**
+   * Show message with optional auto-hide
+   */
+  function showMessage(text, type, timeout) {
+    elements.message.textContent = text;
+    elements.message.className = `highfive-message ${type}`;
+    elements.message.style.display = 'inline';
+
+    if (timeout) {
+      setTimeout(() => {
+        elements.message.style.display = 'none';
+        elements.message.className = 'highfive-message';
+      }, timeout);
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+</script>
