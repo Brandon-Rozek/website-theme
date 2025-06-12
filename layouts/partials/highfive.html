@@ -147,7 +147,7 @@
 
     try {
       const data = await makeApiRequest('POST');
-      const newCount = data.count || 0;
+      const newCount = data.count || currentCount;
       currentCount = newCount;
       
       // Check if user already gave a high five (HTTP 409 response)
