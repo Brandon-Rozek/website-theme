@@ -127,11 +127,11 @@
   async function loadHighFiveCount() {
     try {
       const data = await makeApiRequest('GET');
-      currentCount = data.count || 0;
-      updateButtonContent('hand-paper', currentCount);
+      currentCount = data.count || currentCount;
+      updateButtonContent('hand-paper');
     } catch (error) {
       console.error('Failed to load high five count:', error);
-      updateButtonContent('hand-paper', currentCount);
+      updateButtonContent('hand-paper');
     }
   }
 
@@ -152,11 +152,11 @@
       
       // Check if user already gave a high five (HTTP 409 response)
       if (data.alreadyHighFived) {
-        updateButtonContent('check', newCount);
+        updateButtonContent('check');
         showMessage('👋 Already high-fived!', 'success');
         setButtonState('disabled');
       } else {
-        updateButtonContent('check', newCount);
+        updateButtonContent('check');
         showMessage('🎉 Thanks!', 'success');
         setButtonState('disabled');
       }
@@ -165,7 +165,7 @@
       console.error('Failed to send high five:', error);
 
       showMessage('❌ Failed to send', 'error', CONFIG.TIMEOUTS.ERROR_MESSAGE);
-      updateButtonContent('hand-paper', currentCount);
+      updateButtonContent('hand-paper');
       setButtonState('disabled');
 
       setTimeout(() => {
@@ -177,10 +177,10 @@
   /**
    * Update button content with icon and count
    */
-  function updateButtonContent(icon, count) {
-    elements.count.textContent = count;
+  function updateButtonContent(icon) {
+    elements.count.textContent = currentCount;
     const iconClass = icon === 'loading' ? 'fa-spinner fa-spin' : `fa-${icon}`;
-    const text = icon === 'loading' ? 'Sending...' : `(${count})`;
+    const text = icon === 'loading' ? 'Sending...' : `(${currentCount})`;
 
     elements.button.innerHTML = `<i class="fa ${iconClass}" style="margin-right: 0.5rem;" aria-hidden="true"></i>${text}`;
   }
