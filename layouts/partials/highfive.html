@@ -96,6 +96,9 @@
     // Enable button now that JavaScript is available
     elements.button.classList.remove('no-js');
     elements.button.addEventListener('click', handleHighFiveClick);
+
+    // Load initial count
+    loadHighFiveCount();
   }
 
   /**
@@ -149,7 +152,7 @@
       const data = await makeApiRequest('POST');
       const newCount = data.count || currentCount;
       currentCount = newCount;
-      
+
       // Check if user already gave a high five (HTTP 409 response)
       if (data.alreadyHighFived) {
         updateButtonContent('check');
@@ -160,7 +163,7 @@
         showMessage('🎉 Thanks!', 'success');
         setButtonState('disabled');
       }
-      
+
     } catch (error) {
       console.error('Failed to send high five:', error);
 
