@@ -38,9 +38,14 @@
 {{ $resource := resources.GetRemote $apiUrl }}
 {{ $initialCount := 0 }}
 {{ if $resource }}
-  {{ $highfiveData := $resource | transform.Unmarshal }}
-  {{ if $highfiveData.count }}
-    {{ $initialCount = $highfiveData.count }}
+  {{ with $resource.Err }}
+    {{ warnf "Failed to fetch highfive data from %s: %s" $apiUrl . }}
+    {{ $initialCount = 0 }}
+  {{ else }}
+    {{ $highfiveData := $resource | transform.Unmarshal }}
+    {{ if $highfiveData.count }}
+      {{ $initialCount = $highfiveData.count }}
+    {{ end }}
   {{ end }}
 {{ end }}
 
@@ -115,6 +120,10 @@
     if (response.status === 409) {
       const data = await response.json();
       return { ...data, alreadyHighFived: true };
+    }
+
+    if (response.status === 400) {
+      return {count: 0}
     }
 
     if (!response.ok) {
