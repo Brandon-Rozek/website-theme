@@ -35,13 +35,12 @@
 </style>
 
 {{ $apiUrl := printf "https://api.brandonrozek.com/highfive%s" .RelPermalink }}
-{{ $resource := resources.GetRemote $apiUrl }}
 {{ $initialCount := 0 }}
-{{ if $resource }}
-  {{ with $resource.Err }}
-    {{ warnf "Failed to fetch highfive data from %s: %s" $apiUrl . }}
-    {{ $initialCount = 0 }}
+{{ with try (resources.GetRemote $apiUrl) }}
+  {{ with .Err }}
+    {{ warnf "Failed to fetch highfive data from %s" $apiUrl }}
   {{ else }}
+    {{ $resource := .Value }}
     {{ $highfiveData := $resource | transform.Unmarshal }}
     {{ if $highfiveData.count }}
       {{ $initialCount = $highfiveData.count }}
