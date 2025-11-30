@@ -31,10 +31,14 @@
         <div class="bloglist-item">
           <p><a href="{{ .Permalink }}">{{ .Title }}</a></p>
           <p class="bloglist-item-tag">
+            {{ $tag_count := 0 }}
             {{ range .Params.tags }}
+            {{ if lt $tag_count 2 }}
             {{ $name := . }}
             {{ with $.Site.GetPage (printf "/tags/%s" (. | urlize)) }}
             <span><a href="{{ .Permalink }}">#{{ $name }}</a> </span>
+            {{ end }}
+            {{ $tag_count = add $tag_count 1 }}
             {{ end }}
             {{ end }}
           </p>
