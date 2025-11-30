@@ -2,9 +2,32 @@
   {{ partial "header.html" . }}
   <main>
   <div class='bloglist-teaser block-center' style="margin-top: 2rem;">
-    Here you'll find <strong>{{ len .Pages | lang.FormatNumber 0 }} posts</strong>
-    about <u>{{ .Title }}</u> </strong>.
+    <p>Here you'll find <strong>{{ len .Pages | lang.FormatNumber 0 }} post{{if gt (len .Pages) 1}}s{{end}}</strong>
+    about <u>{{ .Title }}</u>.</p>
+
+  <!-- Wikidata context -->
+  {{ $tagKey := .Title | urlize }}
+  {{ with index .Site.Data.wikidata_mappings $tagKey }}
+  <div class='wikidata-context block-center' style="margin-top: 1rem; margin-bottom: 2rem;">
+    {{ if eq (len .entities) 1 }}
+      {{ $entity := index .entities 0 }}
+      <p style="font-size: 1.25rem;">
+        Same as <a href="{{ $entity.url }}">{{ $entity.id }}</a>, {{ $entity.description }}.
+      </p>
+    {{ else }}
+      <p style="font-size: 1.25rem;"><strong>These posts may refer to:</strong></p>
+      <ul style="font-size: 1.25rem;">
+      {{ range .entities }}
+        <li>
+          <a href="{{ .url }}">{{ .id }}</a> – {{ .description }}
+        </li>
+      {{ end }}
+      </ul>
+    {{ end }}
   </div>
+  {{ end }}
+  </div>
+
   <!-- contents -->
   <div class="bloglist">
     {{ $listPageDateFormat := .Site.Params.listPageDateFormat | default "2006"}}
