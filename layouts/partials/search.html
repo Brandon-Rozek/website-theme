@@ -11,5 +11,5 @@
   {{ $lunr := resources.Get "js/lunr.js" }}
   {{ $search := resources.Get "js/search.js" }}
   {{ $lunrPackage := slice $jquery $mark $lunr | resources.Concat "js/lunrPackage.js" | resources.Minify | resources.Fingerprint }}
-  <script src="{{ $lunrPackage.RelPermalink }}"></script>
-  <script src="{{ $search.RelPermalink }}" async></script>
+  <script src="{{ $lunrPackage.Permalink }}"></script>
+  <script src="{{ $search.Permalink }}" async></script>

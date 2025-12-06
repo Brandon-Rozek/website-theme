@@ -4,7 +4,7 @@
     {{ range .Param "tags" }}
       {{ $name := . }}
       {{ with $.Site.GetPage (printf "/tags/%s" ($name | urlize)) }}
-        <li><a class="p-category" href="{{ .RelPermalink }}">{{ $name }}</a></li>
+        <li><a class="p-category" href="{{ .Permalink }}">{{ $name }}</a></li>
       {{ end }}
     {{ end }}
   </ul>
