@@ -11,7 +11,7 @@
       {{ $profile_image := resources.Get (printf "img/%s" .Site.Params.avatar) }}
       {{ $profile_width := 75 }}
       {{ $profile_image := $profile_image.Resize (printf "%dx webp q75" $profile_width) }}
-      <img class="u-photo" width="{{ $profile_width }}" height="{{ $profile_width }}" src="{{ $profile_image.RelPermalink }}"/>
+      <img class="u-photo" width="{{ $profile_width }}" height="{{ $profile_width }}" src="{{ $profile_image.Permalink }}"/>
       <span > {{ .Site.Params.Author }}</span>
     </div>
     <!-- content -->

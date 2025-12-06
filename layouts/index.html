@@ -9,7 +9,7 @@
         {{ $profile_image := resources.Get (printf "img/%s" .Site.Params.avatar) }}
         {{ $profile_width := 250 }}
         {{ $profile_image := $profile_image.Resize (printf "%dx webp q75" $profile_width) }}
-        <img class="avatarMask u-photo" width="{{ $profile_width }}" height="{{ $profile_width }}" src="{{ $profile_image.RelPermalink }}" alt="Photo of {{ .Site.Params.Author }}">
+        <img class="avatarMask u-photo" width="{{ $profile_width }}" height="{{ $profile_width }}" src="{{ $profile_image.Permalink }}" alt="Photo of {{ .Site.Params.Author }}">
         <!-- <img src="{{ .Site.BaseURL }}img/avatar-border.svg" alt="Photo of {{ .Site.Params.Author }}"> -->
       </div>
       <!-- author -->
