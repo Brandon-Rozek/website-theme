@@ -37,7 +37,7 @@
     {{ end }}
     <p class="date">{{ .Key }}</p>
     {{ range .Pages }}
-      <p><a href="{{ .Permalink }}">{{ .Title }}</a></p>
+      <p><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
     {{ end }}
     {{ end }}
   </div>

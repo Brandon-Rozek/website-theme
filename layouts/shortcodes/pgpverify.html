@@ -1,5 +1,5 @@
 {{- $openPGP := resources.Get "js/openpgp.min.js" -}}
-<script src="{{ $openPGP.Permalink }}"></script>
+<script src="{{ $openPGP.RelPermalink }}"></script>
 <textarea id="pgpsignedtext" class="pgpform" style="width: 100%; min-height: 10rem;"></textarea>
 <button class="pgpverifybutton" onclick="verify()">Verify</button>
 <br/>

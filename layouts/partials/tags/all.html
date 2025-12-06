@@ -3,7 +3,7 @@
     <summary>Tags</summary>
     <ul>
       {{ range .Site.Taxonomies.tags.ByCount }}
-        <li><a href="{{ .Page.Permalink }}">{{ .Page.Title }} ({{ .Count }})</a></li>
+        <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }} ({{ .Count }})</a></li>
       {{ end }}
     </ul>
   </details>
