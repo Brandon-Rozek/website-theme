@@ -64,12 +64,12 @@
   {{- $fontawesome := resources.Get "css/fontawesome.css" -}}
   {{- $syntaxHighlight := resources.Get "css/syntax-highlight.css" -}}
   {{ $css := slice $style $markdown $fontawesome $syntaxHighlight | resources.Concat "css/style.css" | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $css.Permalink }}" integrity="{{ $css.Data.Integrity }}">
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
   
   {{- $styleDark := resources.Get "css/style-dark.css" -}}
   {{- $markdownDark := resources.Get "css/markdown-dark.css" -}}
   {{ $cssDark := slice $styleDark $markdownDark | resources.Concat "css/style-dark.css" | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $cssDark.Permalink }}" media="(prefers-color-scheme: dark)" integrity="{{ $cssDark.Data.Integrity }}">
+  <link rel="stylesheet" href="{{ $cssDark.RelPermalink }}" media="(prefers-color-scheme: dark)" integrity="{{ $cssDark.Data.Integrity }}">
 
   <!-- custom css -->
   {{- range .Site.Params.custom_css -}}
@@ -83,5 +83,5 @@
   {{ partial "citation.html" . }}
 
   {{- $script := resources.Get "js/script.js" -}}
-  <script src="{{ $script.Permalink }}" async></script>
+  <script src="{{ $script.RelPermalink }}" async></script>
 </head>

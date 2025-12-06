@@ -10,7 +10,7 @@
       <ul class="footer-nav">
       {{ range .Site.Sections }}
       {{ if not .Params.hidden }}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
       {{ end }}
       {{ end }}
       </ul>
@@ -22,7 +22,7 @@
       {{ $sectionPages := where .Site.Pages "Section" "" }}
         {{ range $sectionPages }}
         {{ if and (not .Params.hidden) (ne .Permalink .Site.BaseURL)}}
-          <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
         {{ end }}
       {{ end }}
       <li><a href="/support">Support</a></li>
