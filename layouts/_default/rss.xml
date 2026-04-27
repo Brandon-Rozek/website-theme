@@ -29,18 +29,12 @@
     {{ with .OutputFormats.Get "RSS" }}
 	{{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{ end }}
-    {{ range $pages }}
-    <item>
-      <title>{{ .Title }}</title>
-      <link>{{ .Permalink }}</link>
-      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
-      {{ with .Site.Params.email }}<author>{{.}}{{ with $.Site.Params.Author }} ({{.}}){{end}}</author>{{end}}
-      <guid>{{ .Permalink }}</guid>
-      {{ printf `<description><![CDATA[%s]]></description>` .Summary | safeHTML }}
-      {{ printf `<content:encoded><![CDATA[%s]]></content:encoded>` .Content | safeHTML }}
-      {{ range .Param "tags" }}<category>{{ . }}</category>
-      {{ end }}
-    </item>
-    {{ end }}
+  {{ range $pages }}
+  {{ $itemPartial := printf "rss-item/%s.xml" .Type }}
+  {{- if not (templates.Exists (printf "partials/%s" $itemPartial)) -}}
+    {{- $itemPartial = "rss-item/default.xml" -}}
+  {{- end -}}
+  {{ partial $itemPartial . }}
+  {{ end }}
   </channel>
 </rss>
