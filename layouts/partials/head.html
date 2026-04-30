@@ -33,8 +33,6 @@
   {{- if .IsHome -}}
   <link rel="alternate" type="application/json" href="{{ .Site.BaseURL }}blog/index.json" title="Brandon Rozek's Blog">
   <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}blog/index.xml" title="Brandon Rozek's Blog">
-  <link rel="alternate" type="application/json" href="{{ .Site.BaseURL }}presentations/index.json" title="Brandon Rozek's Presentations}">
-  <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}presentations/index.xml" title="Brandon Rozek's Presentations">
   {{ else }}
   {{ range .AlternativeOutputFormats -}}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
