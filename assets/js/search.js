@@ -149,7 +149,7 @@ const renderResults = (results) => {
 
   // Show message when results is empty
   if (!results.length) {
-    $searchResults.append('<div class="searchResultPage">No results found for query "' + query + '"</div>')
+    $searchResults.append($('<div class="searchResultPage">').text('No results found for query "' + query + '"'))
     return
   }
 
