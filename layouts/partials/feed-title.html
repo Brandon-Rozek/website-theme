@@ -1,0 +1,4 @@
+{{- /* Context: the feed's page. Returns "Page Title | Site Title", or just the site title on the home page. */ -}}
+{{- $title := .Site.Title -}}
+{{- if and .Title (ne .Title .Site.Title) -}}{{- $title = printf "%s | %s" .Title .Site.Title -}}{{- end -}}
+{{- return $title -}}
