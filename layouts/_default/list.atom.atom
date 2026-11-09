@@ -34,7 +34,7 @@
       <activity:object-type>http://activitystrea.ms/schema/1.0/article</activity:object-type>
       <title>{{ .Title }}</title>
       <id>{{ .Permalink }}</id>
-      {{ printf `<content type="html"><![CDATA[%s]]></description>` .Content | safeHTML }}
+      {{ printf `<content type="html"><![CDATA[%s]]></content>` .Content | safeHTML }}
       {{ range .Param "tags" }}<category term="{{ . }}"/>
       {{ end }}
       <link rel="alternate" type="text/html" href="{{ .Permalink }}" />
