@@ -8,7 +8,7 @@
         {{ $ageYears = div (sub now.Unix .Lastmod.Unix) 31536000 }}
     {{ end }}
 
-    {{ if gt $ageYears .Site.Params.warnPostOlderThanXYears }}
+    {{ if ge $ageYears .Site.Params.warnPostOlderThanXYears }}
 <div style="margin-top: 1rem; border: 1px solid black; padding: 1rem;">
     <em>Warning</em>: This post has not been modified
     for over {{ .Site.Params.warnPostOlderThanXYears }} years. For technical posts,
