@@ -5,7 +5,7 @@
     {{ $ageYears := div (sub now.Unix .Date.Unix) 31536000 }}
 
     {{ if .Lastmod }}
-        {{ $ageYears := div (sub now.Unix .Lastmod.Unix) 31536000 }}
+        {{ $ageYears = div (sub now.Unix .Lastmod.Unix) 31536000 }}
     {{ end }}
 
     {{ if gt $ageYears .Site.Params.warnPostOlderThanXYears }}
