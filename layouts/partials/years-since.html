@@ -1,0 +1,2 @@
+{{- /* Usage: partial "years-since.html" TIME -- returns whole years (365-day) between TIME and now. */ -}}
+{{- return div (sub now.Unix .Unix) 31536000 -}}
