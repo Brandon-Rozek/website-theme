@@ -65,8 +65,8 @@ const initLunr = () => {
       builder.field('content_html')
       builder.metadataWhitelist = ['position']
       for (let page of pagesIndex) {
-        // Temporary hack to make page load faster
-        page['content_html'] = page['content_html'].substring(0, 1000);
+        // Index visible text only, then truncate to make page load faster
+        page['content_html'] = page['content_html'].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().substring(0, 1000);
         builder.add(page);
       }
     })
