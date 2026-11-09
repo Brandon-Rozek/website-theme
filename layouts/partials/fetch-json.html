@@ -1,0 +1,13 @@
+{{- /* Usage: partial "fetch-json.html" URL -- returns the parsed JSON at URL; fails the build if the fetch fails. */ -}}
+{{- $url := . -}}
+{{- $data := dict -}}
+{{- with try (resources.GetRemote $url) -}}
+  {{- with .Err -}}
+    {{- errorf "Unable to get remote resource %s: %s" $url . -}}
+  {{- else with .Value -}}
+    {{- $data = .Content | transform.Unmarshal -}}
+  {{- else -}}
+    {{- errorf "Unable to get remote resource %s" $url -}}
+  {{- end -}}
+{{- end -}}
+{{- return $data -}}
