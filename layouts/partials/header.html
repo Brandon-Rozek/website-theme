@@ -31,7 +31,7 @@
     <img class="avatarMask u-photo" width="{{ $profile_width }}" height="{{ $profile_width }}" src="{{ $profile_image.Permalink }}" alt="Photo of {{ .Site.Params.Author }}">
     <div style="display: none">
         <!-- email / description (for h-card) -->
-        <a class="u-email" href="mailto://{{ .Site.Params.email }}"></a>
+        <a class="u-email" href="mailto:{{ .Site.Params.email }}"></a>
         <p class="p-note">
           {{ .Site.Params.description | safeHTML }}
         </p>
