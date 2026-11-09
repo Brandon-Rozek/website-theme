@@ -1,7 +1,7 @@
 {{ $url := urls.Parse (.Get 0) }}
 {{ $status_id := index (last 1 (split $url.Path "/")) 0 }}
 {{ $api_url := printf "%s://%s/api/v1/statuses/%s" $url.Scheme $url.Host $status_id }}
-{{ $dataJ := partial "fetch-json.html" $api_url }}
+{{ $dataJ := partial "func/fetch-json.html" $api_url }}
 
 {{ .Scratch.Set "toot" $dataJ }}
-{{ partial "external/toot.html" . }}
+{{ partial "embed/toot.html" . }}

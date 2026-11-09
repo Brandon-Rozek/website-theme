@@ -1,5 +1,5 @@
 {{ define "main"}}
-  {{ partial "header.html" . }}
+  {{ partial "page/header.html" . }}
   <main>
   <div class='bloglist-teaser block-center' style="margin-top: 2rem;">
     <p>Here you'll find <strong>{{ len .Pages | lang.FormatNumber 0 }} post{{if gt (len .Pages) 1}}s{{end}}</strong>

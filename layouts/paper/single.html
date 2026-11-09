@@ -2,10 +2,10 @@
 {{ .Scratch.Set "customTitleHeaderSet" true }}
 {{ .Scratch.Set "customTitleHeader" "Publications" }}
 {{ .Scratch.Set "customTitleHeaderLink" "/publications/" }}
-{{ partial "header.html" . }}
+{{ partial "page/header.html" . }}
 <main>
   <article class="h-entry">
-    {{ partial "entry-header.html" . }}
+    {{ partial "article/header.html" . }}
     <!-- content -->
     <div class="e-content">
       <p><strong>Authors</strong>: {{ delimit .Params.authors ", " }}</p>

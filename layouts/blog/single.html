@@ -2,14 +2,14 @@
 {{ .Scratch.Set "customTitleHeaderSet" true }}
 {{ .Scratch.Set "customTitleHeader" "Blog" }}
 {{ .Scratch.Set "customTitleHeaderLink" "/blog/" }}
-{{ partial "header.html" . }}
+{{ partial "page/header.html" . }}
 <main>
   <article class="h-entry">
-    {{ partial "entry-header.html" . }}
-    {{ partial "date.html" (dict "page" . "prefix" "Published on ") }}
-    {{ partial "reading_time.html" . }}
-    {{ partial "tags/page.html" . }}
-    {{ partial "age_warning.html" . }}
+    {{ partial "article/header.html" . }}
+    {{ partial "article/date.html" (dict "page" . "prefix" "Published on ") }}
+    {{ partial "article/reading-time.html" . }}
+    {{ partial "article/tags.html" . }}
+    {{ partial "article/age-warning.html" . }}
     <!-- content -->
     <div class="e-content">
       {{ .Content }}
@@ -23,10 +23,10 @@
     <p>Enjoyed this post?</p>
     <ul style="list-style: none;">
       <li>Support: <a href="/support"><i class="fas fa-coffee" style="margin-right: 0.5rem;"></i>Buy me a Coffee</a></li>
-      <li>{{ partial "sharepost.html" . }}</li>
+      <li>{{ partial "article/share.html" . }}</li>
     </ul>
-    {{ partial "highfive.html" . }}
-    {{ partial "webmentions.html" . }}
+    {{ partial "article/highfive.html" . }}
+    {{ partial "article/webmentions.html" . }}
   </div>
 
 

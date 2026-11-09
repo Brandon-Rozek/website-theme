@@ -1,0 +1,2 @@
+{{- /* Usage: partial "func/observation-name.html" TAXON -- returns the taxon's common name, or its scientific name if it has none. */ -}}
+{{- return .preferred_common_name | default .name -}}

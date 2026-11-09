@@ -1,8 +1,8 @@
 {{ define "main" }}
-  {{ partial "header.html" . }}
+  {{ partial "page/header.html" . }}
   <!-- content -->
   <main class="h-entry">
-    {{ partial "date.html" (dict "page" . "prefix" "Published on ") }}
+    {{ partial "article/date.html" (dict "page" . "prefix" "Published on ") }}
     <div class="e-content">
       {{ .Content }}
     </div>

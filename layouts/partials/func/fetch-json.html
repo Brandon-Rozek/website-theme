@@ -1,4 +1,4 @@
-{{- /* Usage: partial "fetch-json.html" URL -- returns the parsed JSON at URL; fails the build if the fetch fails. */ -}}
+{{- /* Usage: partial "func/fetch-json.html" URL -- returns the parsed JSON at URL; fails the build if the fetch fails. */ -}}
 {{- $url := . -}}
 {{- $data := dict -}}
 {{- with try (resources.GetRemote $url) -}}

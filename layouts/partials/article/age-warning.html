@@ -2,10 +2,10 @@
 {{ if and (not .Date.IsZero) .Site.Params.warnPostOlderThanXYears }}
 
 
-    {{ $ageYears := partial "years-since.html" .Date }}
+    {{ $ageYears := partial "func/years-since.html" .Date }}
 
     {{ if .Lastmod }}
-        {{ $ageYears = partial "years-since.html" .Lastmod }}
+        {{ $ageYears = partial "func/years-since.html" .Lastmod }}
     {{ end }}
 
     {{ if ge $ageYears .Site.Params.warnPostOlderThanXYears }}

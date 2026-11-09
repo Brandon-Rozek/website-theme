@@ -1,4 +1,4 @@
-{{- $pages := partial "feed-pages.html" . -}}
+{{- $pages := partial "feed/pages.html" . -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <feed xml:lang="{{ .Site.LanguageCode }}"
       xmlns="http://www.w3.org/2005/Atom"
@@ -7,7 +7,7 @@
       xmlns:ostatus="http://ostatus.org/schema/1.0"
       xmlns:thr="http://purl.org/syndication/thread/1.0"
       xml:base="{{ .Permalink }}">
-    <title>{{ partial "feed-title.html" . }}</title>
+    <title>{{ partial "feed/title.html" . }}</title>
     <id>{{ .Permalink }}</id>
     <generator uri="https://gohugo.io">Hugo</generator>
     <author>
@@ -19,9 +19,9 @@
 	{{ printf "<link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{ end }}
     {{ range $pages }}
-    {{ $entryPartial := printf "atom-entry/%s.xml" .Type }}
+    {{ $entryPartial := printf "feed/atom-entry/%s.xml" .Type }}
     {{- if not (templates.Exists (printf "partials/%s" $entryPartial)) -}}
-      {{- $entryPartial = "atom-entry/default.xml" -}}
+      {{- $entryPartial = "feed/atom-entry/default.xml" -}}
     {{- end -}}
     {{ partial $entryPartial . }}
     {{ end }}

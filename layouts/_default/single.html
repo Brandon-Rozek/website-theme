@@ -1,8 +1,8 @@
 {{ define "main" }}
-  {{ partial "header.html" . }}
+  {{ partial "page/header.html" . }}
   <main>
-  {{ partial "date.html" (dict "page" .) }}
-  {{ partial "tags/page.html" . }}
+  {{ partial "article/date.html" (dict "page" .) }}
+  {{ partial "article/tags.html" . }}
   <!-- content -->
   <div class="e-content">
     {{ .Content }}

@@ -1,8 +1,8 @@
 {{ define "main"}}
-  {{ partial "header.html" . }}
+  {{ partial "page/header.html" . }}
   <main>
-  {{ partial "search.html" . }}
-  {{ partial "tags/all.html" . }}
+  {{ partial "list/search.html" . }}
+  {{ partial "list/tags.html" . }}
 
   <br/>
   {{ $posts := where site.RegularPages "Type" "blog" }}
@@ -11,7 +11,7 @@
     {{ $tags := .Site.Taxonomies.tags }}
     <div class='bloglist-teaser block-center'>
     Hello! This page contains <strong>{{ $postCount | lang.FormatNumber 0 }} posts</strong>
-    written in the past <strong>{{ partial "years-since.html" .Date }} years</strong>
+    written in the past <strong>{{ partial "func/years-since.html" .Date }} years</strong>
     spanning 
     {{ len $tags }} topics within the dropdown above.
     </div>

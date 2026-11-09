@@ -1,4 +1,4 @@
-{{- $pages := partial "feed-pages.html" . -}}
+{{- $pages := partial "feed/pages.html" . -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 {{- $style := resources.Get "css/pretty-feed-v3.xsl" -}}
 {{- printf "<?xml-stylesheet href=%q type=\"text/xsl\"?>" $style.Permalink  | safeHTML }}
@@ -7,10 +7,10 @@
     xmlns:content="http://purl.org/rss/1.0/modules/content/"
     xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>{{ partial "feed-title.html" . }}</title>
+    <title>{{ partial "feed/title.html" . }}</title>
     <link>{{ .Permalink }}</link>
     <image>
-      <title>{{ partial "feed-title.html" . }}</title>
+      <title>{{ partial "feed/title.html" . }}</title>
       <link>{{ .Permalink }}</link>
       <url>{{ .Site.BaseURL }}img/{{ .Site.Params.avatar }}</url>
     </image>
@@ -25,9 +25,9 @@
 	{{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{ end }}
   {{ range $pages }}
-  {{ $itemPartial := printf "rss-item/%s.xml" .Type }}
+  {{ $itemPartial := printf "feed/rss-item/%s.xml" .Type }}
   {{- if not (templates.Exists (printf "partials/%s" $itemPartial)) -}}
-    {{- $itemPartial = "rss-item/default.xml" -}}
+    {{- $itemPartial = "feed/rss-item/default.xml" -}}
   {{- end -}}
   {{ partial $itemPartial . }}
   {{ end }}

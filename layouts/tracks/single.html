@@ -2,20 +2,20 @@
 {{ .Scratch.Set "customTitleHeaderSet" true }}
 {{ .Scratch.Set "customTitleHeader" "Tracks" }}
 {{ .Scratch.Set "customTitleHeaderLink" "/tracks/" }}
-{{ partial "header.html" . }}
+{{ partial "page/header.html" . }}
 <main>
   <article class="h-entry">
-    {{ partial "entry-header.html" . }}
-    {{ partial "date.html" (dict "page" . "prefix" "Published on ") }}
-    {{ partial "reading_time.html" . }}
-    {{ partial "tags/page.html" . }}
+    {{ partial "article/header.html" . }}
+    {{ partial "article/date.html" (dict "page" . "prefix" "Published on ") }}
+    {{ partial "article/reading-time.html" . }}
+    {{ partial "article/tags.html" . }}
     <!-- content -->
     <div class="e-content">
       {{ .Scratch.Set "gpxFile" .Params.gpx }}
-      {{ partial "external/gpxstudio.html" . }}
+      {{ partial "embed/gpxstudio.html" . }}
       {{ .Content }}
     </div>
   </article>
-  {{ partial "webmentions.html" . }}
+  {{ partial "article/webmentions.html" . }}
 </main>
 {{ end }}

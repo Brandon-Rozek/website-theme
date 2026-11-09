@@ -4,7 +4,7 @@
 {{ with $obsData }}
 
 <article class="toot h-entry">
-    {{ $name := partial "observation-name.html" .taxon }}
+    {{ $name := partial "func/observation-name.html" .taxon }}
     {{ $obsURL := .url }}
     {{ with $scratchURL }}
         {{ $obsURL = . }}

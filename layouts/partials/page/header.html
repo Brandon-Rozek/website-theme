@@ -26,7 +26,7 @@
   <div class="h-card p-author">
     <h2 class="p-name"><a class="author u-url" rel="me" href="{{ .Site.BaseURL }}">{{ .Site.Params.Author }}</a></h2>
     {{ $profile_width := 75 }}
-    {{ $profile_image := partial "avatar-image.html" $profile_width }}
+    {{ $profile_image := partial "func/avatar-image.html" $profile_width }}
     <img class="avatarMask u-photo" width="{{ $profile_width }}" height="{{ $profile_width }}" src="{{ $profile_image.Permalink }}" alt="Photo of {{ .Site.Params.Author }}">
     <div style="display: none">
         <!-- email / description (for h-card) -->
