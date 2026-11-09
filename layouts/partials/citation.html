@@ -1,74 +1,74 @@
-{{ $is_conference := isset .Params "conference" }}
-{{ $is_journal := isset .Params "journal" }}
+{{ $is_conference := .Params.conference }}
+{{ $is_journal := .Params.journal }}
 
 {{- if (or $is_conference $is_journal ) -}}
-    {{- if isset .Params "title" -}}
-        <meta name="citation_title" content="{{ .Params.title }}">
+    {{- with .Params.title -}}
+        <meta name="citation_title" content="{{ . }}">
     {{ end }}
-    {{- if isset .Params "authors" -}}
-        {{- range .Params.authors -}}
+    {{- with .Params.authors -}}
+        {{- range . -}}
             <meta name="citation_author" content="{{ . }}">
         {{ end }}
     {{ end }}
-    {{- if isset .Params "publish_date" -}}
-        <meta name="citation_publication_date" content="{{ .Params.publish_date }}">
+    {{- with .Params.publish_date -}}
+        <meta name="citation_publication_date" content="{{ . }}">
     {{ end }}
 
 
-    {{- if isset .Params "journal" -}}
-        <meta name="citation_journal_title" content="{{ .Params.journal }}">
+    {{- with .Params.journal -}}
+        <meta name="citation_journal_title" content="{{ . }}">
     {{ end }}
-    {{- if isset .Params "conference" -}}
-        <meta name="citation_conference_title" content="{{ .Params.conference }}">
+    {{- with .Params.conference -}}
+        <meta name="citation_conference_title" content="{{ . }}">
     {{ end }}
-    {{- if isset .Params "dissertation_institution" -}}
-        <meta name="citation_dissertation_institution" content="{{ .Params.dissertation_institution }}">
+    {{- with .Params.dissertation_institution -}}
+        <meta name="citation_dissertation_institution" content="{{ . }}">
     {{ end }}
-    {{- if isset .Params "technical_report_institution" -}}
-        <meta name="citation_technical_report_institution" content="{{ .Params.technical_report_institution }}">
+    {{- with .Params.technical_report_institution -}}
+        <meta name="citation_technical_report_institution" content="{{ . }}">
     {{ end }}
-    {{- if isset .Params "technical_report_number" -}}
-        <meta name="citation_technical_report_number" content="{{ .Params.technical_report_number }}">
-    {{ end }}
-
-
-    {{- if isset .Params "issn" -}}
-        <meta name="citation_issn" content="{{ .Params.issn }}">
-    {{ end }}
-    {{- if isset .Params "isbn" -}}
-        <meta name="citation_isbn" content="{{ .Params.isbn }}">
-    {{ end }}
-    {{- if isset .Params "doi" -}}
-        <meta name="citation_doi" content="{{ .Params.doi }}">
+    {{- with .Params.technical_report_number -}}
+        <meta name="citation_technical_report_number" content="{{ . }}">
     {{ end }}
 
 
-    {{- if isset .Params "volume" -}}
-        <meta name="citation_volume" content="{{ .Params.volume }}">
+    {{- with .Params.issn -}}
+        <meta name="citation_issn" content="{{ . }}">
     {{ end }}
-    {{- if isset .Params "issue" -}}
-        <meta name="citation_issue" content="{{ .Params.issue }}">
+    {{- with .Params.isbn -}}
+        <meta name="citation_isbn" content="{{ . }}">
     {{ end }}
-    {{- if isset .Params "firstpage" -}}
-        <meta name="citation_firstpage" content="{{ .Params.firstpage }}">
+    {{- with .Params.doi -}}
+        <meta name="citation_doi" content="{{ . }}">
     {{ end }}
-    {{- if isset .Params "lastpage" -}}
-        <meta name="citation_lastpage" content="{{ .Params.lastpage }}">
+
+
+    {{- with .Params.volume -}}
+        <meta name="citation_volume" content="{{ . }}">
     {{ end }}
-    {{- if isset .Params "language" -}}
-        <meta name="citation_language" content="{{ .Params.language }}">
+    {{- with .Params.issue -}}
+        <meta name="citation_issue" content="{{ . }}">
     {{ end }}
-    {{- if isset .Params "keywords" -}}
-        {{- range .Params.keywords -}}
+    {{- with .Params.firstpage -}}
+        <meta name="citation_firstpage" content="{{ . }}">
+    {{ end }}
+    {{- with .Params.lastpage -}}
+        <meta name="citation_lastpage" content="{{ . }}">
+    {{ end }}
+    {{- with .Params.language -}}
+        <meta name="citation_language" content="{{ . }}">
+    {{ end }}
+    {{- with .Params.keywords -}}
+        {{- range . -}}
             <meta name="citation_keyword" content="{{ . }}">
         {{ end }}
     {{ end }}
 
     
-    {{- if isset .Params "pdf_url" -}}
-        <meta name="citation_pdf_url" content="{{ .Params.pdf_url }}">
+    {{- with .Params.pdf_url -}}
+        <meta name="citation_pdf_url" content="{{ . }}">
     {{ end }}
-    {{- if isset .Params "abstract" -}}
-        <meta name="citation_abstract" content="{{ .Params.abstract }}">
+    {{- with .Params.abstract -}}
+        <meta name="citation_abstract" content="{{ . }}">
     {{ end }}
 {{ end }}
