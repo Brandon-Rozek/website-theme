@@ -37,7 +37,7 @@ function trimCache(name, maxItems) {
   // Make sure offlineFundamentals don't get deleted
   .then(([cache, keys]) => [
     cache,
-    keys.filter(key => !offlineFundamentals.includes(key)),
+    keys.filter(key => !offlineFundamentals.includes(new URL(key.url).pathname)),
     keys.length - maxItems
   ])
   .then(([cache, possibleDelete, numToDelete]) => {
