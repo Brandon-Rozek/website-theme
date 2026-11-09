@@ -1,20 +1,27 @@
-{{ if and (not .Date.IsZero) (not .Params.hideDate) (not .Site.Params.hideDate) }}
-    {{ $publishString := .Scratch.Get "beforeDateString" }}
-    {{ $singlePageDateFormat := .Site.Params.singlePageDateFormat | default "January 2, 2006"}}
-    {{ $pubdate := .Date.Format $singlePageDateFormat }}
+{{- /*
+  Usage: partial "date.html" (dict "page" . "prefix" "Published on " "showUpdated" false)
+  prefix (default "") is printed before the publish date; showUpdated (default true) controls the "Updated on" line.
+*/ -}}
+{{- $page := .page -}}
+{{- $prefix := .prefix | default "" -}}
+{{- $showUpdated := true -}}
+{{- if isset . "showUpdated" }}{{ $showUpdated = .showUpdated }}{{ end -}}
+{{ if and (not $page.Date.IsZero) (not $page.Params.hideDate) (not site.Params.hideDate) }}
+    {{ $singlePageDateFormat := site.Params.singlePageDateFormat | default "January 2, 2006"}}
+    {{ $pubdate := $page.Date.Format $singlePageDateFormat }}
 
     <p class="date">
         <i class="fas fa-calendar"></i>
-        {{ $publishString }}
-        <time class="dt-published" datetime='{{ .Date.Format "2006-01-02T15:04:05Z0700" }}'>{{ $pubdate }}</time>
+        {{ $prefix }}
+        <time class="dt-published" datetime='{{ $page.Date.Format "2006-01-02T15:04:05Z0700" }}'>{{ $pubdate }}</time>
     </p>
 
-    {{- if and (not (.Scratch.Get "noDateUpdate")) .Lastmod }}
-        {{- $lastmod := .Lastmod.Format $singlePageDateFormat }}
+    {{- if and $showUpdated $page.Lastmod }}
+        {{- $lastmod := $page.Lastmod.Format $singlePageDateFormat }}
         {{- if ne $lastmod $pubdate }}
             <p class="date-updated">
                 Updated on
-                <time class='dt-updated' datetime='{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" }}'>{{ $lastmod }}</time>
+                <time class='dt-updated' datetime='{{ $page.Lastmod.Format "2006-01-02T15:04:05Z0700" }}'>{{ $lastmod }}</time>
             </p>
         {{- end }}
     {{ end }}

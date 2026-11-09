@@ -9,8 +9,7 @@
       {{ range .Pages }}
         <article class="h-entry">
           <h2 class='title p-name'><a class="u-url" href="{{ .Permalink }}">{{ .Title }}</a></h2>
-          {{ .Scratch.Set "noDateUpdate" true }}
-          {{ partial "date.html" . }}
+          {{ partial "date.html" (dict "page" . "showUpdated" false) }}
         </article>
       {{ end }}
       {{ end }}

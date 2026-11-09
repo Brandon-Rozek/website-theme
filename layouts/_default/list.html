@@ -2,8 +2,7 @@
   {{ partial "header.html" . }}
   <!-- content -->
   <main class="h-entry">
-    {{ .Scratch.Set "beforeDateString" "Published on "}}
-    {{ partial "date.html" . }}
+    {{ partial "date.html" (dict "page" . "prefix" "Published on ") }}
     <div class="e-content">
       {{ .Content }}
     </div>

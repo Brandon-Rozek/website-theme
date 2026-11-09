@@ -1,7 +1,7 @@
 {{ define "main" }}
   {{ partial "header.html" . }}
   <main>
-  {{ partial "date.html" . }}
+  {{ partial "date.html" (dict "page" .) }}
   {{ partial "tags/page.html" . }}
   <!-- content -->
   <div class="e-content">

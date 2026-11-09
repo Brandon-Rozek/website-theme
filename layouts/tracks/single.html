@@ -14,8 +14,7 @@
       <img class="u-photo" width="{{ $profile_width }}" height="{{ $profile_width }}" src="{{ $profile_image.Permalink }}"/>
       <span > {{ .Site.Params.Author }}</span>
     </div>
-    {{ .Scratch.Set "beforeDateString" "Published on "}}
-    {{ partial "date.html" . }}
+    {{ partial "date.html" (dict "page" . "prefix" "Published on ") }}
     {{ partial "reading_time.html" . }}
     {{ partial "tags/page.html" . }}
     <!-- content -->
