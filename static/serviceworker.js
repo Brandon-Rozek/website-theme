@@ -116,8 +116,8 @@ self.addEventListener('fetch', function (event) {
     .then(response => {
 			// If successful, create a copy of the response
       // and save it to the cache
-      // Note: Ignore badges
-      if (!request.url.includes("/badges")) {
+      // Note: Ignore badges, errors, and opaque cross-origin responses
+      if (response.ok && response.type === "basic" && !request.url.includes("/badges")) {
         let cacheCopy = response.clone();
         event.waitUntil(
           caches.open(version + cacheName)
