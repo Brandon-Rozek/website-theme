@@ -16,11 +16,7 @@
     </div>
     <!-- content -->
     <div class="e-content">
-      <p><strong>Authors</strong>:
-      {{range .Params.authors }}
-        {{ . }},
-      {{ end }}
-      </p>
+      <p><strong>Authors</strong>: {{ delimit .Params.authors ", " }}</p>
 
       {{ if .Params.journal }}
         <p>
@@ -51,11 +47,7 @@
       {{ end }}
 
       {{ if .Params.keywords }}
-      <p><strong>Keywords</strong>:
-        {{range .Params.keywords }}
-          {{ . }},
-        {{ end }}
-        </p>
+      <p><strong>Keywords</strong>: {{ delimit .Params.keywords ", " }}</p>
       {{ end }}
 
       {{ if .Params.pdf_url }}
