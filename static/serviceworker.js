@@ -16,7 +16,7 @@ function cacheClients() {
       includeUncontrolled: true
   })
   .then(allClients => allClients.map(client => client.url))
-  .then(pages => Promise.all([pages, caches.open(cacheName)]))
+  .then(pages => Promise.all([pages, caches.open(version + cacheName)]))
   .then(([pages, cache]) => cache.addAll(pages))
 }
 
