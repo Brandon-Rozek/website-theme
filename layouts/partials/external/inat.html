@@ -4,12 +4,7 @@
 {{ with $obsData }}
 
 <article class="toot h-entry">
-    {{ $name := "" }}
-    {{ if .taxon.preferred_common_name }}
-        {{ $name = .taxon.preferred_common_name }}
-    {{ else }}
-        {{ $name = .taxon.name }}
-    {{ end }}
+    {{ $name := partial "observation-name.html" .taxon }}
     {{ $obsURL := .url }}
     {{ with $scratchURL }}
         {{ $obsURL = . }}
