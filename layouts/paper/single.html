@@ -22,35 +22,35 @@
       {{ end }}
       </p>
 
-      {{ if isset .Params "journal" }}
+      {{ if .Params.journal }}
         <p>
           <strong>Journal:</strong>
           {{ .Params.journal }}
         </p>
       {{ end }}
 
-      {{ if isset .Params "conference" }}
+      {{ if .Params.conference }}
         <p>
           <strong>Conference:</strong>
           {{ .Params.conference }}
         </p>
       {{ end }}
 
-      {{ if isset .Params "publish_date" }}
+      {{ if .Params.publish_date }}
         <p>
           <strong>Publication Date:</strong>
           {{ .Params.publish_date }}
         </p>
       {{ end }}
 
-      {{ if isset .Params "abstract" }}
+      {{ if .Params.abstract }}
         <p>
           <strong>Abstract:</strong>
           {{ .Params.abstract }}
         </p>
       {{ end }}
 
-      {{ if isset .Params "keywords" }}
+      {{ if .Params.keywords }}
       <p><strong>Keywords</strong>:
         {{range .Params.keywords }}
           {{ . }},
@@ -58,7 +58,7 @@
         </p>
       {{ end }}
 
-      {{ if isset .Params "pdf_url" }}
+      {{ if .Params.pdf_url }}
         <p>
           <strong>PDF Link:</strong>
           <a href="{{ .Params.pdf_url }}">{{ .Params.pdf_url }}</a>
