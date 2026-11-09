@@ -10,6 +10,6 @@
     {{ errorf "Unable to get resource %s" $url }}
   {{ end }}
 {{ end }}
-w
+
 {{ .Scratch.Set "toot" $dataJ }}
 {{ partial "external/toot.html" . }}
