@@ -157,7 +157,7 @@ const renderResults = (results) => {
   results.slice(0, MAX_PAGES).forEach((result, idx) => {
     const $searchResultPage = $('<div class="searchResultPage">')
     const metadata = lunrResult[idx].matchData.metadata
-    const matchPosition = metadata[Object.keys(metadata)[0]].body ? metadata[Object.keys(metadata)[0]].body.position[0][0] : 0
+    const matchPosition = metadata[Object.keys(metadata)[0]].content_html ? metadata[Object.keys(metadata)[0]].content_html.position[0][0] : 0
     const bodyStartPosition = (matchPosition - (BODY_LENGTH / 2) > 0) ? matchPosition - (BODY_LENGTH / 2) : 0
 
     $searchResultPage.append('<a class="searchResultTitle" href="' + result.url + '">' + result.title + '</a>')
