@@ -90,9 +90,7 @@ self.addEventListener('fetch', function (event) {
 	const request = event.request;
 
   let isRequestType = function(name) {
-    return request.headers
-      .get('Accept')
-      .includes(name);
+    return (request.headers.get('Accept') || '').includes(name);
   }
 
   // Always fetch non-GET requests from the network
