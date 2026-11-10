@@ -25,12 +25,14 @@
           <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
         {{ end }}
       {{ end }}
-      <li><a href="/support">Support</a></li>
+      {{ range .Site.Menus.footer }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
       </ul>
     </nav>
 
   </div>
-  {{ partial "page/badges.html" . }}
+  {{ partial "hooks/footer-end.html" . }}
 </footer>
 <script type="application/ld+json">
   {
@@ -42,7 +44,6 @@
     "url": "{{ .Site.BaseURL }}"
   }
 </script>
-<script async src="https://dash.brandonrozek.com/tracker.js" data-ackee-server="https://dash.brandonrozek.com" data-ackee-domain-id="41f92524-47ad-497b-b342-a8c296e4b11b"></script>
 <!-- MathJax -->
 {{- if or .Params.math .Site.Params.math -}}
   {{ partial "page/mathjax.html" . }}
@@ -50,3 +51,4 @@
 {{- range .Site.Params.custom_js -}}
 <script src="{{ . }}"></script>
 {{ end }}
+{{ partial "hooks/body-end.html" . }}

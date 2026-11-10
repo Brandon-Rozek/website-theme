@@ -22,10 +22,10 @@
     <p>Have any questions or want to chat: <a href='mailto:{{ .Site.Params.email }}?subject=Re: "{{ .Title }}"' class="reply-button"><i class="fa fa-paper-plane" style="margin-right: 0.5rem;"></i>Reply via Email</a></p>
     <p>Enjoyed this post?</p>
     <ul style="list-style: none;">
-      <li>Support: <a href="/support"><i class="fas fa-coffee" style="margin-right: 0.5rem;"></i>Buy me a Coffee</a></li>
+      {{ partial "hooks/article-links.html" . }}
       <li>{{ partial "article/share.html" . }}</li>
     </ul>
-    {{ partial "article/highfive.html" . }}
+    {{ partial "hooks/article-end.html" . }}
     {{ partial "article/webmentions.html" . }}
   </div>
 
