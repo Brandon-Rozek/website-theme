@@ -1,3 +1,5 @@
+{{- /* Webmention list and reply form (webmention.io). Shown only when params.webmentions is true. */ -}}
+{{- if site.Params.webmentions }}
 <!-- Webmentions -->
 <div class="noprint" id="webmentions"></div>
 {{ $siteHost := (urls.Parse .Site.BaseURL).Host -}}
@@ -10,3 +12,4 @@
 {{ $webmentionjs := resources.Get "js/webmention.min.js" }}
 {{ $aliasesCombined := delimit (apply .Aliases "absURL" ".") "|" }}
 <script src="{{ $webmentionjs.Permalink }}" {{ printf "add-urls=%s" $aliasesCombined | safeHTMLAttr }} async></script>
+{{- end }}

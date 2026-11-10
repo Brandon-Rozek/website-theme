@@ -1,6 +1,7 @@
 {{ $gpxFile := .Scratch.Get "gpxFile" }}
 
-{{ $url := printf "%sdata/tracks/%s" .Site.BaseURL $gpxFile }}
+{{ $gpxPath := site.Params.gpxPath | default "data/tracks/" }}
+{{ $url := printf "%s%s%s" .Site.BaseURL $gpxPath $gpxFile }}
 {{ $url_state := querify "state" (printf "{\"urls\":[\"%s\"]}" $url) }}
 {{ $iframe_url := printf "https://gpx.studio/?%s&embed&distance" $url_state }}
 {{ $a_url := printf "https://gpx.studio/?%s" $url_state }}

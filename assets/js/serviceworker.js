@@ -1,5 +1,10 @@
-let version = 'v1::';
-let cacheName = 'website';
+{{- $cache := partial "func/sw-cache.html" . -}}
+{{- $skip := slice -}}
+{{- with site.Params.serviceWorker }}{{ with .skipCache }}{{ $skip = . }}{{ end }}{{ end -}}
+let version = '{{ $cache.version }}';
+let cacheName = '{{ $cache.name }}';
+// URLs containing any of these strings are never cached (params.serviceWorker.skipCache)
+let skipCache = {{ $skip | jsonify }};
 let offlinePage = '/offline/';
 let offlineFundamentals = [offlinePage, '/'];
 let maxItems = 100;
@@ -114,8 +119,8 @@ self.addEventListener('fetch', function (event) {
     .then(response => {
 			// If successful, create a copy of the response
       // and save it to the cache
-      // Note: Ignore badges, errors, and opaque cross-origin responses
-      if (response.ok && response.type === "basic" && !request.url.includes("/badges")) {
+      // Note: Ignore skipCache paths, errors, and opaque cross-origin responses
+      if (response.ok && response.type === "basic" && !skipCache.some(path => request.url.includes(path))) {
         let cacheCopy = response.clone();
         event.waitUntil(
           caches.open(version + cacheName)
